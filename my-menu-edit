@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Title</title>
+    <!-- You can link CSS or scripts here -->
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="#" aria-label="Go to the homepage"
+          ><svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <span class="hidden">Home</span>
+        </a>
+        <button id="light-mode" aria-label="Toggle light mode">
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M13 3a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0V3ZM6.343 4.929A1 1 0 0 0 4.93 6.343l1.414 1.414a1 1 0 0 0 1.414-1.414L6.343 4.929Zm12.728 1.414a1 1 0 0 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 1.414 1.414l1.414-1.414ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-9 4a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2H3Zm16 0a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2ZM7.757 17.657a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414Zm9.9-1.414a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM13 19a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <button id="dark-mode" aria-label="Toggle dark mode">
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.675 2.015a.998.998 0 0 0-.403.011C6.09 2.4 2 6.722 2 12c0 5.523 4.477 10 10 10 4.356 0 8.058-2.784 9.43-6.667a1 1 0 0 0-1.02-1.33c-.08.006-.105.005-.127.005h-.001l-.028-.002A5.227 5.227 0 0 0 20 14a8 8 0 0 1-8-8c0-.952.121-1.752.404-2.558a.996.996 0 0 0 .096-.428V3a1 1 0 0 0-.825-.985Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </nav>
+      <div id="tabs">
+        <h1>My List HQ</h1>
+      </div>
+    </header>
+    <main>
+      <header id="edit-filter-sort">
+        <ul>
+          <li>
+            <svg
+              id="edit-menu-svg"
+              class="w-6 h-6 text-gray-800 dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
+              />
+            </svg>
+          </li>
+          <li>
+            <svg
+              id="filter-svg"
+              class="w-6 h-6 text-gray-800 dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M5.05 3C3.291 3 2.352 5.024 3.51 6.317l5.422 6.059v4.874c0 .472.227.917.613 1.2l3.069 2.25c1.01.742 2.454.036 2.454-1.2v-7.124l5.422-6.059C21.647 5.024 20.708 3 18.95 3H5.05Z"
+              />
+            </svg>
+          </li>
+          <li>
+            <svg
+              id="sort-svg"
+              class="w-6 h-6 text-gray-800 dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 20V10m0 10-3-3m3 3 3-3m5-13v10m0-10 3 3m-3-3-3 3"
+              />
+            </svg>
+          </li>
+        </ul>
+      </header>
+      <section id="edit-meal-chefs-notes">
+        <section id="edit-meal">
+          <h2>Recipe Name</h2>
+          <div id="actions-bar">
+            <button id="remove-from-menu-btn">Remove from Menu</button>
+            <p>|</p>
+            <button id="remove-from-menu-btn">Duplicate</button>
+          </div>
+
+          <form>
+            <label for="meal-day-input">Day of the Week</label>
+            <input type="text" name="day-input" id="day-input" placeholder="" />
+
+            <label for="meal-category-input">Meal Category</label>
+            <input
+              type="text"
+              name="meal-category-input"
+              id="meal-category-input"
+              placeholder=""
+            />
+          </form>
+
+          <div class="buttons">
+            <button id="submit-btn">Submit</button>
+            <button id="cancel-btn">Cancel</button>
+          </div>
+        </section>
+        <section id="chefs-notes">
+          <h2>👨‍🍳 Chef's Notes</h2>
+          <ul>
+            <li>
+              Avocados too firm? Place them in a paper bag with a banana to
+              ripen faster.
+            </li>
+            <li>
+              Keep beans, pasta, and spices stocked to make last-minute meals
+              easy.
+            </li>
+            <li>
+              Frozen veggies are just as nutritious as fresh and last longer.
+            </li>
+          </ul>
+        </section>
+      </section>
+
+      <section id="menu-list">
+        <h3>Sunday</h3>
+        <h4>🥞 Breakfast</h4>
+        <ul>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+        </ul>
+        <h4>🥗 Lunch</h4>
+        <ul>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+        </ul>
+        <h4>🍔 Dinner</h4>
+        <ul>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+        </ul>
+        <h3>Monday</h3>
+        <h4>🥞 Breakfast</h4>
+        <ul>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+        </ul>
+        <h4>🥗 Lunch</h4>
+        <ul>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+        </ul>
+        <h4>🍔 Dinner</h4>
+        <ul>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+        </ul>
+        <h3>Tuesday</h3>
+        <h4>🥞 Breakfast</h4>
+        <ul>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+        </ul>
+        <h4>🥗 Lunch</h4>
+        <ul>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+          <li>Recipe Name</li>
+        </ul>
+        <h4>🍔 Dinner</h4>
+        <h3>Wednesday</h3>
+        <h4>🥞 Breakfast</h4>
+        <h4>🥗 Lunch</h4>
+        <h4>🍔 Dinner</h4>
+        <h3>Thursday</h3>
+        <h4>🥞 Breakfast</h4>
+        <h4>🥗 Lunch</h4>
+        <h4>🍔 Dinner</h4>
+        <h3>Friday</h3>
+        <h3>Saturday</h3>
+      </section>
+    </main>
+  </body>
+</html>

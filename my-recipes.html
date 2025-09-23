@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Title</title>
+    <!-- You can link CSS or scripts here -->
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="#" aria-label="Go to the homepage"
+          ><svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <span class="hidden">Home</span>
+        </a>
+        <button id="light-mode" aria-label="Toggle light mode">
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M13 3a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0V3ZM6.343 4.929A1 1 0 0 0 4.93 6.343l1.414 1.414a1 1 0 0 0 1.414-1.414L6.343 4.929Zm12.728 1.414a1 1 0 0 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 1.414 1.414l1.414-1.414ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-9 4a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2H3Zm16 0a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2ZM7.757 17.657a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414Zm9.9-1.414a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM13 19a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <button id="dark-mode" aria-label="Toggle dark mode">
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.675 2.015a.998.998 0 0 0-.403.011C6.09 2.4 2 6.722 2 12c0 5.523 4.477 10 10 10 4.356 0 8.058-2.784 9.43-6.667a1 1 0 0 0-1.02-1.33c-.08.006-.105.005-.127.005h-.001l-.028-.002A5.227 5.227 0 0 0 20 14a8 8 0 0 1-8-8c0-.952.121-1.752.404-2.558a.996.996 0 0 0 .096-.428V3a1 1 0 0 0-.825-.985Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </nav>
+      <div id="tabs">
+        <h1>My Recipes</h1>
+      </div>
+    </header>
+    <main>
+        <header id="search-add-filter-sort">
+            <ul>
+              <li>
+                <li>
+                    <form action="/search" method="GET" role="search">
+                        <label for="search-bar" class="hidden">Search:</label>
+                        <input type="search" id="search-bar" name="search-bar" placeholder="Search..." aria-label="Search" />
+                        <button type="submit" aria-label="search"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                          </svg>
+                          </button>
+                      </form>
+                </li>
+                <svg
+                  id="add-svg"
+                  class="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 12h14m-7 7V5"
+                  />
+                </svg>
+              </li>
+              <li>
+                <svg
+                  id="filter-svg"
+                  class="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M5.05 3C3.291 3 2.352 5.024 3.51 6.317l5.422 6.059v4.874c0 .472.227.917.613 1.2l3.069 2.25c1.01.742 2.454.036 2.454-1.2v-7.124l5.422-6.059C21.647 5.024 20.708 3 18.95 3H5.05Z"
+                  />
+                </svg>
+              </li>
+              <li>
+                <svg
+                  id="sort-svg"
+                  class="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 20V10m0 10-3-3m3 3 3-3m5-13v10m0-10 3 3m-3-3-3 3"
+                  />
+                </svg>
+              </li>
+            </ul>
+          </header>
+      <section id="recipe-info">
+        <svg id="fav-star"
+          class="w-6 h-6 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-width="2"
+            d="M11.083 5.104c.35-.8 1.485-.8 1.834 0l1.752 4.022a1 1 0 0 0 .84.597l4.463.342c.9.069 1.255 1.2.556 1.771l-3.33 2.723a1 1 0 0 0-.337 1.016l1.03 4.119c.214.858-.71 1.552-1.474 1.106l-3.913-2.281a1 1 0 0 0-1.008 0L7.583 20.8c-.764.446-1.688-.248-1.474-1.106l1.03-4.119A1 1 0 0 0 6.8 14.56l-3.33-2.723c-.698-.571-.342-1.702.557-1.771l4.462-.342a1 1 0 0 0 .84-.597l1.753-4.022Z"
+          />
+        </svg>
+        <h2>Recipe Name</h2>
+        <div id="actions-bar">
+            <button id="add-to-menu-btn">Add to Menu</button>
+            <p>|</p>
+            <button id="edit-btn">Edit</button>
+            <p>|</p>
+            <button id="ingred-list-btn">Ingredients List</button>
+          </div>
+        <dl>
+          <dt>Serves:</dt>
+          <dd>#</dd>
+          
+          <dt>Cook Time:</dt>
+          <dd>0hr</dd>
+
+          <dt>Category:</dt>
+          <dd>Category</dd>
+
+          <dt>Cook Time:</dt>
+          <dd>Time</dd>
+
+          <dt>Cooking Method:</dt>
+          <dd>Method</dd>
+
+          <dt>Recipe Creator:</dt>
+          <dd>Link</dd>
+
+          <dt>Ingredients</dt>
+          <dd>
+            <ul>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+            </ul>
+          </dd>
+        </dl>
+        <div class="buttons">
+          <button id="add-to-menu-btn">Add to Menu</button>
+          <button id="edit-btn">Edit</button>
+        </div>
+      </section>
+
+      <section id="recipes-list">
+        <div id="col-headers" class="hidden">
+          <p>Recipe Name</p>
+          <p>Cooking Method</p>
+          <p>Total Time</p>
+        </div>
+        <h3>Category</h3>
+        <ul>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
