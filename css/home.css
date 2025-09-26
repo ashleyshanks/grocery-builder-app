@@ -1,0 +1,100 @@
+/*-----------------------------   TOP BAR  -----------------------------*/
+
+.active-mode svg {
+  opacity: 0.5; /* 50% opacity */
+}
+
+#top-bar {
+  display: grid;
+  grid-template-areas: "nav  tabs";
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  border-bottom: 1.5px solid;
+  padding: 1.2em 0.8em 0;
+}
+
+#top-bar .hidden {
+  display: none;
+}
+
+#nav {
+  grid-area: nav;
+}
+
+#tabs {
+  grid-area: tabs;
+  justify-self: start;
+  padding-left: 1em;
+}
+
+#tabs ul {
+  list-style: none;
+}
+
+#tabs li {
+  background-color: var(--tab-bg-color); /* fill color */
+  border-radius: 10px 10px 0 0; /* top-left, top-right, bottom-right, bottom-left */
+  width: 250px;
+  text-align: center;
+  padding-bottom: 0.4em;
+  padding-top: 0.6em;
+}
+
+#tabs li:hover {
+  background-color: var(--tab-hover-color);
+}
+
+#tabs li.active {
+  background-color: var(--tab-active-color);
+}
+
+nav {
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+}
+
+nav a,
+nav button {
+  margin-left: 0.15em;
+  margin-right: 0.15em;
+}
+
+/*-----------------------------   MAIN  -----------------------------*/
+
+#hero-svg {
+  width: 250px; /* new width */
+  height: 250px; /* new height */
+  margin-bottom: 4vw;
+}
+
+#hero-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* horizontal centering */
+  align-items: center; /* vertical centering */
+  height: 85vh; /* full viewport height */
+}
+
+#hero-nav ul {
+  list-style: none; /* remove bullets */
+  padding: 0;
+  margin: 0;
+  display: flex; /* horizontal layout */
+  flex-direction: column;
+  gap: 3vw; /* spacing between buttons */
+}
+
+#hero-nav ul li {
+  display: inline-block; /* make list items behave like buttons */
+  background-color: var(--button-bg-color);
+  color: var(--button-font-color);
+  padding: 1.3em 15vw; /* vertical and horizontal padding */
+  border-radius: 8px; /* rounded corners */
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+#hero-nav ul li:hover {
+  background-color: var(--button-hover-bg);
+}

@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
-    <!-- You can link CSS or scripts here -->
+    <!-- ===== STYLESHEETS ===== -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/kxc3hmf.css" />
   </head>
   <body>
-    <header>
+    <!-- ===== TOP BAR ===== -->
+    <header id="top-bar">
       <nav>
-        <a href="#" aria-label="Go to the homepage"
+        <a href="#" aria-label="Go to the homepage" id="home"
           ><svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -27,7 +32,11 @@
           </svg>
           <span class="hidden">Home</span>
         </a>
-        <button id="light-mode" aria-label="Toggle light mode">
+        <button
+          id="light-mode"
+          class="active-mode"
+          aria-label="Toggle light mode"
+        >
           <svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -63,15 +72,48 @@
         </button>
       </nav>
       <div id="tabs">
-        <h1>My List HQ</h1>
+        <ul>
+          <li><h1>My List HQ</h1></li>
+        </ul>
       </div>
     </header>
     <main>
-      <header id="edit-filter-sort">
+      <!-- ===== TOP CONTROL BAR (search, edit, filter, sort) ===== -->
+      <header id="search-edit-filter-sort">
         <ul>
           <li>
+            <form action="/search" method="GET" role="search">
+              <label for="search-bar" class="hidden">Search:</label>
+              <input
+                type="search"
+                id="search-bar"
+                name="search-bar"
+                placeholder="Search..."
+                aria-label="Search"
+              />
+              <button type="submit" aria-label="search">
+                <svg
+                  class="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                    d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </button>
+            </form>
+          </li>
+          <li>
             <svg
-              id="edit-menu-svg"
+              id="edit-svg"
               class="w-6 h-6 text-gray-800 dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +127,7 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
+                d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"
               />
             </svg>
           </li>
@@ -127,6 +169,8 @@
           </li>
         </ul>
       </header>
+
+      <!-- ===== RECIPE INFO ===== -->
       <section id="recipe-info">
         <h2>Recipe Name</h2>
         <dl>
@@ -159,6 +203,7 @@
         </div>
       </section>
 
+      <!-- ===== MENU LIST  ===== -->
       <section id="menu-list">
         <h3>Sunday</h3>
         <h4>🥞 Breakfast</h4>

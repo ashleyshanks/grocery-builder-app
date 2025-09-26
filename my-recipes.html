@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
-    <!-- You can link CSS or scripts here -->
+    <!-- ===== STYLESHEETS ===== -->
+   <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/components.css">
+   <link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="https://use.typekit.net/kxc3hmf.css">
   </head>
   <body>
-    <header>
+    <!-- ===== TOP BAR ===== -->
+    <header id="top-bar">
       <nav>
-        <a href="#" aria-label="Go to the homepage"
+        <a href="#" aria-label="Go to the homepage" id="home"
           ><svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -27,7 +32,7 @@
           </svg>
           <span class="hidden">Home</span>
         </a>
-        <button id="light-mode" aria-label="Toggle light mode">
+        <button id="light-mode" class="active-mode" aria-label="Toggle light mode">
           <svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -63,10 +68,13 @@
         </button>
       </nav>
       <div id="tabs">
-        <h1>My Recipes</h1>
+        <ul>
+          <li><h1>My List HQ</h1></li>
+        </ul>
       </div>
     </header>
     <main>
+        <!-- ===== TOP CONTROL BAR (search, add, filter, sort) ===== -->
         <header id="search-add-filter-sort">
             <ul>
               <li>
@@ -137,6 +145,8 @@
               </li>
             </ul>
           </header>
+
+    <!-- ===== RECIPE INFO ===== -->
       <section id="recipe-info">
         <svg id="fav-star"
           class="w-6 h-6 text-gray-800 dark:text-white"
@@ -199,6 +209,7 @@
         </div>
       </section>
 
+      <!-- ===== RECIPE LIST ===== -->
       <section id="recipes-list">
         <div id="col-headers" class="hidden">
           <p>Recipe Name</p>

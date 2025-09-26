@@ -1,0 +1,93 @@
+/* (grid, header/footer, containers) */
+
+/*-----------------------------   GRID  -----------------------------*/
+
+/*-----------------------------   TOP BAR  -----------------------------*/
+
+.active-mode svg {
+  opacity: 0.5; /* 50% opacity */
+}
+
+#top-bar {
+  display: grid;
+  grid-template-areas: "nav  tabs";
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  border-bottom: 1.5px solid;
+  padding: 1.2em 0.8em 0;
+}
+
+#top-bar .hidden {
+  display: none;
+}
+
+#nav {
+  grid-area: nav;
+}
+
+#tabs {
+  grid-area: tabs;
+  justify-self: start;
+  padding-left: 1em;
+}
+
+#tabs ul {
+  list-style: none;
+}
+
+#tabs li {
+  background-color: var(--tab-bg-color); /* fill color */
+  border-radius: 10px 10px 0 0; /* top-left, top-right, bottom-right, bottom-left */
+  width: 250px;
+  text-align: center;
+  padding-bottom: 0.4em;
+  padding-top: 0.6em;
+}
+
+#tabs li:hover {
+  background-color: var(--tab-hover-color);
+}
+
+#tabs li.active {
+  background-color: var(--tab-active-color);
+}
+
+nav {
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+}
+
+nav a,
+nav button {
+  margin-left: 0.15em;
+  margin-right: 0.15em;
+}
+
+/*-----------------------------   TOP CONTROL BAR  -----------------------------*/
+
+#search-add-filter-sort {
+  display: flex;
+  align-items: center; /* vertically center items */
+  justify-content: flex-start; /* spread out items across the width */
+  width: 100vw; /* full viewport width */
+  padding: 0.8em 1em; /* top/bottom and left/right spacing */
+  box-sizing: border-box;
+}
+
+/* Make the ul horizontal and remove default list styles */
+#search-add-filter-sort ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#sort-svg,
+#add-svg,
+#filter-svg {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+/*-----------------------------   CONTAINERS  -----------------------------*/

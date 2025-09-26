@@ -1,0 +1,82 @@
+/* (buttons, forms, chefs notes) */
+
+/*-----------------------------   FORMS  -----------------------------*/
+
+/*-----------------------------   TOP BAR  -----------------------------*/
+
+#search-add-filter-sort {
+  background-color: #f2f2f2; /* your desired background color */
+}
+
+/*-----------------------------   SEARCH BAR  -----------------------------*/
+
+#search-add-filter-sort .hidden {
+  display: none;
+}
+
+/* Container form */
+form[role="search"] {
+  display: flex;
+  align-items: center;
+  gap: 0.3em; /* space between input and button */
+}
+
+/* Input field */
+#search-bar {
+  padding: 0.4em 0.6em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  outline: none;
+  width: 200px; /* adjust as needed */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#search-bar:focus {
+  border-color: #3498db; /* blue focus */
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Submit button */
+form[role="search"] button {
+  background-color: var(--button-bg-color, #5dade2);
+  color: var(--button-font-color, #fff);
+  border: none;
+  border-radius: 8px;
+  padding: 0.4em 0.6em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+form[role="search"] button:hover {
+  background-color: var(--button-hover-color, #3498db);
+}
+
+form[role="search"] button svg {
+  width: 1em; /* scale SVG inside button */
+  height: 1em;
+  stroke-width: 2;
+}
+
+/*-----------------------------   BUTTONS  -----------------------------*/
+
+/*-----------------------------   BASE INFO  -----------------------------*/
+
+/*-----------------------------   RECIPE INFO  -----------------------------*/
+
+/*-----------------------------   INGRED INFO  -----------------------------*/
+
+/*-----------------------------   ITEM INFO  -----------------------------*/
+
+/*-----------------------------   BASE LIST  -----------------------------*/
+
+/*-----------------------------   RECIPES LIST  -----------------------------*/
+
+/*-----------------------------   INGRED LIST  -----------------------------*/
+
+/*-----------------------------   MENU LIST  -----------------------------*/
+
+/*-----------------------------   CHEFS NOTES  -----------------------------*/

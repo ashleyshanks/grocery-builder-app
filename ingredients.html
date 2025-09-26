@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
-    <!-- You can link CSS or scripts here -->
+    <!-- ===== STYLESHEETS ===== -->
+   <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/components.css">
+   <link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="https://use.typekit.net/kxc3hmf.css">
   </head>
   <body>
-    <header>
+    <!-- ===== TOP BAR ===== -->
+    <header id="top-bar">
       <nav>
-        <a href="#" aria-label="Go to the homepage"
+        <a href="#" aria-label="Go to the homepage" id="home"
           ><svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -27,7 +32,7 @@
           </svg>
           <span class="hidden">Home</span>
         </a>
-        <button id="light-mode" aria-label="Toggle light mode">
+        <button id="light-mode" class="active-mode" aria-label="Toggle light mode">
           <svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -63,13 +68,15 @@
         </button>
       </nav>
       <div id="tabs">
-        <h1>My List HQ</h1>
+        <ul>
+          <li><h1>My List HQ</h1></li>
+        </ul>
       </div>
     </header>
     <main>
+        <!-- ===== TOP CONTROL BAR (search, add, filter, sort) ===== -->
         <header id="search-add-filter-sort">
             <ul>
-              <li>
                 <li>
                     <form action="/search" method="GET" role="search">
                         <label for="search-bar" class="hidden">Search:</label>
@@ -80,6 +87,7 @@
                           </button>
                       </form>
                 </li>
+              <li>
                 <svg
                   id="add-svg"
                   class="w-6 h-6 text-gray-800 dark:text-white"
@@ -136,54 +144,88 @@
                 </svg>
               </li>
             </ul>
-          </header>
-          <div id="view-item-chefs-notes">
-            <section id="ingred-info">
-                <div id="actions-bar">
-                    <button id="add-to-list-btn">Add to Shopping List</button>
-                    <p>|</p>
-                    <button id="edit-btn">Edit</button>
-                    <p>|</p>
-                    <button id="delete-btn">Delete/button>
-                  </div>
-                <H2>Ingredient Name</H2>
-                <dl>
-                    <dt>Default Unit</dt>
-                    <dd>Unit</dd>
-                    <dt>Category</dt>
-                    <dd>Null</dd>
-                    <dt>Estimated Cost</dt>
-                    <dd>$$$</dd>
-                    <div>
-                </dl>
+        </header>
+
+        <!-- ===== INGRED INFO + CHEFS NOTES ===== -->
+        <div id="view-item-chefs-notes">
+        <!-- ===== INGREDIENT INFO ===== -->
+        <section id="ingred-info">
+            <div id="actions-bar">
+                <button id="add-to-list-btn">Add to Shopping List</button>
+                <p>|</p>
+                <button id="edit-btn">Edit</button>
+                <p>|</p>
+                <button id="delete-btn">Delete/button>
+                </div>
+            <H2>Ingredient Name</H2>
+            <dl>
+                <dt>Default Unit</dt>
+                <dd>Unit</dd>
+                <dt>Category</dt>
+                <dd>Null</dd>
+                <dt>Estimated Cost</dt>
+                <dd>$$$</dd>
                 <div>
-                    <p>Used In</p>
-                    <ul id="used-in-list">
-                        <li>Recipe Name</li>
-                    </ul>
-                </div>
-                <div class="buttons" class="hidden">
-                    <button id="edit-item-btn">Edit Item</button>
-                    <button id="add-to-list-btn">Add to List</button>
-                </div>
-              </section>
-            <section id="chefs-notes" class="hidden">
-              <h2>Chef's Notes</h2>
-              <ul>
-                <li>
-                  Avocados too firm? Place them in a paper bag with a banana to
-                  ripen faster.
-                </li>
-                <li>
-                  Keep beans, pasta, and spices stocked to make last-minute meals
-                  easy.
-                </li>
-                <li>
-                  Frozen veggies are just as nutritious as fresh and last longer.
-                </li>
-              </ul>
+            </dl>
+            <div>
+                <p>Used In</p>
+                <ul id="used-in-list">
+                    <li>Recipe Name</li>
+                </ul>
+            </div>
+            <div class="buttons" class="hidden">
+                <button id="edit-item-btn">Edit Item</button>
+                <button id="add-to-list-btn">Add to List</button>
+            </div>
             </section>
-          </div>
+
+        <!-- ===== CHEFS NOTES ===== -->
+        <section id="chefs-notes" class="hidden">
+            <h2>👨‍🍳 Chef's Notes</h2>
+            <ul>
+            <li>
+                Avocados too firm? Place them in a paper bag with a banana to
+                ripen faster.
+            </li>
+            <li>
+                Keep beans, pasta, and spices stocked to make last-minute meals
+                easy.
+            </li>
+            <li>
+                Frozen veggies are just as nutritious as fresh and last longer.
+            </li>
+            </ul>
+        </section>
+        </div>
+
+        <!-- =====INGREDIENTS LIST ===== -->
+        <section id="ingred-list">
+            <h3>Produce</h3>
+            <ul>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+            </ul>
+            <h3>Meat</h3>
+            <ul>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+            </ul>
+            <h3>Frozen</h3>
+            <ul>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+              <li>Ingred Name</li>
+            </ul>
+          </section>
+
         
     </main>
   </body>

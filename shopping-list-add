@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
-    <!-- You can link CSS or scripts here -->
+    <!-- ===== STYLESHEETS ===== -->
+   <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/components.css">
+   <link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="https://use.typekit.net/kxc3hmf.css">
   </head>
   <body>
-    <header>
+    <!-- ===== TOP BAR ===== -->
+    <header id="top-bar">
       <nav>
-        <a href="#" aria-label="Go to the homepage"
+        <a href="#" aria-label="Go to the homepage" id="home"
           ><svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -27,7 +32,7 @@
           </svg>
           <span class="hidden">Home</span>
         </a>
-        <button id="light-mode" aria-label="Toggle light mode">
+        <button id="light-mode" class="active-mode" aria-label="Toggle light mode">
           <svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -63,13 +68,26 @@
         </button>
       </nav>
       <div id="tabs">
-        <h1>Shopping List</h1>
+        <ul>
+          <li><h1>My List HQ</h1></li>
+        </ul>
       </div>
     </header>
     <main>
-      <header id="add-filter-sort">
+      <!-- ===== TOP CONTROL BAR (search, add, filter, sort) ===== -->
+      <header id="search-add-filter-sort">
         <ul>
           <li>
+            <li>
+                <form action="/search" method="GET" role="search">
+                    <label for="search-bar" class="hidden">Search:</label>
+                    <input type="search" id="search-bar" name="search-bar" placeholder="Search..." aria-label="Search" />
+                    <button type="submit" aria-label="search"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                      </svg>
+                      </button>
+                  </form>
+            </li>
             <svg
               id="add-svg"
               class="w-6 h-6 text-gray-800 dark:text-white"
@@ -128,7 +146,9 @@
         </ul>
       </header>
 
+      <!-- ===== ADD ITEM + CHEFS NOTES ===== -->
       <div id="add-item-chefs-notes">
+        <!-- ===== ADD/EDIT ITEM  ===== -->
         <section id="add-item">
           <H2>🛒 Add Item</H2>
           <form>
@@ -198,6 +218,8 @@
             <button id="cancel-btn">Cancel</button>
           </div>
         </section>
+
+        <!-- ===== CHEFS NOTES ===== -->
         <section id="chefs-notes" class="hidden">
           <h2>👨‍🍳 Chef's Notes</h2>
           <ul>
@@ -216,6 +238,7 @@
         </section>
       </div>
 
+      <!-- ===== SHOPPING LIST ===== -->
       <section id="shopping-list">
         <ul>
           <li>

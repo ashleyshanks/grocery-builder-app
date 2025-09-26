@@ -1,0 +1,68 @@
+/* (reset, typography, colors) */
+
+/*-----------------------------   RESET  -----------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  all: unset; /* removes most browser styles */
+  display: inline-block;
+  box-sizing: border-box;
+  font-family: inherit; /* inherit from parent */
+  font-size: 100%; /* normalize font size */
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+}
+
+a {
+  text-decoration: none; /* remove underline */
+  color: inherit; /* inherit text color */
+}
+
+/*-----------------------------   COLORS  -----------------------------*/
+
+:root {
+  --tab-bg-color: #5dade2; /* light blue background */
+  --tab-font-color: #ffffff; /* white text */
+  --tab-hover-color: #3498db; /* optional darker blue on hover */
+  --tab-active-color: #2980b9; /* optional active tab */
+  --button-bg-color: #5dade2; /* light blue background */
+  --button-font-color: #ffffff; /* white text */
+  --button-hover-bg: #3498db;
+}
+
+/*-----------------------------   TYPOGRAPHY  -----------------------------*/
+
+body {
+  font-family: "elza-text", sans-serif;
+}
+
+p,
+li {
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+#hero-nav a,
+#hero-nav button {
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+}
