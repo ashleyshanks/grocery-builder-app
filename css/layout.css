@@ -1,11 +1,5 @@
 /* (grid, header/footer, containers) */
 
-/*-----------------------------   BASE  -----------------------------*/
-main > section,
-main > div {
-  margin: 1.2em 2.4em 2.5em 2.4em;
-}
-
 /*-----------------------------   TOP BAR  -----------------------------*/
 
 .active-mode svg {
@@ -18,11 +12,7 @@ main > div {
   grid-template-columns: auto 1fr;
   align-items: center;
   border-bottom: 1.5px solid;
-  padding: 1.2em 0.8em 0;
-}
-
-#top-bar .hidden {
-  display: none;
+  padding: 1.2em 2.15em 0;
 }
 
 #nav {
@@ -69,17 +59,20 @@ nav button {
 
 /*-----------------------------   TOP CONTROL BAR  -----------------------------*/
 
-#search-add-filter-sort {
+#search-add-filter-sort,
+#search-edit-filter-sort {
   display: flex;
   align-items: center; /* vertically center items */
   justify-content: flex-start; /* spread out items across the width */
   width: 100vw; /* full viewport width */
   padding: 0.8em 1em; /* top/bottom and left/right spacing */
   box-sizing: border-box;
+  padding-left: 2.4em;
 }
 
 /* Make the ul horizontal and remove default list styles */
-#search-add-filter-sort ul {
+#search-add-filter-sort ul,
+#search-edit-filter-sort ul {
   display: flex;
   align-items: center;
   list-style: none;
@@ -89,37 +82,54 @@ nav button {
 
 #sort-svg,
 #add-svg,
-#filter-svg {
-  margin-left: 0.6em;
+#filter-svg,
+#edit-svg {
+  margin-right: 0.4em;
+  width: 25px;
+  height: 25px;
+  display: block; /* removes extra inline space */
+  cursor: pointer;
+}
+/*----------  FIX ME: add search ID to other search bars*/
+
+#search {
   margin-right: 0.6em;
 }
 
-/*-----------------------------   LISTS  -----------------------------*/
+/*-----------------------------   BASE LISTS  -----------------------------*/
 #ingred-list,
 #menu-list,
-#recipes-list {
+#recipes-list,
+#shopping-list {
   height: 50vh; /* Limit height (adjust as needed) */
   overflow-y: auto;
   border-bottom: 1px solid #ccc;
   background: #fafafa;
+  margin-left: 0em;
+  margin-right: 0em;
+  padding-left: 2.4em;
+  padding-right: 2.4em;
 }
 
 #ingred-list li,
 #menu-list li,
 #recipes-list li,
-#edit-recipe-ingred-list li {
-  padding: 0.21em 1.4em;
+#edit-recipe-ingred-list li,
+#shopping-list li {
+  padding: 0.21em 0em;
 }
 
 #ingred-list li:last-of-type,
-#menu-list li:last-of-type #recipes-list li:last-of-type {
+#menu-list li:last-of-type,
+#recipes-list li:last-of-type,
+#shopping-list li:last-of-type {
   padding-bottom: 1.5em;
 }
 
 #ingred-list h3,
 #menu-list h3,
 #recipes-list h3 {
-  margin: 0.6em 1.15em 0.1em 1.15em;
+  /* margin: 0.6em 1.15em 0.1em 1.15em; */
   border-bottom: 1px solid #7e7e7e;
 }
 
@@ -129,53 +139,100 @@ nav button {
   display: none;
 }
 
-/*-----------------------------   EDIT INGRED/ITEM-----------------------------*/
+/*-----------------------------   MENU LISTS  -----------------------------*/
+#menu-list h3 {
+  margin-bottom: 0.21em;
+}
+
+/*-----------------------------   EDIT MENU-----------------------------*/
+#edit-meal {
+  margin-bottom: 2em;
+}
+#edit-meal form {
+  grid-gap: 1em;
+  grid-template-areas:
+    "weekday-label weekday-label"
+    "weekday weekday"
+    "category-label category-label"
+    "category category";
+}
+
+#edit-meal label:first-of-type {
+  grid-area: weekday-label;
+}
+
+#edit-meal label:nth-of-type(2) {
+  grid-area: category-label;
+}
+
+#meal-day-input {
+  grid-area: weekday;
+}
+
+#meal-category-input {
+  grid-area: category;
+}
+
+#edit-meal form {
+  display: grid;
+  grid-gap: 1em; /* same spacing as #add-ingred */
+  grid-template-areas:
+    "weekday-label weekday-label"
+    "weekday weekday"
+    "category-label category-label"
+    "category category"
+    "buttons buttons"; /* optional row for buttons */
+  grid-template-columns: 1fr 1fr; /* match #add-ingred input widths */
+}
+
+/* Assign grid areas */
+#edit-meal label:first-of-type {
+  grid-area: weekday-label;
+}
+#edit-meal label:nth-of-type(2) {
+  grid-area: category-label;
+}
+#meal-day-input {
+  grid-area: weekday;
+  width: 100%;
+}
+#meal-category-input {
+  grid-area: category;
+  width: 100%;
+}
+
+/* Buttons row */
+#edit-meal .buttons {
+  grid-area: buttons;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  width: 100%;
+}
 
 /*-----------------------------   BASE INFO +  FORMS-----------------------------*/
-#ingred-info,
-#recipe-info,
-#item-info,
-#add-ingred {
-  /* margin-top: 1em;
-  margin-bottom: 2em; */
-}
 
 #ingred-info dl,
 #item-info dl,
-#add-ingred form {
-  margin: 0.1em 2.1em;
+#add-ingred form,
+#edit-meal form {
   display: grid;
-}
-
-#ingred-info dl dt,
-#recipe-info dl dt,
-#item-info dl dt,
-#add-ingred form {
-  margin-top: 0.6em;
 }
 
 #ingred-info h2,
 #recipe-info h2,
-#item-info h2,
 #add-ingred h2,
-#add-item h2 {
-  grid-area: name;
+#add-item h2,
+#edit-meal h2 {
   margin-top: 0.6em;
-  /* margin: 0.21em 1.4em; */
 }
 
 label {
   margin-bottom: -0.1em;
 }
 
-form {
+form:not(#search) {
   padding-top: 0.9em;
-}
-
-#recipe-form h2,
-#recipe-form form {
-  margin-left: 2.1em;
-  margin-right: 2.1em;
 }
 
 h2 svg {
@@ -186,7 +243,7 @@ h2 svg {
   margin-top: 1.4em;
 }
 
-/*-----------------------------   INGRED FORM  -----------------------------*/
+/*-----------------------------   EDIT INGRED -----------------------------*/
 #add-ingred form,
 #add-item form {
   display: grid;
@@ -244,26 +301,20 @@ h2 svg {
 #cost-input {
   grid-area: cost;
 }
-/*-----------------------------   INGRED INFO  -----------------------------*/
+/*-----------------------------   INGRED INFO -----------------------------*/
 #actions-bar {
   padding: 0.1em 3.1em;
   margin-bottom: 0.6em;
-}
-
-.used-in-list p,
-.used-in-list ul {
-  margin-left: 2.1em;
-  margin-right: 2.1em;
 }
 
 .used-in-list p {
   margin-top: 0.35em;
 }
 
-.used-in-list li {
+/* .used-in-list li {
   margin-left: 1.4em;
   margin-right: 1.4em;
-}
+} */
 
 #ingred-info dl {
   grid-template-areas:
@@ -316,6 +367,97 @@ h2 svg {
   grid-area: used-in-list;
 }
 
+/*-----------------------------   MEAL INFO  -----------------------------*/
+#cost,
+#quantity {
+  font-size: 1.5rem;
+}
+
+#cost {
+  font-weight: 500;
+  grid-area: cost;
+  justify-self: end;
+}
+
+#name-cost-quantity {
+  display: grid;
+  grid-template-areas: "quantity name cost";
+  grid-template-columns: auto auto 1fr;
+  grid-gap: 1em;
+  align-items: center;
+}
+
+#name-cost-quantity h2 {
+  grid-area: name;
+}
+
+#quantity {
+  grid-area: quantity;
+}
+
+/* div.needed-for-list {
+  display: grid;
+  grid-template-areas:
+    "needed-label serves-label"
+    "needed-list serves-list";
+}
+
+div.needed-for-list p:first-of-type {
+  grid-area: needed-label;
+}
+
+div.needed-for-list p:last-of-type {
+  grid-area: serves-label;
+  justify-self: end;
+}
+
+#item-need-for-list {
+  grid-area: needed-list;
+  margin-left: 1.2em;
+}
+
+#shopping-serves-list {
+  grid-area: serves-list;
+  justify-self: end;
+} */
+
+/* Container for the heading */
+#item-info h3 {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+/* Remove default ul styling */
+#need-for-list {
+  padding: 0;
+  margin: 0;
+}
+
+/* Each list item as a flex row */
+#need-for-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 0.2em 0;
+}
+
+/* Recipe name on left */
+.need-name {
+  position: relative;
+  z-index: 1;
+  padding-right: 0.3em;
+}
+
+/* Serves number on right */
+.need-serves {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.3em;
+}
+
 /*-----------------------------   RECIPES INFO  -----------------------------*/
 #recipe-info dt,
 #recipe-info dd {
@@ -333,10 +475,6 @@ h2 svg {
 #recipe-info dd::after {
   content: "\A"; /* line break */
   white-space: pre; /* make \A respected as newline */
-}
-
-#recipe-info dl {
-  margin: 0.1em 2.1em;
 }
 
 #subingredients-list ul {

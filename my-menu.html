@@ -82,7 +82,7 @@
       <header id="search-edit-filter-sort">
         <ul>
           <li>
-            <form action="/search" method="GET" role="search">
+            <form action="/search" method="GET" role="search" id="search">
               <label for="search-bar" class="hidden">Search:</label>
               <input
                 type="search"
@@ -169,40 +169,6 @@
           </li>
         </ul>
       </header>
-
-      <!-- ===== RECIPE INFO ===== -->
-      <section id="recipe-info">
-        <h2>Recipe Name</h2>
-        <dl>
-          <dt>Serves:</dt>
-          <dd>#</dd>
-          <dt>Category:</dt>
-          <dd>Category</dd>
-          <dt>Cook Time:</dt>
-          <dd>Time</dd>
-          <dt>Cooking Method:</dt>
-          <dd>Method</dd>
-          <dt>Recipe Creator:</dt>
-          <dd>Link</dd>
-          <dt>Ingredients</dt>
-          <dd>
-            <ul>
-              <li>Ingredient</li>
-              <li>Ingredient</li>
-              <li>Ingredient</li>
-              <li>Ingredient</li>
-              <li>Ingredient</li>
-              <li>Ingredient</li>
-              <li>Ingredient</li>
-            </ul>
-          </dd>
-        </dl>
-        <div class="buttons">
-          <!-- FIX ME: ADD DYNAMIC LINK -->
-          <a href="#" id="edit-in-my-recipes-btn">Edit in My Recipes</a>
-        </div>
-      </section>
-
       <!-- ===== MENU LIST  ===== -->
       <section id="menu-list">
         <h3>Sunday</h3>
@@ -267,6 +233,38 @@
         <h4>🍔 Dinner</h4>
         <h3>Friday</h3>
         <h3>Saturday</h3>
+      </section>
+      <!-- ===== RECIPE INFO ===== -->
+      <section id="recipe-info">
+        <h2>Recipe Name</h2>
+        <dl>
+          <dt>Serves:</dt>
+          <dd>#</dd>
+          <dt>Category:</dt>
+          <dd>Category</dd>
+          <dt>Cook Time:</dt>
+          <dd>Time</dd>
+          <dt>Cooking Method:</dt>
+          <dd>Method</dd>
+          <dt>Recipe Creator:</dt>
+          <dd>Link</dd>
+          <dt>Ingredients</dt>
+          <dd>
+            <ul id="subingredients-list">
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+              <li>Ingredient</li>
+            </ul>
+          </dd>
+        </dl>
+        <div class="buttons">
+          <!-- FIX ME: ADD DYNAMIC LINK -->
+          <a href="#" id="edit-in-my-recipes-btn">Edit in My Recipes</a>
+        </div>
       </section>
     </main>
   </body>

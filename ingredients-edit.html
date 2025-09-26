@@ -79,7 +79,7 @@
             <ul>
               <li>
                 <li>
-                    <form action="/search" method="GET" role="search">
+                    <form action="/search" method="GET" role="search" id="search">
                         <label for="search-bar" class="hidden">Search:</label>
                         <input type="search" id="search-bar" name="search-bar" placeholder="Search..." aria-label="Search" />
                         <button type="submit" aria-label="search"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -145,9 +145,7 @@
               </li>
             </ul>
           </header>
-          <div id="add-item-chefs-notes">
-
-                    <!-- =====INGREDIENTS LIST ===== -->
+            <!-- =====INGREDIENTS LIST ===== -->
         <section id="ingred-list">
           <h3>Produce</h3>
           <ul>
@@ -174,6 +172,9 @@
             <li>Ingred Name</li>
           </ul>
         </section>
+          <div id="add-item-chefs-notes">
+
+                  
             <!-- ===== ADD INGREDIENTS  ===== -->
             <section id="add-ingred">
               <H2>🛒 Ingredient Name</H2>
@@ -253,7 +254,7 @@
               </div>
             </section>
             <!-- ===== CHEFS NOTES  ===== -->
-            <section id="chefs-notes" class="mobile-hidden">
+            <section id="chefs-notes" class="hidden-mobile">
               <h2>👨‍🍳 Chef's Notes</h2>
               <ul>
                 <li>

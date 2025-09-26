@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Title</title>
     <!-- ===== STYLESHEETS ===== -->
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/kxc3hmf.css" />
+   <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/components.css">
+   <link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="https://use.typekit.net/kxc3hmf.css">
   </head>
   <body>
     <!-- ===== TOP BAR ===== -->
@@ -32,11 +32,7 @@
           </svg>
           <span class="hidden">Home</span>
         </a>
-        <button
-          id="light-mode"
-          class="active-mode"
-          aria-label="Toggle light mode"
-        >
+        <button id="light-mode" class="active-mode" aria-label="Toggle light mode">
           <svg
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -77,44 +73,23 @@
         </ul>
       </div>
     </header>
-
     <main>
-      <!-- ===== TOP CONTROL BAR (search, edit, filter, sort) ===== -->
-      <header id="search-edit-filter-sort">
+      <!-- ===== TOP CONTROL BAR (search, add, filter, sort) ===== -->
+      <header id="search-add-filter-sort">
         <ul>
           <li>
-            <form action="/search" method="GET" role="search">
-              <label for="search-bar" class="hidden">Search:</label>
-              <input
-                type="search"
-                id="search-bar"
-                name="search-bar"
-                placeholder="Search..."
-                aria-label="Search"
-              />
-              <button type="submit" aria-label="search">
-                <svg
-                  class="w-6 h-6 text-gray-800 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                    d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
-                  />
-                </svg>
-              </button>
-            </form>
-          </li>
-          <li>
+            <li>
+                <form action="/search" method="GET" role="search" id="search">
+                    <label for="search-bar" class="hidden">Search:</label>
+                    <input type="search" id="search-bar" name="search-bar" placeholder="Search..." aria-label="Search" />
+                    <button type="submit" aria-label="search"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                      </svg>
+                      </button>
+                  </form>
+            </li>
             <svg
-              id="edit-svg"
+              id="add-svg"
               class="w-6 h-6 text-gray-800 dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +103,7 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"
+                d="M5 12h14m-7 7V5"
               />
             </svg>
           </li>
@@ -171,38 +146,145 @@
         </ul>
       </header>
 
-      <!-- ===== EDIT MEAL + CHEFS NOTES ===== -->
-      <section id="edit-meal-chefs-notes">
-        <!-- ===== EDIT MEAL INFO ===== -->
-        <section id="edit-meal">
-          <h2>Recipe Name</h2>
-          <div id="actions-bar">
-            <button id="remove-from-menu-btn">Remove from Menu</button>
-            <p>|</p>
-            <button id="remove-from-menu-btn">Duplicate</button>
-          </div>
+      <!-- ===== SHOPPING LIST ===== -->
+      <section id="shopping-list">
+        <ul>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            Ingredient Name
+          </li>
+        </ul>
+        <div id="list-total">
+          <p>$000</p>
+        </div>
+      </section>
 
+      <!-- ===== ADD ITEM + CHEFS NOTES ===== -->
+      <div id="add-item-chefs-notes">
+        <!-- ===== ADD/EDIT ITEM  ===== -->
+        <section id="add-item">
+          <H2>🛒 Add Item</H2>
           <form>
-            <label for="meal-day-input">Day of the Week</label>
-            <input type="text" name="day-input" id="day-input" placeholder="" />
-
-            <label for="meal-category-input">Meal Category</label>
+            <label for="ingred-name-input">Ingredient Name</label>
             <input
               type="text"
-              name="meal-category-input"
-              id="meal-category-input"
+              id="ingred-name-input"
+              name="ingred-name-input"
+              placeholder=""
+              required
+            />
+
+            <label for="quantity-input">Quantity</label>
+            <input
+              type="text"
+              id="quantity-input"
+              name="quantity-input"
+              pattern="^\d+([\/.]\d+)?$"
+              inputmode="decimal"
               placeholder=""
             />
-          </form>
 
-          <div class="buttons">
-            <button id="submit-btn">Submit</button>
+            <label for="unit-input">Unit:</label>
+            <select id="unit-input" name="unit-input">
+              <option value=""></option>
+              <!-- Volume -->
+              <option value="tsp">tsp</option>
+              <option value="tbsp">tbsp</option>
+              <option value="cup">cup</option>
+              <option value="pt">pint</option>
+              <option value="qt">quart</option>
+              <option value="gal">gal</option>
+              <option value="l">liter</option>
+              <!-- Weight -->
+              <option value="oz">oz</option>
+              <option value="lb">lb</option>
+              <option value="g">g</option>
+              <option value="kg">kg</option>
+              <!-- Count-based -->
+              <option value="can">can</option>
+              <option value="pkg">pkg</option>
+            </select>
+
+            <label for="category-input">Meal Category:</label>
+            <select id="category-input" name="category-input">
+              <option value=""></option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snack">Snack</option>
+              <option value="dessert">Dessert</option>
+              <option value="drink">Drink</option>
+              <option value="appetizer">Appetizer</option>
+              <option value="side">Side Dish</option>
+            </select>
+
+            <label for="cost-input">Estimated Cost</label>
+            <input
+              type="text"
+              id="cost-input"
+              name="cost-input"
+              placeholder=""
+            />
+            <button type="submit" id="submit-btn">Save</button>
             <button id="cancel-btn">Cancel</button>
-          </div>
+          </form>
+    
         </section>
 
         <!-- ===== CHEFS NOTES ===== -->
-        <section id="chefs-notes" class="mobile-hidden">
+        <section id="chefs-notes" class="hidden-mobile">
           <h2>👨‍🍳 Chef's Notes</h2>
           <ul>
             <li>
@@ -218,73 +300,9 @@
             </li>
           </ul>
         </section>
-      </section>
+      </div>
 
-      <!-- ===== MENU LIST ===== -->
-      <section id="menu-list">
-        <h3>Sunday</h3>
-        <h4>🥞 Breakfast</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h4>🥗 Lunch</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h4>🍔 Dinner</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h3>Monday</h3>
-        <h4>🥞 Breakfast</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h4>🥗 Lunch</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h4>🍔 Dinner</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h3>Tuesday</h3>
-        <h4>🥞 Breakfast</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h4>🥗 Lunch</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h4>🍔 Dinner</h4>
-        <h3>Wednesday</h3>
-        <h4>🥞 Breakfast</h4>
-        <h4>🥗 Lunch</h4>
-        <h4>🍔 Dinner</h4>
-        <h3>Thursday</h3>
-        <h4>🥞 Breakfast</h4>
-        <h4>🥗 Lunch</h4>
-        <h4>🍔 Dinner</h4>
-        <h3>Friday</h3>
-        <h3>Saturday</h3>
-      </section>
+      
     </main>
   </body>
 </html>

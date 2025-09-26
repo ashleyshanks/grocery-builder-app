@@ -79,7 +79,7 @@
         <ul>
           <li>
             <li>
-                <form action="/search" method="GET" role="search">
+                <form action="/search" method="GET" role="search" id="search">
                     <label for="search-bar" class="hidden">Search:</label>
                     <input type="search" id="search-bar" name="search-bar" placeholder="Search..." aria-label="Search" />
                     <button type="submit" aria-label="search"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -145,29 +145,45 @@
           </li>
         </ul>
       </header>
+      <!-- ===== SHOPPING LIST ===== -->
+    <section id="shopping-list">
+      <ul>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+          <li><div class="checkbox"></div> Ingredient Name</li>
+      </ul>
+      <div id="list-total">
+          <p>$000</p>
+      </div>
+  </section>
 
       <!-- ===== INGRED + RECIPE INFO ===== -->
     <div id="ingred-and-recipe-info">
         
     <!-- ===== INGREDIENT INFO ===== -->
-      <section id="ingred-info">
-        <H2>Ingredient Name</H2>
-        <dl>
-            <dt>Quantity</dt>
-            <dd>#</dd>
-            <dt>Total</dt>
-            <dd>$0.00</dd>
-            <div>
-        </dl>
-        <div>
-            <p>Needed For</p>
-            <ul id="needed-for-list">
-                <li>Recipe Name</li>
-            </ul>
-            <p>Serves</p>
-            <ul id="serves-list">
-                <li>#</li>
-            </ul>
+      <section id="item-info">
+        <div id="name-cost-quantity">
+          <H2>Ingredient Name</H2>
+          <p id="cost" aria-label="item cost">$0.00</p>
+          <p id="quantity" aria-label="item quantity">5</p>
+        </div>
+        <h3><span>Needed For</span><span>Serves</span></h3>
+        <ul id="need-for-list">
+         <li><span class="need-name">Recipe</span><span class="need-serves">#</span></li>
+         <li><span class="need-name">Recipe</span><span class="need-serves">#</span></li>
+         <li><span class="need-name">Recipe</span><span class="need-serves">#</span></li>
+        </ul>
         </div>
         <div class="buttons">
             <button id="edit-item-btn">Edit Item</button>
@@ -195,28 +211,7 @@
       </section>
     </div>
 
-    <!-- ===== SHOPPING LIST ===== -->
-    <section id="shopping-list">
-        <ul>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-            <li><div class="checkbox"></div> Ingredient Name</li>
-        </ul>
-        <div id="list-total">
-            <p>$000</p>
-        </div>
-    </section>
+    
     </main>
   </body>
 </html>
