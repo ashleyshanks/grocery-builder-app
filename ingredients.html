@@ -146,6 +146,33 @@
             </ul>
         </header>
 
+        <!-- =====INGREDIENTS LIST ===== -->
+        <section id="ingred-list">
+          <h3>Produce</h3>
+          <ul>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+          </ul>
+          <h3>Meat</h3>
+          <ul>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+          </ul>
+          <h3>Frozen</h3>
+          <ul>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+          </ul>
+        </section>
         <!-- ===== INGRED INFO + CHEFS NOTES ===== -->
         <div id="view-item-chefs-notes">
         <!-- ===== INGREDIENT INFO ===== -->
@@ -155,32 +182,33 @@
                 <p>|</p>
                 <button id="edit-btn">Edit</button>
                 <p>|</p>
-                <button id="delete-btn">Delete/button>
+                <button id="delete-btn">Delete</button>
                 </div>
-            <H2>Ingredient Name</H2>
+            <H2>
+              🍄 Ingredient Name</H2>
             <dl>
                 <dt>Default Unit</dt>
-                <dd>Unit</dd>
+                <dd id="unit">Unit</dd>
                 <dt>Category</dt>
-                <dd>Null</dd>
+                <dd id="category">Null</dd>
                 <dt>Estimated Cost</dt>
-                <dd>$$$</dd>
+                <dd id="cost">$$$</dd>
                 <div>
             </dl>
-            <div>
+            <div class="used-in-list">
                 <p>Used In</p>
-                <ul id="used-in-list">
+                <ul class="used-in-list">
                     <li>Recipe Name</li>
                 </ul>
             </div>
-            <div class="buttons" class="hidden">
+            <div class="buttons" class="mobile-hidden">
                 <button id="edit-item-btn">Edit Item</button>
                 <button id="add-to-list-btn">Add to List</button>
             </div>
             </section>
 
         <!-- ===== CHEFS NOTES ===== -->
-        <section id="chefs-notes" class="hidden">
+        <section id="chefs-notes" class="mobile-hidden">
             <h2>👨‍🍳 Chef's Notes</h2>
             <ul>
             <li>
@@ -198,33 +226,7 @@
         </section>
         </div>
 
-        <!-- =====INGREDIENTS LIST ===== -->
-        <section id="ingred-list">
-            <h3>Produce</h3>
-            <ul>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-            </ul>
-            <h3>Meat</h3>
-            <ul>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-            </ul>
-            <h3>Frozen</h3>
-            <ul>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-              <li>Ingred Name</li>
-            </ul>
-          </section>
+        
 
         
     </main>

@@ -202,7 +202,7 @@
         </section>
 
         <!-- ===== CHEFS NOTES ===== -->
-        <section id="chefs-notes" class="hidden">
+        <section id="chefs-notes" class="mobile-hidden">
           <h2>👨‍🍳 Chef's Notes</h2>
           <ul>
             <li>

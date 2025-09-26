@@ -63,17 +63,119 @@ form[role="search"] button svg {
 
 /*-----------------------------   BUTTONS  -----------------------------*/
 
-/*-----------------------------   BASE INFO  -----------------------------*/
+#cancel-btn,
+#submit-btn {
+  background-color: var(--button-bg-color);
+  color: var(--button-font-color);
+  padding: 1em 1em; /* vertical and horizontal padding */
+  border-radius: 8px; /* rounded corners */
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s;
+  margin-top: 0.8em;
+}
 
+.buttons {
+  display: flex; /* makes it a flex container */
+  justify-content: center; /* centers horizontally */
+  align-items: center; /* centers vertically if needed */
+  width: 100%; /* optional, makes sure it spans full width */
+  margin: 1em 0; /* optional spacing around the button */
+}
+
+#submit-and-add-to-list-btn,
+#recipe-form #delete-btn {
+  text-decoration: underline;
+  font-size: 0.9em;
+}
+/*-----------------------------   BASE INFO  + FORMS -----------------------------*/
+#ingred-info dl dt,
+#recipe-info dl dt,
+#item-info dl dt,
+label {
+  font-weight: 600;
+}
+
+#ingred-info dd,
+#recipe-info dd,
+#item-info dd {
+  font-weight: 300;
+}
+
+#ingred-info dl,
+#recipe-info dl,
+#item-info dl {
+  font-size: 1.15rem;
+}
+
+#ingred-info .buttons,
+#recipe-info .buttons,
+#item-info .buttons {
+  display: none;
+}
+
+input,
+select {
+  background-color: #e0e0e0; /* light gray background */
+  border: none; /* remove default border */
+  outline: none; /* remove focus outline */
+  padding: 0.5em 0.75em; /* comfortable spacing */
+  border-radius: 4px; /* optional: rounded corners */
+  font-size: 1rem; /* adjust as needed */
+}
+
+select {
+  /* Remove default arrow but keep select styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  padding: 0.5em 1em 0.5em 0.75em; /* right padding for arrow */
+
+  /* Add custom arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3E%3Cpath d='M0 0 L5 5 L10 0' fill='none' stroke='%23666' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75em center;
+  background-size: 10px 5px;
+}
 /*-----------------------------   RECIPE INFO  -----------------------------*/
 
+#subingredients-list li {
+  font-size: 1.15rem;
+}
+
 /*-----------------------------   INGRED INFO  -----------------------------*/
+.used-in-list p,
+.used-in-list li {
+  font-size: 1.15rem;
+}
+
+.used-in-list p {
+  font-weight: 600;
+}
+
+#actions-bar button,
+#actions-bar p {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+#actions-bar {
+  border-bottom: solid 1px black;
+}
 
 /*-----------------------------   ITEM INFO  -----------------------------*/
 
 /*-----------------------------   BASE LIST  -----------------------------*/
-
-/*-----------------------------   RECIPES LIST  -----------------------------*/
+#ingred-list li,
+#menu-list li,
+#recipes-list li {
+  font-size: 1.3rem;
+}
+/*-----------------------------   EDIT RECIPES  -----------------------------*/
+#edit-recipe-ingred-list li {
+  font-size: 1rem;
+}
 
 /*-----------------------------   INGRED LIST  -----------------------------*/
 

@@ -146,6 +146,34 @@
             </ul>
           </header>
           <div id="add-item-chefs-notes">
+
+                    <!-- =====INGREDIENTS LIST ===== -->
+        <section id="ingred-list">
+          <h3>Produce</h3>
+          <ul>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+          </ul>
+          <h3>Meat</h3>
+          <ul>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+          </ul>
+          <h3>Frozen</h3>
+          <ul>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+            <li>Ingred Name</li>
+          </ul>
+        </section>
             <!-- ===== ADD INGREDIENTS  ===== -->
             <section id="add-ingred">
               <H2>🛒 Ingredient Name</H2>
@@ -176,7 +204,7 @@
                   placeholder=""
                 />
     
-                <label for="unit-input">Unit:</label>
+                <label for="unit-input">Unit</label>
                 <select id="unit-input" name="unit-input">
                   <option value=""></option>
                   <!-- Volume -->
@@ -197,7 +225,7 @@
                   <option value="pkg">pkg</option>
                 </select>
     
-                <label for="category-input">Meal Category:</label>
+                <label for="category-input">Meal Category</label>
                 <select id="category-input" name="category-input">
                   <option value=""></option>
                   <option value="breakfast">Breakfast</option>
@@ -218,14 +246,14 @@
                   placeholder=""
                 />
                 <button type="submit" id="submit-btn">Save</button>
+                <button id="cancel-btn">Cancel</button>
               </form>
               <div class="buttons">
-                <button id="cancel-btn">Cancel</button>
                 <button id="submit-and-add-to-list-btn" class="hidden">Submit and Add to Shopping List</button>
               </div>
             </section>
             <!-- ===== CHEFS NOTES  ===== -->
-            <section id="chefs-notes" class="hidden">
+            <section id="chefs-notes" class="mobile-hidden">
               <h2>👨‍🍳 Chef's Notes</h2>
               <ul>
                 <li>

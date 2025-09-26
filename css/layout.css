@@ -1,6 +1,10 @@
 /* (grid, header/footer, containers) */
 
-/*-----------------------------   GRID  -----------------------------*/
+/*-----------------------------   BASE  -----------------------------*/
+main > section,
+main > div {
+  margin: 1.2em 2.4em 2.5em 2.4em;
+}
 
 /*-----------------------------   TOP BAR  -----------------------------*/
 
@@ -86,8 +90,378 @@ nav button {
 #sort-svg,
 #add-svg,
 #filter-svg {
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+  margin-left: 0.6em;
+  margin-right: 0.6em;
 }
 
-/*-----------------------------   CONTAINERS  -----------------------------*/
+/*-----------------------------   LISTS  -----------------------------*/
+#ingred-list,
+#menu-list,
+#recipes-list {
+  height: 50vh; /* Limit height (adjust as needed) */
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+  background: #fafafa;
+}
+
+#ingred-list li,
+#menu-list li,
+#recipes-list li,
+#edit-recipe-ingred-list li {
+  padding: 0.21em 1.4em;
+}
+
+#ingred-list li:last-of-type,
+#menu-list li:last-of-type #recipes-list li:last-of-type {
+  padding-bottom: 1.5em;
+}
+
+#ingred-list h3,
+#menu-list h3,
+#recipes-list h3 {
+  margin: 0.6em 1.15em 0.1em 1.15em;
+  border-bottom: 1px solid #7e7e7e;
+}
+
+/*-----------------------------   RECIPE LIST  -----------------------------*/
+#recipes-list span:nth-of-type(2),
+#recipes-list span:nth-of-type(3) {
+  display: none;
+}
+
+/*-----------------------------   EDIT INGRED/ITEM-----------------------------*/
+
+/*-----------------------------   BASE INFO +  FORMS-----------------------------*/
+#ingred-info,
+#recipe-info,
+#item-info,
+#add-ingred {
+  /* margin-top: 1em;
+  margin-bottom: 2em; */
+}
+
+#ingred-info dl,
+#item-info dl,
+#add-ingred form {
+  margin: 0.1em 2.1em;
+  display: grid;
+}
+
+#ingred-info dl dt,
+#recipe-info dl dt,
+#item-info dl dt,
+#add-ingred form {
+  margin-top: 0.6em;
+}
+
+#ingred-info h2,
+#recipe-info h2,
+#item-info h2,
+#add-ingred h2,
+#add-item h2 {
+  grid-area: name;
+  margin-top: 0.6em;
+  /* margin: 0.21em 1.4em; */
+}
+
+label {
+  margin-bottom: -0.1em;
+}
+
+form {
+  padding-top: 0.9em;
+}
+
+#recipe-form h2,
+#recipe-form form {
+  margin-left: 2.1em;
+  margin-right: 2.1em;
+}
+
+h2 svg {
+  margin-right: 0.35em;
+}
+
+#recipe-form {
+  margin-top: 1.4em;
+}
+
+/*-----------------------------   INGRED FORM  -----------------------------*/
+#add-ingred form,
+#add-item form {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-areas:
+    "name-label name-label"
+    "name name"
+    "quantity-label unit-label"
+    "quantity unit"
+    "category-label cost-label"
+    "category cost";
+}
+
+#add-ingred label:first-of-type,
+#add-item label:first-of-type {
+  grid-area: name-label;
+}
+
+#add-ingred label:nth-of-type(2),
+#add-item label:nth-of-type(2) {
+  grid-area: unit-label;
+}
+
+#add-ingred label:nth-of-type(3),
+#add-item label:nth-of-type(3) {
+  grid-area: quantity-label;
+}
+
+#add-ingred label:nth-of-type(4),
+#add-item label:nth-of-type(4) {
+  grid-area: category-label;
+}
+
+#add-ingred label:nth-of-type(5),
+#add-item label:nth-of-type(5) {
+  grid-area: cost-label;
+}
+
+#ingred-name-input {
+  grid-area: name;
+}
+
+#quantity-input {
+  grid-area: quantity;
+}
+
+#unit-input {
+  grid-area: unit;
+}
+
+#category-input {
+  grid-area: category;
+}
+
+#cost-input {
+  grid-area: cost;
+}
+/*-----------------------------   INGRED INFO  -----------------------------*/
+#actions-bar {
+  padding: 0.1em 3.1em;
+  margin-bottom: 0.6em;
+}
+
+.used-in-list p,
+.used-in-list ul {
+  margin-left: 2.1em;
+  margin-right: 2.1em;
+}
+
+.used-in-list p {
+  margin-top: 0.35em;
+}
+
+.used-in-list li {
+  margin-left: 1.4em;
+  margin-right: 1.4em;
+}
+
+#ingred-info dl {
+  grid-template-areas:
+    "unit-label unit-label"
+    "unit unit"
+    "category-label cost-label"
+    "category cost";
+}
+
+#ingred-info dt:first-of-type {
+  grid-area: unit-label;
+}
+
+#unit {
+  grid-area: unit;
+}
+#category {
+  grid-area: category;
+}
+#cost {
+  grid-area: cost;
+}
+
+#ingred-info {
+  display: grid;
+  grid-template-areas:
+    "name"
+    "action-bar"
+    "dl"
+    "used-in-list";
+}
+
+#actions-bar {
+  grid-area: action-bar;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#actions-bar button,
+#actions-bar p {
+  display: inline-block;
+}
+
+#ingred-info dl {
+  grid-area: dl;
+}
+
+#ingred-info div.used-in-list {
+  grid-area: used-in-list;
+}
+
+/*-----------------------------   RECIPES INFO  -----------------------------*/
+#recipe-info dt,
+#recipe-info dd {
+  display: inline;
+}
+
+#recipe-info dt,
+#recipe-info dd:not(dd:last-of-type) {
+  line-height: 1.8em;
+}
+#recipe-info dd:last-of-type {
+  line-height: 1.6em;
+}
+
+#recipe-info dd::after {
+  content: "\A"; /* line break */
+  white-space: pre; /* make \A respected as newline */
+}
+
+#recipe-info dl {
+  margin: 0.1em 2.1em;
+}
+
+#subingredients-list ul {
+  margin-left: 2.1em;
+  margin-right: 2.1em;
+}
+
+#subingredients-list li {
+  margin-left: 1.4em;
+  margin-right: 1.4em;
+}
+
+#recipe-info h2,
+#edit-recipe-ingred h2,
+#recipe-form h2 {
+  display: flex;
+  align-items: center;
+}
+
+#recipe-info {
+  margin-bottom: 0.4em;
+}
+
+/*-----------------------------   RECIPES FORM  -----------------------------*/
+/* #recipe-form {
+  display: block;
+  width: 100%;
+  margin: 2em 0;
+  box-sizing: border-box;
+} */
+#recipe-form form {
+  display: grid;
+  grid-template-areas:
+    "name-label name-label"
+    "name name"
+    "serves-label time-label"
+    "serves time"
+    "type-label type-label"
+    "type type"
+    "method-label method-label"
+    "method method"
+    "creator-label creator-label"
+    "creator creator"
+    "link-label link-label"
+    "link link";
+  grid-gap: 0.6em 1em; /* row-gap, column-gap */
+}
+
+#recipe-form label:first-of-type {
+  grid-area: name-label;
+}
+
+#recipe-form label:nth-of-type(2) {
+  grid-area: serves-label;
+}
+#recipe-form label:nth-of-type(3) {
+  grid-area: time-label;
+}
+#recipe-form label:nth-of-type(4) {
+  grid-area: type-label;
+}
+#recipe-form label:nth-of-type(5) {
+  grid-area: method-label;
+}
+#recipe-form label:nth-of-type(6) {
+  grid-area: creator-label;
+}
+#recipe-form label:nth-of-type(7) {
+  grid-area: link-label;
+}
+
+#recipe-name {
+  grid-area: name;
+}
+
+#serves {
+  grid-area: serves;
+}
+
+#cook-time {
+  grid-area: time;
+}
+
+#meal-type {
+  grid-area: type;
+}
+
+#method-input {
+  grid-area: method;
+}
+
+#creator {
+  grid-area: creator;
+}
+
+#recipe-link {
+  grid-area: link;
+}
+
+/*--------------------------EDIT RECIPE INGRED -----------------------------*/
+
+#edit-recipe-ingred-list {
+  height: 30vh; /* Limit height (adjust as needed) */
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+#edit-recipe-ingred-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#delete-sort-bar {
+  display: flex; /* layout items in a row */
+  justify-content: flex-end; /* push to the right */
+  align-items: center; /* vertically center if needed */
+  gap: 0.25em; /* space between the SVGs */
+  padding-bottom: 0.6em;
+  margin-bottom: 0.6em;
+  border-bottom: 1px solid #ccc;
+}
+
+#delete-sort-bar svg {
+  width: 1.3em; /* smaller width */
+  height: 1.3em; /* smaller height */
+  cursor: pointer; /* makes it clear they’re interactive */
+}

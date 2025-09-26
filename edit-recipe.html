@@ -75,7 +75,7 @@
     </header>
     <main>
       <!-- ===== TOP CONTROL BAR (search, add, filter, sort) ===== -->
-      <header id="search-add-filter-sort" class="hidden">
+      <header id="search-add-filter-sort" class="editing">
         <ul>
           <li>
             <li>
@@ -148,23 +148,23 @@
 
       <!-- ===== EDIT RECIPE INFO  ===== -->
       <section id="recipe-form">
-        <svg
-        id="fav-star"
-          class="w-6 h-6 text-gray-800 dark:text-white"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            stroke-width="2"
-            d="M11.083 5.104c.35-.8 1.485-.8 1.834 0l1.752 4.022a1 1 0 0 0 .84.597l4.463.342c.9.069 1.255 1.2.556 1.771l-3.33 2.723a1 1 0 0 0-.337 1.016l1.03 4.119c.214.858-.71 1.552-1.474 1.106l-3.913-2.281a1 1 0 0 0-1.008 0L7.583 20.8c-.764.446-1.688-.248-1.474-1.106l1.03-4.119A1 1 0 0 0 6.8 14.56l-3.33-2.723c-.698-.571-.342-1.702.557-1.771l4.462-.342a1 1 0 0 0 .84-.597l1.753-4.022Z"
-          />
-        </svg>
-        <h2>New Recipe</h2>
+        
+        <h2><svg
+          id="fav-star"
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-width="2"
+              d="M11.083 5.104c.35-.8 1.485-.8 1.834 0l1.752 4.022a1 1 0 0 0 .84.597l4.463.342c.9.069 1.255 1.2.556 1.771l-3.33 2.723a1 1 0 0 0-.337 1.016l1.03 4.119c.214.858-.71 1.552-1.474 1.106l-3.913-2.281a1 1 0 0 0-1.008 0L7.583 20.8c-.764.446-1.688-.248-1.474-1.106l1.03-4.119A1 1 0 0 0 6.8 14.56l-3.33-2.723c-.698-.571-.342-1.702.557-1.771l4.462-.342a1 1 0 0 0 .84-.597l1.753-4.022Z"
+            />
+          </svg>New Recipe</h2>
         <div id="actions-bar">
           <button id="recipe-info-btn">Recipe Info</button>
           <p>|</p>
@@ -207,6 +207,17 @@
             <option value="dessert">Dessert</option>
           </select>
 
+          <label for="method-input">Cooking Method</label>
+          <select id="method-input" name="method-input" required>
+            <option value="">-- Select a method --</option>
+            <option value="one-pot">One-Pot</option>
+            <option value="sheet-pan">Sheet Pan</option>
+            <option value="slow-cooker">Slow Cooker</option>
+            <option value="instant-pot">Instant Pot</option>
+            <option value="air-fryer">Air Fryer</option>
+            <option value="microwave">No Cook</option>
+          </select>
+
           <!-- Recipe Creator -->
           <label for="creator">Recipe Creator</label>
           <input
@@ -226,17 +237,17 @@
           />
 
           <!-- Submit -->
-          <button type="submit">Save</button>
+          <button type="submit" id="submit-btn">Save</button>
+          <button id="cancel-btn">Cancel</button>
         </form>
 
         <div class="buttons">
-          <button id="cancel-btn">Cancel</button>
           <button id="delete-btn" class="hidden">Delete Recipe</button>
         </div>
       </section>
 
       <!-- ===== RECIPES LIST  ===== -->
-      <section id="recipes-list" class="hidden">
+      <section id="recipes-list" class="editing">
         <div id="col-headers">
           <p>Recipe Name</p>
           <p>Cooking Method</p>
