@@ -63,9 +63,7 @@ form[role="search"] button svg {
 /*-----------------------------   BUTTONS  -----------------------------*/
 
 #cancel-btn,
-#submit-btn,
-#edit-item-btn,
-#delete-item-btn {
+#submit-btn {
   background-color: var(--button-bg-color);
   color: var(--button-font-color);
   padding: 1em 1em; /* vertical and horizontal padding */
@@ -74,6 +72,22 @@ form[role="search"] button svg {
   text-align: center;
   transition: background-color 0.2s;
   margin-top: 0.8em;
+}
+
+#edit-item-btn,
+#delete-item-btn {
+  background-color: var(--button-bg-color);
+  color: var(--button-font-color);
+  padding: 1em 15vw; /* vertical and horizontal padding */
+  border-radius: 8px; /* rounded corners */
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s;
+  margin-top: 0.8em;
+}
+
+#edit-item-btn {
+  margin-right: 1em;
 }
 
 .buttons {

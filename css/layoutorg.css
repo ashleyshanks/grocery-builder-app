@@ -1,0 +1,86 @@
+/* #ingred-info h2,
+#recipe-info h2,
+#add-ingred h2,
+#add-item h2,
+#edit-meal h2 {
+  margin-top: 0.6em;
+} */
+
+/* label {
+  margin-bottom: -0.1em;
+}
+
+h2 svg {
+  margin-right: 0.35em;
+}
+
+#recipe-form {
+  margin-top: 1.4em;
+}
+
+#actions-bar {
+  padding: 0.1em 3.1em;
+  margin-bottom: 0.6em;
+}
+
+.used-in-list p {
+  margin-top: 0.35em;
+} */
+
+/* #name-cost-quantity {
+  display: grid;
+  grid-template-areas: "quantity name cost";
+  grid-template-columns: auto auto 1fr;
+  grid-gap: 1em;
+  align-items: center;
+  margin-bottom: 0.3em;
+} */
+
+/* Container for the heading */
+/* #item-info h3 {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+} */
+
+/* Remove default ul styling */
+/* #need-for-list {
+  padding: 0;
+  margin: 0;
+}
+
+#subingredients-list ul {
+  margin-left: 2.1em;
+  margin-right: 2.1em;
+}
+
+#subingredients-list li {
+  margin-left: 1.4em;
+  margin-right: 1.4em;
+}
+
+#recipe-info {
+  margin-bottom: 0.4em;
+}
+
+#search {
+  margin-right: 0.6em;
+} */
+
+#search-add-filter-sort,
+#search-edit-filter-sort {
+  display: flex;
+  align-items: center; /* vertically center items */
+  justify-content: flex-start; /* spread out items across the width */
+  width: 100vw; /* full viewport width */
+  padding: 0.8em 1em; /* top/bottom and left/right spacing */
+  box-sizing: border-box;
+  padding-left: 2.4em;
+}
+
+nav a,
+nav button {
+  margin-left: 0.15em;
+  margin-right: 0.15em;
+}

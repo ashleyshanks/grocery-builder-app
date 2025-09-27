@@ -1,5 +1,79 @@
-/* (grid, header/footer, containers) */
+/*-----------------------------   MARGIN  & PADDING-----------------------------*/
+#recipe-info h2,
+#add-ingred h2,
+#add-item h2,
+#edit-meal h2 {
+  margin-top: 0.6em;
+}
 
+label {
+  margin-bottom: -0.1em;
+}
+
+h2 svg {
+  margin-right: 0.35em;
+}
+
+#recipe-form {
+  margin-top: 1.4em;
+}
+
+#actions-bar {
+  padding: 0.1em 3.1em;
+  margin-bottom: 0.6em;
+}
+
+.used-in-list p {
+  margin-top: 0.35em;
+}
+
+#name-cost-quantity {
+  margin-bottom: 0.3em;
+}
+
+#item-info h3 {
+  margin-bottom: 0.5em;
+}
+
+#need-for-list {
+  padding: 0;
+  margin: 0;
+}
+
+#subingredients-list ul {
+  margin-left: 2.1em;
+  margin-right: 2.1em;
+}
+
+#subingredients-list li {
+  margin-left: 1.4em;
+  margin-right: 1.4em;
+}
+
+#recipe-info {
+  margin-bottom: 0.4em;
+}
+
+#search {
+  margin-right: 0.6em;
+}
+
+#delete-sort-bar {
+  padding-bottom: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+#search-add-filter-sort,
+#search-edit-filter-sort {
+  padding: 0.8em 1em; /* top/bottom and left/right spacing */
+  padding-left: 2.4em;
+}
+
+nav a,
+nav button {
+  margin-left: 0.15em;
+  margin-right: 0.15em;
+}
 /*-----------------------------   TOP BAR  -----------------------------*/
 
 .active-mode svg {
@@ -57,7 +131,7 @@ nav button {
   margin-right: 0.15em;
 }
 
-/*-----------------------------   TOP CONTROL BAR  -----------------------------*/
+/*-----------------------------   ACTION/CONTROL BAR  -----------------------------*/
 
 #search-add-filter-sort,
 #search-edit-filter-sort {
@@ -65,9 +139,7 @@ nav button {
   align-items: center; /* vertically center items */
   justify-content: flex-start; /* spread out items across the width */
   width: 100vw; /* full viewport width */
-  padding: 0.8em 1em; /* top/bottom and left/right spacing */
   box-sizing: border-box;
-  padding-left: 2.4em;
 }
 
 /* Make the ul horizontal and remove default list styles */
@@ -84,16 +156,35 @@ nav button {
 #add-svg,
 #filter-svg,
 #edit-svg {
-  margin-right: 0.4em;
   width: 25px;
   height: 25px;
   display: block; /* removes extra inline space */
   cursor: pointer;
 }
-/*----------  FIX ME: add search ID to other search bars*/
+
+#delete-sort-bar {
+  display: flex; /* layout items in a row */
+  justify-content: flex-end; /* push to the right */
+  align-items: center; /* vertically center if needed */
+  gap: 0.25em; /* space between the SVGs */
+  border-bottom: 1px solid #ccc;
+}
+
+#delete-sort-bar svg {
+  width: 1.3em; /* smaller width */
+  height: 1.3em; /* smaller height */
+  cursor: pointer; /* makes it clear they’re interactive */
+}
 
 #search {
   margin-right: 0.6em;
+}
+
+#sort-svg,
+#add-svg,
+#filter-svg,
+#edit-svg {
+  margin-right: 0.4em;
 }
 
 /*-----------------------------   BASE LISTS  -----------------------------*/
@@ -133,7 +224,7 @@ nav button {
   border-bottom: 1px solid #7e7e7e;
 }
 
-/*-----------------------------   RECIPE LIST  -----------------------------*/
+/*-----------------------------   HIDDEN MOBILE  -----------------------------*/
 #recipes-list span:nth-of-type(2),
 #recipes-list span:nth-of-type(3) {
   display: none;
@@ -145,7 +236,8 @@ nav button {
 }
 
 /*-----------------------------   EDIT MENU-----------------------------*/
-#edit-meal {
+#edit-meal,
+#add-item {
   margin-bottom: 2em;
 }
 #edit-meal form {
@@ -218,29 +310,8 @@ nav button {
 #edit-meal form {
   display: grid;
 }
-
-#ingred-info h2,
-#recipe-info h2,
-#add-ingred h2,
-#add-item h2,
-#edit-meal h2 {
-  margin-top: 0.6em;
-}
-
-label {
-  margin-bottom: -0.1em;
-}
-
 form:not(#search) {
   padding-top: 0.9em;
-}
-
-h2 svg {
-  margin-right: 0.35em;
-}
-
-#recipe-form {
-  margin-top: 1.4em;
 }
 
 /*-----------------------------   EDIT INGRED -----------------------------*/
@@ -302,14 +373,6 @@ h2 svg {
   grid-area: cost;
 }
 /*-----------------------------   INGRED INFO -----------------------------*/
-#actions-bar {
-  padding: 0.1em 3.1em;
-  margin-bottom: 0.6em;
-}
-
-.used-in-list p {
-  margin-top: 0.35em;
-}
 
 /* .used-in-list li {
   margin-left: 1.4em;
@@ -395,44 +458,11 @@ h2 svg {
   grid-area: quantity;
 }
 
-/* div.needed-for-list {
-  display: grid;
-  grid-template-areas:
-    "needed-label serves-label"
-    "needed-list serves-list";
-}
-
-div.needed-for-list p:first-of-type {
-  grid-area: needed-label;
-}
-
-div.needed-for-list p:last-of-type {
-  grid-area: serves-label;
-  justify-self: end;
-}
-
-#item-need-for-list {
-  grid-area: needed-list;
-  margin-left: 1.2em;
-}
-
-#shopping-serves-list {
-  grid-area: serves-list;
-  justify-self: end;
-} */
-
 /* Container for the heading */
 #item-info h3 {
   display: flex;
   justify-content: space-between;
   font-weight: 600;
-  margin-bottom: 0.5em;
-}
-
-/* Remove default ul styling */
-#need-for-list {
-  padding: 0;
-  margin: 0;
 }
 
 /* Each list item as a flex row */
@@ -441,7 +471,8 @@ div.needed-for-list p:last-of-type {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  margin: 0.2em 0;
+  padding: 0.2em 0.2em;
+  margin: 0 -0.2em;
 }
 
 /* Recipe name on left */
@@ -475,16 +506,6 @@ div.needed-for-list p:last-of-type {
 #recipe-info dd::after {
   content: "\A"; /* line break */
   white-space: pre; /* make \A respected as newline */
-}
-
-#subingredients-list ul {
-  margin-left: 2.1em;
-  margin-right: 2.1em;
-}
-
-#subingredients-list li {
-  margin-left: 1.4em;
-  margin-right: 1.4em;
 }
 
 #recipe-info h2,
@@ -586,20 +607,4 @@ div.needed-for-list p:last-of-type {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-#delete-sort-bar {
-  display: flex; /* layout items in a row */
-  justify-content: flex-end; /* push to the right */
-  align-items: center; /* vertically center if needed */
-  gap: 0.25em; /* space between the SVGs */
-  padding-bottom: 0.6em;
-  margin-bottom: 0.6em;
-  border-bottom: 1px solid #ccc;
-}
-
-#delete-sort-bar svg {
-  width: 1.3em; /* smaller width */
-  height: 1.3em; /* smaller height */
-  cursor: pointer; /* makes it clear they’re interactive */
 }
