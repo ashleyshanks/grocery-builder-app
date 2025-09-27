@@ -9,6 +9,7 @@
    <link rel="stylesheet" href="css/components.css">
    <link rel="stylesheet" href="css/layout.css"> 
    <link rel="stylesheet" href="https://use.typekit.net/kxc3hmf.css">
+   <link rel="stylesheet" href="https://use.typekit.net/kxc3hmf.css"> <!--Sofia pro-->
   </head>
   <body>
      <!-- ===== TOP BAR ===== -->
@@ -183,7 +184,6 @@
             name="serves"
             min="1"
             inputmode="numeric"
-            required
           />
 
           <!-- Cook Time -->
@@ -192,14 +192,12 @@
             type="text"
             id="cook-time"
             name="cook-time"
-            placeholder="e.g., 30 minutes"
-            required
           />
 
           <!-- Meal Type Dropdown -->
           <label for="meal-type">Meal Type</label>
-          <select id="meal-type" name="meal-type" required>
-            <option value="">-- Select a meal type --</option>
+          <select id="meal-type" name="meal-type">
+            <option value=""></option>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
@@ -208,8 +206,8 @@
           </select>
 
           <label for="method-input">Cooking Method</label>
-          <select id="method-input" name="method-input" required>
-            <option value="">-- Select a method --</option>
+          <select id="method-input" name="method-input">
+            <option value=""></option>
             <option value="one-pot">One-Pot</option>
             <option value="sheet-pan">Sheet Pan</option>
             <option value="slow-cooker">Slow Cooker</option>
@@ -224,7 +222,6 @@
             type="text"
             id="creator"
             name="creator"
-            placeholder="Your name or source"
           />
 
           <!-- Recipe Link -->
@@ -233,7 +230,6 @@
             type="url"
             id="recipe-link"
             name="recipe-link"
-            placeholder="https://example.com"
           />
 
           <!-- Submit -->

@@ -34,13 +34,19 @@ a {
 /*-----------------------------   COLORS  -----------------------------*/
 
 :root {
-  --tab-bg-color: #5dade2; /* light blue background */
-  --tab-font-color: #ffffff; /* white text */
+  --tab-bg-color: #65ca79; /* light blue background */
+  --tab-font-color: #e7ffe4; /* white text */
   --tab-hover-color: #3498db; /* optional darker blue on hover */
   --tab-active-color: #2980b9; /* optional active tab */
-  --button-bg-color: #5dade2; /* light blue background */
+  --button-bg-color: #5cceb9; /* light blue background */
   --button-font-color: #ffffff; /* white text */
   --button-hover-bg: #3498db;
+  --lt-gray: #eaeaea;
+  --top-bar-bg: #c8caca;
+}
+
+#top-bar {
+  background-color: var(--lt-gray);
 }
 
 #tabs li:hover {
@@ -53,6 +59,7 @@ a {
 
 #tabs li {
   background-color: var(--tab-bg-color); /* fill color */
+  color: var(--tab-font-color);
 }
 
 #search-bar {
@@ -60,12 +67,15 @@ a {
 }
 
 #search-add-filter-sort,
-#search-edit-filter-sort {
-  background-color: #f2f2f2; /* your desired background color */
+#search-edit-filter-sort,
+input:not(#search input),
+select {
+  background-color: var(--top-bar-bg); /* your desired background color */
 }
 
 form[role="search"] button {
   background-color: var(--button-bg-color, #5dade2);
+  background-color: gray;
   color: var(--button-font-color, #fff);
 }
 
@@ -77,7 +87,8 @@ form[role="search"] button:hover {
 #submit-btn,
 #edit-item-btn,
 #delete-item-btn {
-  background-color: var(--button-bg-color);
+  background-color: var(--tab-bg-color);
+  /* fix me */
   color: var(--button-font-color);
 }
 
@@ -101,22 +112,37 @@ form[role="search"] button:hover {
 
 #ingred-list h3,
 #menu-list h3,
-#recipes-list h3 {
+#recipes-list h3,
+#list-total {
   border-bottom-color: #7e7e7e;
 }
 /*-----------------------------   ZEBRA STRIPES  -----------------------------*/
 
 #need-for-list li:nth-child(odd) {
-  background-color: #f8f8f8; /* light gray */
+  background-color: var(--lt-gray); /* light gray */
 }
 
-#need-for-list li:nth-child(even) {
-  background-color: #ffffff; /* white */
-}
+/* #need-for-list li:nth-child(even) {
+  background-color: #ffffff; 
+} */
 /*-----------------------------   TYPOGRAPHY  -----------------------------*/
 
 body {
-  font-family: "elza-text", sans-serif;
+  /* font-family: "elza-text", sans-serif; */
+  font-family: "sofia-pro", sans-serif;
+}
+
+h1 {
+  /* font-family: "elza-text", sans-serif; */
+  /* font-family: "superpop-variable", sans-serif;
+  font-variation-settings: "wght" 300; */
+
+  font-family: "sidenote-variable", sans-serif;
+  font-variation-settings: "slnt" -2, "wdth" 120, "wght" 900;
+
+  /* font-family: Fillip; */
+
+  /* font-family: margot; */
 }
 
 p,
@@ -149,7 +175,7 @@ select,
 }
 
 h1 {
-  font-size: 2.3em;
+  font-size: 2em;
 }
 
 h3 {
@@ -167,11 +193,11 @@ h3 {
 
 h4,
 #cost,
-#quantity {
+#quantity,
+#list-total p {
   font-size: 1.5rem;
 }
 
-h1,
 h2,
 h3,
 h4,
@@ -185,8 +211,12 @@ label,
   font-weight: 600;
 }
 
+h1,
 h4,
-#cost {
+#cost,
+#ingred-cost,
+#list-total p,
+#quantity {
   font-weight: 500;
 }
 

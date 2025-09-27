@@ -47,6 +47,12 @@ form[role="search"] button,
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+/*-----------------------------   FORMS  -----------------------------*/
+input:not(#search input),
+select {
+  border: none;
+}
+
 /*-----------------------------   BUTTONS  -----------------------------*/
 
 #cancel-btn,
@@ -107,8 +113,14 @@ form[role="search"] button {
 #menu-list h3,
 #recipes-list h3,
 #edit-recipe-ingred-list,
-#delete-sort-bar {
+#delete-sort-bar,
+#shopping-list h3 {
   border-bottom-width: 1px;
   border-bottom-style: solid;
+}
+
+#list-total {
+  border-top-width: 1px;
+  border-top-style: solid;
 }
 /*-----------------------------   CHEFS NOTES  -----------------------------*/

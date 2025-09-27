@@ -11,7 +11,7 @@
 
 #tabs li {
   padding-bottom: 0.35em;
-  padding-top: 0.6em;
+  padding-top: 0.75em;
 }
 
 nav a,
@@ -122,7 +122,7 @@ select {
 #recipes-list li,
 #edit-recipe-ingred-list li,
 #shopping-list li {
-  padding: 0.21em 0em;
+  padding: 0.2em 0em;
 }
 
 #ingred-list li:last-of-type,
@@ -144,6 +144,10 @@ select {
 #need-for-list li {
   padding: 0.2em 0.2em;
   margin: 0 -0.15em;
+}
+
+#list-total {
+  padding-top: 0.35em;
 }
 
 /* Recipe name on left */
@@ -206,16 +210,16 @@ form[role="search"] {
 }
 
 form[role="search"] button {
-  width: 25px;
-  height: 25px;
+  width: 31px;
+  height: 31px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 form[role="search"] button svg {
-  width: 1em; /* scale SVG inside button */
-  height: 1em;
+  width: 1.2em; /* scale SVG inside button */
+  height: 1.2em;
 }
 
 #search-add-filter-sort,
@@ -242,6 +246,21 @@ form[role="search"] button svg {
   height: 25px;
   display: block; /* removes extra inline space */
 }
+
+/* #filter-svg {
+  width: 23px;
+  height: 23px;
+}
+
+#add-svg {
+  width: 23px;
+  height: 23px;
+}
+
+#sort-svg {
+  width: 23px;
+  height: 29px;
+} */
 
 #delete-sort-bar {
   display: flex; /* layout items in a row */
@@ -397,12 +416,30 @@ form[role="search"] button svg {
 }
 /*-----------------------------   INGRED INFO -----------------------------*/
 
+#ingred-info h2 {
+  display: grid;
+  grid-template-areas: "name cost";
+  grid-template-columns: auto 1fr;
+  grid-gap: 1em;
+  align-items: center;
+}
+
+#ingred-info #ingred-name {
+  grid-area: name;
+}
+
+#ingred-cost {
+  grid-area: cost;
+  justify-self: end;
+}
+
 #ingred-info dl {
+  justify-content: space-between;
   grid-template-areas:
     "unit-label unit-label"
     "unit unit"
-    "category-label cost-label"
-    "category cost";
+    "category-label category-label "
+    "category category";
 }
 
 #ingred-info dt:first-of-type {
@@ -414,9 +451,6 @@ form[role="search"] button svg {
 }
 #category {
   grid-area: category;
-}
-#cost {
-  grid-area: cost;
 }
 
 #ingred-info {
@@ -448,7 +482,10 @@ form[role="search"] button svg {
   grid-area: used-in-list;
 }
 
-/*-----------------------------   MEAL INFO  -----------------------------*/
+/*-----------------------------   SHOPPING LIST / MEAL INFO  -----------------------------*/
+#list-total p {
+  text-align: right;
+}
 
 #cost {
   grid-area: cost;
