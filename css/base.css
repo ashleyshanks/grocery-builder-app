@@ -43,6 +43,76 @@ a {
   --button-hover-bg: #3498db;
 }
 
+#tabs li:hover {
+  background-color: var(--tab-hover-color);
+}
+
+#tabs li.active {
+  background-color: var(--tab-active-color);
+}
+
+#tabs li {
+  background-color: var(--tab-bg-color); /* fill color */
+}
+
+#search-bar {
+  border-color: #ccc;
+}
+
+#search-add-filter-sort,
+#search-edit-filter-sort {
+  background-color: #f2f2f2; /* your desired background color */
+}
+
+form[role="search"] button {
+  background-color: var(--button-bg-color, #5dade2);
+  color: var(--button-font-color, #fff);
+}
+
+form[role="search"] button:hover {
+  background-color: var(--button-hover-color, #3498db);
+}
+
+#cancel-btn,
+#submit-btn,
+#edit-item-btn,
+#delete-item-btn {
+  background-color: var(--button-bg-color);
+  color: var(--button-font-color);
+}
+
+#actions-bar {
+  border-bottom-color: black;
+}
+
+#actions-bar button,
+#actions-bar p {
+  color: gray;
+}
+
+#ingred-list,
+#menu-list,
+#recipes-list,
+#shopping-list,
+#edit-recipe-ingred-list,
+#delete-sort-bar {
+  border-bottom-color: #ccc;
+}
+
+#ingred-list h3,
+#menu-list h3,
+#recipes-list h3 {
+  border-bottom-color: #7e7e7e;
+}
+/*-----------------------------   ZEBRA STRIPES  -----------------------------*/
+
+#need-for-list li:nth-child(odd) {
+  background-color: #f8f8f8; /* light gray */
+}
+
+#need-for-list li:nth-child(even) {
+  background-color: #ffffff; /* white */
+}
 /*-----------------------------   TYPOGRAPHY  -----------------------------*/
 
 body {
@@ -50,44 +120,129 @@ body {
 }
 
 p,
-li {
-  font-weight: 300;
-  font-size: 0.8rem;
+li,
+#submit-and-add-to-list-btn,
+#recipe-form #delete-btn,
+#actions-bar button,
+#actions-bar p {
+  font-size: 0.85rem;
 }
 
 #hero-nav a,
-#hero-nav button {
+#hero-nav button,
+#search-bar,
+input,
+select,
+#edit-recipe-ingred-list li {
   font-size: 1rem;
+}
+
+#ingred-info dl,
+#recipe-info dl,
+#item-info dl,
+#subingredients-list li,
+.used-in-list p,
+.used-in-list li,
+.needed-for-list p,
+.needed-for-list li {
+  font-size: 1.15rem;
+}
+
+h1 {
+  font-size: 2.3em;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+#ingred-list li,
+#menu-list li,
+#recipes-list li,
+#shopping-list li,
+#need-for-list li,
+#item-info h3 {
+  font-size: 1.3rem;
+}
+
+h4,
+#cost,
+#quantity {
+  font-size: 1.5rem;
 }
 
 h1,
 h2,
-h4 {
+h3,
+h4,
+#ingred-info dl dt,
+#recipe-info dl dt,
+#item-info dl dt,
+label,
+.used-in-list p,
+.needed-for-list p,
+#item-info h3 {
   font-weight: 600;
-}
-h1 {
-  font-size: 2.3em;
-}
-h3 {
-  font-weight: 600;
-  font-size: 1.8rem;
 }
 
-h4 {
+h4,
+#cost {
   font-weight: 500;
-  font-size: 1.5rem;
+}
+
+#ingred-info dd,
+#recipe-info dd,
+#item-info dd,
+p,
+li {
+  font-weight: 300;
 }
 
 /*-----------------------------   base  -----------------------------*/
-
-.editing,
-.hidden-mobile,
-.hidden {
-  display: none;
-}
 
 main > section,
 main > div {
   margin: 0em 2.4em;
   padding-top: 0.5em;
+}
+
+/*-----------------------------   HIDDEN MOBILE  -----------------------------*/
+#recipes-list span:nth-of-type(2),
+#recipes-list span:nth-of-type(3),
+.editing,
+.hidden-mobile,
+.hidden,
+#ingred-info .buttons,
+#recipe-info .buttons,
+#item-info .buttons {
+  display: none;
+}
+
+/*-----------------------------   FORMS -----------------------------*/
+
+select {
+  /* Remove default arrow but keep select styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+
+  /* Add custom arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3E%3Cpath d='M0 0 L5 5 L10 0' fill='none' stroke='%23666' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75em center;
+  background-size: 10px 5px;
+}
+
+/*-----------------------------   LISTS / UL -----------------------------*/
+#tabs ul,
+#search-add-filter-sort ul,
+#search-edit-filter-sort ul,
+#menu-list ul,
+#ingred-list ul,
+#recipes-list ul,
+#shopping-list ul,
+.used-in-list ul,
+#shopping-serves-list {
+  list-style: none;
 }

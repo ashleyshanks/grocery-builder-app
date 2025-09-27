@@ -1,88 +1,67 @@
-/* (buttons, forms, chefs notes) */
-
-/*-----------------------------   FORMS  -----------------------------*/
-
 /*-----------------------------   TOP BAR  -----------------------------*/
 
-#search-add-filter-sort,
-#search-edit-filter-sort {
-  background-color: #f2f2f2; /* your desired background color */
+.active-mode svg {
+  opacity: 0.5; /* 50% opacity */
+}
+
+#tabs li {
+  border-radius: 10px 10px 0 0; /* top-left, top-right, bottom-right, bottom-left */
 }
 
 /*-----------------------------   SEARCH BAR  -----------------------------*/
 
-/* Container form */
-form[role="search"] {
-  display: flex;
-  align-items: center;
-  gap: 0.3em; /* space between input and button */
-}
-
 /* Input field */
 #search-bar {
-  padding: 0.4em 0.6em;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1em;
   outline: none;
-  width: 200px; /* adjust as needed */
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-#search-bar:focus {
-  border-color: #3498db; /* blue focus */
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-/* Submit button */
-form[role="search"] button {
-  background-color: var(--button-bg-color, #5dade2);
-  color: var(--button-font-color, #fff);
-  border: none;
-  border-radius: 8px;
-  /* padding: 0.4em 0.6em; */
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-}
-
-form[role="search"] button:hover {
-  background-color: var(--button-hover-color, #3498db);
 }
 
 form[role="search"] button svg {
-  width: 1em; /* scale SVG inside button */
-  height: 1em;
   stroke-width: 2;
+}
+
+/*-----------------------------   INTERACTIVE  -----------------------------*/
+
+#sort-svg,
+#add-svg,
+#filter-svg,
+#edit-svg,
+#delete-sort-bar svg,
+form[role="search"] button,
+#cancel-btn,
+#submit-btn,
+#edit-item-btn,
+#delete-item-btn {
+  cursor: pointer;
+}
+
+/* Submit button */
+form[role="search"] button,
+#cancel-btn,
+#submit-btn,
+#edit-item-btn,
+#delete-item-btn {
+  transition: background-color 0.2s;
+}
+
+#search-bar {
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 /*-----------------------------   BUTTONS  -----------------------------*/
 
 #cancel-btn,
 #submit-btn {
-  background-color: var(--button-bg-color);
-  color: var(--button-font-color);
   padding: 1em 1em; /* vertical and horizontal padding */
   border-radius: 8px; /* rounded corners */
-  cursor: pointer;
   text-align: center;
-  transition: background-color 0.2s;
   margin-top: 0.8em;
 }
 
 #edit-item-btn,
 #delete-item-btn {
-  background-color: var(--button-bg-color);
-  color: var(--button-font-color);
   padding: 1em 15vw; /* vertical and horizontal padding */
   border-radius: 8px; /* rounded corners */
-  cursor: pointer;
   text-align: center;
-  transition: background-color 0.2s;
   margin-top: 0.8em;
 }
 
@@ -101,121 +80,35 @@ form[role="search"] button svg {
 #submit-and-add-to-list-btn,
 #recipe-form #delete-btn {
   text-decoration: underline;
-  font-size: 0.9em;
 }
 
-/*-----------------------------   BASE INFO  + FORMS -----------------------------*/
-#ingred-info dl dt,
-#recipe-info dl dt,
-#item-info dl dt,
-label {
-  font-weight: 600;
+/*-----------------------------   BORDERS  -----------------------------*/
+#top-bar {
+  border-bottom: 1.5px solid;
 }
 
-#ingred-info dd,
-#recipe-info dd,
-#item-info dd {
-  font-weight: 300;
+#search-bar {
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
 }
 
-#ingred-info dl,
-#recipe-info dl,
-#item-info dl {
-  font-size: 1.15rem;
+form[role="search"] button {
+  border: none;
+  border-radius: 8px;
 }
 
-#ingred-info .buttons,
-#recipe-info .buttons,
-#item-info .buttons {
-  display: none;
+#actions-bar,
+#ingred-list,
+#menu-list,
+#recipes-list,
+#shopping-list,
+#ingred-list h3,
+#menu-list h3,
+#recipes-list h3,
+#edit-recipe-ingred-list,
+#delete-sort-bar {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
-
-input,
-select {
-  background-color: #e0e0e0; /* light gray background */
-  border: none; /* remove default border */
-  outline: none; /* remove focus outline */
-  padding: 0.5em 0.75em; /* comfortable spacing */
-  border-radius: 4px; /* optional: rounded corners */
-  font-size: 1rem; /* adjust as needed */
-}
-
-select {
-  /* Remove default arrow but keep select styling */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: relative;
-  padding: 0.5em 1em 0.5em 0.75em; /* right padding for arrow */
-
-  /* Add custom arrow */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3E%3Cpath d='M0 0 L5 5 L10 0' fill='none' stroke='%23666' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75em center;
-  background-size: 10px 5px;
-}
-
-#actions-bar button,
-#actions-bar p {
-  font-size: 0.9rem;
-  color: gray;
-}
-
-#actions-bar {
-  border-bottom: solid 1px black;
-}
-/*-----------------------------   RECIPE INFO  -----------------------------*/
-
-#subingredients-list li {
-  font-size: 1.15rem;
-}
-
-/*-----------------------------   INGRED INFO + SHOPPING LIST INFO  -----------------------------*/
-.used-in-list p,
-.used-in-list li,
-.needed-for-list p,
-.needed-for-list li {
-  font-size: 1.15rem;
-}
-
-.used-in-list p,
-.needed-for-list p {
-  font-weight: 600;
-}
-
-/*-----------------------------   BASE LIST  -----------------------------*/
-#ingred-list li,
-#menu-list li,
-#recipes-list li,
-#shopping-list li,
-#need-for-list li,
-#item-info h3 {
-  font-size: 1.3rem;
-}
-
-#menu-list ul,
-#ingred-list ul,
-#recipes-list ul,
-#shopping-list ul,
-.used-in-list ul,
-#shopping-serves-list {
-  list-style: none;
-}
-/*-----------------------------   EDIT RECIPES  -----------------------------*/
-#edit-recipe-ingred-list li {
-  font-size: 1rem;
-}
-
-/*-----------------------------   SHOPPING LIST  -----------------------------*/
-
-#need-for-list li:nth-child(odd) {
-  background-color: #f8f8f8; /* light gray */
-}
-
-#need-for-list li:nth-child(even) {
-  background-color: #ffffff; /* white */
-}
-
-/*-----------------------------   MENU LIST  -----------------------------*/
-
 /*-----------------------------   CHEFS NOTES  -----------------------------*/
