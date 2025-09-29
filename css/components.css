@@ -30,8 +30,13 @@ form[role="search"] button,
 #cancel-btn,
 #submit-btn,
 #edit-item-btn,
-#delete-item-btn {
+#delete-item-btn,
+#tabs li {
   cursor: pointer;
+}
+
+li {
+  cursor: default; /* regular arrow cursor */
 }
 
 /* Submit button */
@@ -47,10 +52,34 @@ form[role="search"] button,
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+/*---CHECKBOXES----*/
+#shopping-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.checkbox {
+  width: 1em;
+  height: 1em;
+  border: 1.5px solid var(--dk-gray);
+  border-radius: 4px;
+  background-color: white;
+  display: inline-block;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Hover effect */
+li:hover .checkbox {
+  border-color: var(--lt-green);
+}
+
 /*-----------------------------   FORMS  -----------------------------*/
 input:not(#search input),
 select {
   border: none;
+  border-radius: 2px;
 }
 
 /*-----------------------------   BUTTONS  -----------------------------*/
@@ -80,7 +109,7 @@ select {
   justify-content: center; /* centers horizontally */
   align-items: center; /* centers vertically if needed */
   width: 100%; /* optional, makes sure it spans full width */
-  margin: 1em 0; /* optional spacing around the button */
+  padding: 1em 0; /* optional spacing around the button */
 }
 
 #submit-and-add-to-list-btn,
@@ -89,9 +118,9 @@ select {
 }
 
 /*-----------------------------   BORDERS  -----------------------------*/
-#top-bar {
+/* #top-bar {
   border-bottom: 1.5px solid;
-}
+} */
 
 #search-bar {
   border-radius: 8px;
@@ -124,3 +153,56 @@ form[role="search"] button {
   border-top-style: solid;
 }
 /*-----------------------------   CHEFS NOTES  -----------------------------*/
+
+/*-----------------------------   HOME  -----------------------------*/
+#hero-svg {
+  width: 250px; /* new width */
+  height: 250px; /* new height */
+  margin-bottom: 4vw;
+}
+
+#hero-nav img {
+  width: 65%;
+}
+
+#hero-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* horizontal centering */
+  align-items: center; /* vertical centering */
+  height: 80vh; /* full viewport height */
+}
+
+#hero-nav ul {
+  list-style: none; /* remove bullets */
+  padding: 0;
+  margin: 0;
+  display: flex; /* horizontal layout */
+  flex-direction: column;
+  gap: 3vw; /* spacing between buttons */
+}
+
+#hero-nav ul li {
+  display: inline-block; /* make list items behave like buttons */
+  background-color: var(--lt-green);
+  color: var(--lt-color);
+  padding: 1.5em 15vw; /* vertical and horizontal padding */
+  border-radius: 8px; /* rounded corners */
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+#hero-nav ul li:hover {
+  background-color: var(--dk-green);
+}
+
+/* #top-bar {
+  border-bottom: 1px solid #fafafa;
+} */
+
+#top-bar.home {
+  box-shadow: 0 15px 30px rgba(124, 129, 144, 0.2); /* horizontal, vertical, blur, color */
+  position: relative;
+  z-index: 10; /* makes sure the shadow sits above other elements if needed */
+}

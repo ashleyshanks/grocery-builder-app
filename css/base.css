@@ -34,15 +34,30 @@ a {
 /*-----------------------------   COLORS  -----------------------------*/
 
 :root {
-  --tab-bg-color: #65ca79; /* light blue background */
-  --tab-font-color: #e7ffe4; /* white text */
-  --tab-hover-color: #3498db; /* optional darker blue on hover */
-  --tab-active-color: #2980b9; /* optional active tab */
-  --button-bg-color: #5cceb9; /* light blue background */
-  --button-font-color: #ffffff; /* white text */
-  --button-hover-bg: #3498db;
-  --lt-gray: #eaeaea;
-  --top-bar-bg: #c8caca;
+  --lt-orange: #ff7a38;
+  --dk-orange: #ff6721;
+  --lt-green: #38ae40;
+  --dk-green: #2b9540;
+  --lt-color: #ffffff;
+  --lt-gray: rgb(237, 237, 240);
+  --md-gray: #c6c7cb;
+  --md-dk-gray: #84868d;
+  --dk-gray: #474747;
+  /* --top-bar-bg: #c8caca; */
+}
+
+#home svg,
+#add-svg,
+#sort-svg {
+  stroke: var(--dk-gray);
+}
+
+#light-mode svg,
+#dark-mode svg,
+#filter-svg:not(#delete-sort-bar #filter-svg),
+#edit-svg,
+#sort-svg {
+  fill: var(--dk-gray);
 }
 
 #top-bar {
@@ -50,16 +65,16 @@ a {
 }
 
 #tabs li:hover {
-  background-color: var(--tab-hover-color);
+  background-color: var(--dk-orange);
 }
 
 #tabs li.active {
-  background-color: var(--tab-active-color);
+  background-color: var(--dk-orange);
 }
 
 #tabs li {
-  background-color: var(--tab-bg-color); /* fill color */
-  color: var(--tab-font-color);
+  background-color: var(--lt-orange); /* fill color */
+  color: var(--lt-color);
 }
 
 #search-bar {
@@ -68,37 +83,53 @@ a {
 
 #search-add-filter-sort,
 #search-edit-filter-sort,
-input:not(#search input),
+input:not(#search input, #recipe-form input, #add-item input),
 select {
-  background-color: var(--top-bar-bg); /* your desired background color */
+  background-color: var(--md-gray); /* your desired background color */
+}
+
+#recipe-form select,
+#recipe-form input,
+#add-item select,
+#add-item input {
+  background-color: var(--lt-gray);
 }
 
 form[role="search"] button {
-  background-color: var(--button-bg-color, #5dade2);
-  background-color: gray;
-  color: var(--button-font-color, #fff);
+  background-color: var(--md-dk-gray);
+  color: var(--lt-color, white);
 }
 
 form[role="search"] button:hover {
-  background-color: var(--button-hover-color, #3498db);
+  background-color: var(--lt-orange);
+}
+
+#ingred-and-recipe-info,
+.buttons:not(#recipe-form .buttons),
+#recipe-info,
+#edit-meal-chefs-notes,
+#view-item-chefs-notes,
+#add-item-chefs-notes {
+  background-color: var(--lt-gray);
 }
 
 #cancel-btn,
 #submit-btn,
 #edit-item-btn,
 #delete-item-btn {
-  background-color: var(--tab-bg-color);
-  /* fix me */
-  color: var(--button-font-color);
+  background-color: var(--lt-green);
+  color: var(--lt-color);
+}
+
+#cancel-btn:hover,
+#submit-btn:hover,
+#edit-item-btn:hover,
+#delete-item-btn:hover {
+  background-color: var(--dk-green); /* actual hover color */
 }
 
 #actions-bar {
   border-bottom-color: black;
-}
-
-#actions-bar button,
-#actions-bar p {
-  color: gray;
 }
 
 #ingred-list,
@@ -107,19 +138,20 @@ form[role="search"] button:hover {
 #shopping-list,
 #edit-recipe-ingred-list,
 #delete-sort-bar {
-  border-bottom-color: #ccc;
+  border-bottom-color: #e7e7e7;
 }
 
 #ingred-list h3,
 #menu-list h3,
 #recipes-list h3,
 #list-total {
-  border-bottom-color: #7e7e7e;
+  border-bottom-color: #97989a;
 }
-/*-----------------------------   ZEBRA STRIPES  -----------------------------*/
+/*-----------------------------   zebra ZEBRA STRIPES  -----------------------------*/
 
 #need-for-list li:nth-child(odd) {
-  background-color: var(--lt-gray); /* light gray */
+  background-color: var(--md-gray); /* light gray */
+  border-radius: 8px;
 }
 
 /* #need-for-list li:nth-child(even) {
@@ -149,13 +181,11 @@ p,
 li,
 #submit-and-add-to-list-btn,
 #recipe-form #delete-btn,
-#actions-bar button,
+#actions-bar a,
 #actions-bar p {
   font-size: 0.85rem;
 }
 
-#hero-nav a,
-#hero-nav button,
 #search-bar,
 input,
 select,
@@ -170,7 +200,9 @@ select,
 .used-in-list p,
 .used-in-list li,
 .needed-for-list p,
-.needed-for-list li {
+.needed-for-list li,
+#hero-nav a,
+#hero-nav button {
   font-size: 1.15rem;
 }
 
@@ -232,7 +264,7 @@ li {
 
 main > section,
 main > div {
-  margin: 0em 2.4em;
+  padding: 0em 2.4em;
   padding-top: 0.5em;
 }
 
