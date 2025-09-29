@@ -134,7 +134,8 @@ select {
 #recipes-list li,
 #edit-recipe-ingred-list li,
 #shopping-list li {
-  padding: 0.2em 0em;
+  padding: 0.3em 0.6em;
+  margin-bottom: 0.1em;
 }
 
 #ingred-list li:last-of-type,
@@ -398,12 +399,12 @@ form[role="search"] button svg {
 
 #add-ingred label:nth-of-type(2),
 #add-item label:nth-of-type(2) {
-  grid-area: unit-label;
+  grid-area: quantity-label;
 }
 
 #add-ingred label:nth-of-type(3),
 #add-item label:nth-of-type(3) {
-  grid-area: quantity-label;
+  grid-area: unit-label;
 }
 
 #add-ingred label:nth-of-type(4),

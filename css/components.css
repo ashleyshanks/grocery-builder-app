@@ -23,6 +23,7 @@ form[role="search"] button svg {
 
 #sort-svg,
 #add-svg,
+#fav-star,
 #filter-svg,
 #edit-svg,
 #delete-sort-bar svg,
@@ -36,7 +37,7 @@ form[role="search"] button,
 }
 
 li {
-  cursor: default; /* regular arrow cursor */
+  cursor: pointer; /* regular arrow cursor */
 }
 
 /* Submit button */
@@ -75,6 +76,54 @@ li:hover .checkbox {
   border-color: var(--lt-green);
 }
 
+/*----------------JAVASCRIPT-------------------*/
+.selected-li {
+  background-color: var(--v-lt-orange);
+  border-radius: 3px; /* rounded corners */
+}
+
+.favorited,
+.selected-svg {
+  fill: var(--v-lt-orange);
+  color: var(--v-lt-orange);
+}
+
+/*----------pop ups-----------*/
+.popup {
+  position: absolute;
+  top: 14.2em; /* adjust to position near your #filter-svg */
+  right: 1.4em;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup header {
+  margin-bottom: 0.4em;
+  margin-top: 0.3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-close {
+  position: absolute;
+  top: 0em;
+  right: 0.3em;
+  border: none;
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+}
+
 /*-----------------------------   FORMS  -----------------------------*/
 input:not(#search input),
 select {
@@ -83,7 +132,22 @@ select {
 }
 
 /*-----------------------------   BUTTONS  -----------------------------*/
+#cancel-btn,
+#submit-btn,
+#edit-item-btn,
+#delete-item-btn,
+.popup-btn {
+  background-color: var(--lt-green);
+  color: var(--lt-color);
+}
 
+#cancel-btn:hover,
+#submit-btn:hover,
+#edit-item-btn:hover,
+#delete-item-btn:hover,
+.popup-btn:hover {
+  background-color: var(--dk-green); /* actual hover color */
+}
 #cancel-btn,
 #submit-btn {
   padding: 1em 1em; /* vertical and horizontal padding */
@@ -95,6 +159,13 @@ select {
 #edit-item-btn,
 #delete-item-btn {
   padding: 1em 15vw; /* vertical and horizontal padding */
+  border-radius: 8px; /* rounded corners */
+  text-align: center;
+  margin-top: 0.8em;
+}
+
+.popup-btn {
+  padding: 0.8em 1.5em; /* vertical and horizontal padding */
   border-radius: 8px; /* rounded corners */
   text-align: center;
   margin-top: 0.8em;

@@ -112,31 +112,6 @@
         </ul>
 
         <!-- Right items -->
-        <ul>
-          <li>
-            <svg
-              id="add-svg"
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="black"
-                stroke-width="1.5"
-              />
-              <path
-                d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-            </svg>
-          </li>
-        </ul>
       </header>
       <!-- ===== RECIPES LIST  ===== -->
       <section id="recipes-list" class="hidden-mobile">
@@ -198,12 +173,11 @@
           <a href="edit-recipe.html">Recipe Info</a>
 
           <p>|</p>
-          <button id="edit-btn" class="hidden">Edit</button>
-          <p class="hidden">|</p>
+
           <a href="#">Ingredients List</a>
         </div>
 
-        <div id="delete-sort-bar" class="hidden">
+        <div id="delete-sort-bar">
           <svg
             id="delete-svg"
             class="w-6 h-6 text-gray-800 dark:text-white"
@@ -298,7 +272,7 @@
               placeholder=""
             />
 
-            <label for="unit-input">Unit:</label>
+            <label for="unit-input">Unit</label>
             <select id="unit-input" name="unit-input">
               <option value=""></option>
               <!-- Volume -->
@@ -319,7 +293,7 @@
               <option value="pkg">pkg</option>
             </select>
 
-            <label for="category-input">Category:</label>
+            <label for="category-input">Category</label>
             <select id="category-input" name="category-input">
               <option value=""></option>
               <option value="produce">Produce</option>
@@ -330,8 +304,6 @@
               <option value="beverages">Beverages</option>
               <option value="snacks">Snacks</option>
               <option value="pantry">Pantry</option>
-              <option value="household">Household</option>
-              <option value="personalcare">Personal Care</option>
               <option value="other">Other</option>
             </select>
 
@@ -348,6 +320,43 @@
         </section>
       </section>
     </main>
+    <aside>
+      <div id="filter-popup" class="hidden popup">
+        <header>
+          <span>Filter by category</span>
+          <button id="filter-close" class="popup-close">×</button>
+        </header>
+        <select id="filter-category">
+          <option value=""></option>
+          <option value="produce">Produce</option>
+          <option value="meat">Meat</option>
+          <option value="dairy">Dairy</option>
+          <option value="frozen">Cold</option>
+          <option value="frozen">Frozen</option>
+          <option value="bakery">Bakery</option>
+          <option value="pantry">Pantry</option>
+          <option value="other">Other</option>
+        </select>
+        <button type="button" id="filter-btn" class="popup-btn">Filter</button>
+        <button type="button" id="clear-btn" class="popup-btn">Clear</button>
+      </div>
+
+      <!-- Sort Popup -->
+      <div class="popup hidden" id="sort-popup">
+        <header>
+          <span>Sort</span>
+          <button id="sort-close" class="popup-close">×</button>
+        </header>
+        <select id="sort-category">
+          <option value=""></option>
+          <option value="abc">Alphabetical</option>
+          <option value="category">Category</option>
+          <option value="recent">Recently Added</option>
+        </select>
+        <button type="button" id="sort-btn" class="popup-btn">Sort</button>
+        <button type="button" id="clear-btn" class="popup-btn">Clear</button>
+      </div>
+    </aside>
   </body>
-  <script src="edit-recipe-ingred-wip.js"></script>
+  <script src="javascript/edit-recipe-ingred.js"></script>
 </html>

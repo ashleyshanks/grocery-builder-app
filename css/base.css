@@ -36,6 +36,7 @@ a {
 :root {
   --lt-orange: #ff7a38;
   --dk-orange: #ff6721;
+  --v-lt-orange: #ffbd76;
   --lt-green: #38ae40;
   --dk-green: #2b9540;
   --lt-color: #ffffff;
@@ -111,21 +112,6 @@ form[role="search"] button:hover {
 #view-item-chefs-notes,
 #add-item-chefs-notes {
   background-color: var(--lt-gray);
-}
-
-#cancel-btn,
-#submit-btn,
-#edit-item-btn,
-#delete-item-btn {
-  background-color: var(--lt-green);
-  color: var(--lt-color);
-}
-
-#cancel-btn:hover,
-#submit-btn:hover,
-#edit-item-btn:hover,
-#delete-item-btn:hover {
-  background-color: var(--dk-green); /* actual hover color */
 }
 
 #actions-bar {
@@ -268,7 +254,7 @@ main > div {
   padding-top: 0.5em;
 }
 
-/*-----------------------------   HIDDEN MOBILE  -----------------------------*/
+/*-----------------------------   HIDDEN  -----------------------------*/
 #recipes-list span:nth-of-type(2),
 #recipes-list span:nth-of-type(3),
 .editing,
@@ -277,7 +263,11 @@ main > div {
 #ingred-info .buttons,
 #recipe-info .buttons,
 #item-info .buttons {
-  display: none;
+  display: none !important;
+}
+
+.hide {
+  opacity: 75%;
 }
 
 /*-----------------------------   FORMS -----------------------------*/
