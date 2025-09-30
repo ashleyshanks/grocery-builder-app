@@ -13,6 +13,7 @@ const savedCurrRecipe = localStorage.getItem("currRecipe");
 let currRecipe = savedCurrRecipe; // default if none saved
 
 let addClicked = localStorage.getItem("addClicked") === "true";
+
 if (addClicked) {
   newRecipeUI();
   addClicked = false;
@@ -23,16 +24,11 @@ console.log(addClicked);
 const savedRecipes = localStorage.getItem("recipes");
 const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
 let recipe = recipes[currRecipe];
-let recFav;
-// let newRecipe;
+
 console.log(recipes);
 
 recipeNameUI.textContent = currRecipe || "New Recipe";
 recipeEmojiUI.textContent = recipes[currRecipe]?.emoji || "🥄";
-
-//Having issues with setting new recipe true/false correctly
-// Moving load into editRecipeBtn function fixed this issue
-// But now currRecipe is unable to switch between edit recipe/new recipe correctly
 
 updatePlaceholders();
 
@@ -176,13 +172,15 @@ closeBtn.addEventListener("click", () => {
 
 //favorite
 const favStar = document.getElementById("fav-star");
-if (currRecipe) {
-  if (recFav) {
-    favStar.classList.add("favorited");
-  } else {
-    favStar.classList.remove("favorited");
-  }
+
+let recFav = recipes[currRecipe]?.favorite || false;
+
+if (recFav) {
+  favStar.classList.add("favorited");
+} else {
+  favStar.classList.remove("favorited");
 }
+
 favStar.addEventListener("click", () => {
   favStar.classList.toggle("favorited");
   recFav = favStar.classList.contains("favorited"); // true if favorited, false otherwise

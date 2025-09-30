@@ -10,13 +10,16 @@ const recipeTitle = document.querySelector("h2");
 const svgHTML = recipeTitle.querySelector("svg")?.outerHTML || "";
 const recipeInfo = document.getElementById("recipe-info");
 
+const savedMenu = localStorage.getItem("menu");
+const menu = savedMenu ? JSON.parse(savedMenu) : {};
+
 const savedRecipes = localStorage.getItem("recipes");
 const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
 const recipeList = document.getElementById("recipes-list");
 console.log(recipes);
 populateRecipeList();
 
-let currRecipe = null;
+let currRecipe;
 recipeList.addEventListener("click", (event) => {
   // Find the closest <li> ancestor of whatever was clicked
   const clickedLi = event.target.closest("li");
@@ -48,6 +51,11 @@ editBtn.addEventListener("click", () => {
   saveInfo();
 });
 
+const addIngredBtn = document.getElementById("ingred-list-btn");
+addIngredBtn.addEventListener("click", () => {
+  saveInfo();
+});
+
 const addBtn = document.getElementById("add-svg");
 let addClicked = false;
 addBtn.addEventListener("click", () => {
@@ -69,9 +77,29 @@ closeInfoBtn.addEventListener("click", () => {
   currRecipe = null;
 });
 
-//fav star WIP
+//add to menu
+const addMenuBtn = document.getElementById("add-to-menu-btn");
+addMenuBtn.addEventListener("click", () => {
+  menu[currRecipe] = {
+    name: currRecipe,
+    day: "unknown",
+    course: recipes[currRecipe].type || "unknown",
+  };
+
+  localStorage.setItem("menu", JSON.stringify(menu));
+  console.log(menu);
+});
+
+//fav star
 const favStar = document.getElementById("fav-star");
 
+favStar.addEventListener("click", () => {
+  favStar.classList.toggle("favorited");
+  recFav = favStar.classList.contains("favorited"); // true if favorited, false otherwise
+
+  recipes[currRecipe].favorite = recFav;
+  localStorage.setItem("recipes", JSON.stringify(recipes));
+});
 //FUNCTION
 
 function loadData() {
@@ -126,6 +154,15 @@ function fillRecipeDetails(fullText, currRecipe) {
 
   const recipe = recipes[currRecipe];
 
+  //fav star
+  console.log(recipes[currRecipe]);
+
+  if (recipe.favorite) {
+    favStar.classList.add("favorited");
+  } else {
+    favStar.classList.remove("favorited");
+  }
+
   recipeTitle.innerHTML = `${svgHTML} ${fullText}`;
   servesOutput.textContent = recipe.serves || "Unknown";
   timeOutput.textContent = recipe.time || "0hr";
@@ -141,11 +178,13 @@ function fillRecipeDetails(fullText, currRecipe) {
   }
 
   // Populate ingredients
+
   ingredOutput.innerHTML = ""; // clear old list
-  if (recipe.ingredients && recipe.ingredients.length > 0) {
-    recipe.ingredients.forEach((ing) => {
+
+  if (recipe.ingredients && Object.keys(recipe.ingredients).length > 0) {
+    Object.values(recipe.ingredients).forEach((ing) => {
       const li = document.createElement("li");
-      li.textContent = `${ing.name} - ${ing.quantity} ${ing.unit} (${ing.category})`;
+      li.textContent = ing.name;
       ingredOutput.appendChild(li);
     });
   } else {
@@ -159,3 +198,6 @@ function clearData() {
   localStorage.removeItem("recipes");
   localStorage.removeItem("currRecipe");
 }
+
+//WIP add categories
+//WIP add "No recipes added, click the + button to add recipes"

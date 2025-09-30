@@ -142,14 +142,16 @@ select {
 }
 
 #ingred-list li:last-of-type,
-#menu-list li:last-of-type,
+/* #menu-list li:last-of-type, */
 /* #recipes-list li:last-of-type, */
 #shopping-list li:last-of-type {
   padding-bottom: 1.5em;
 }
-
 #menu-list h3 {
-  margin-bottom: 0.2em;
+  margin-bottom: 0.5em;
+}
+#menu-list li:last-of-type {
+  margin-bottom: 1em;
 }
 
 #need-for-list {
@@ -301,13 +303,14 @@ form[role="search"] button svg {
 
 /*-----------------------------   BASE LISTS  -----------------------------*/
 #ingred-list,
-#menu-list,
-#shopping-list {
+#shopping-list,
+#menu-list.edit {
   height: 50vh; /* Limit height (adjust as needed) */
   overflow-y: auto;
 }
 
-#recipes-list {
+#recipes-list,
+#menu-list.display {
   height: 100vh;
 }
 
@@ -590,6 +593,16 @@ form[role="search"] button svg {
 
 #select-emoji {
   margin-right: 0.2em;
+}
+
+#recipe-info-header {
+  display: flex;
+  align-items: end;
+  gap: 0.4rem;
+}
+
+#recipe-info-header #fav-star {
+  margin-bottom: 0.29em;
 }
 
 /*-----------------------------   RECIPES FORM  -----------------------------*/

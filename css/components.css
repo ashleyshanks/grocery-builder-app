@@ -112,8 +112,10 @@ li:hover .checkbox {
   border: none;
 }
 
-#recipes-list.recipe-info-shown {
-  height: 50vh;
+#recipe-list.recipe-info-shown,
+#menu-list.recipe-info-shown,
+.recipe-info-shown {
+  height: 50vh !important;
 }
 
 /*----------pop ups-----------*/

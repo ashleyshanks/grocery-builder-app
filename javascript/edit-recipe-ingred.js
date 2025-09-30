@@ -10,12 +10,7 @@ let ingred = {};
 const savedItems = localStorage.getItem("items");
 const items = savedItems ? JSON.parse(savedItems) : {};
 const savedRecipes = localStorage.getItem("recipes");
-const recipes = savedRecipes
-  ? JSON.parse(savedRecipes)
-  : {
-      Spaghetti: { name: "Spaghetti", type: "Dinner", ingredients: {} },
-      Lasagna: { name: "Lasagna", type: "Dinner", ingredients: {} },
-    };
+const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
 const savedCurrRecipe = localStorage.getItem("currRecipe");
 let currRecipe = savedCurrRecipe ? savedCurrRecipe : "Untitled"; // default if none saved
 if (recipes[currRecipe]) {
@@ -32,7 +27,7 @@ if (recipes[currRecipe]) {
 }
 
 let recipeNameUI = document.querySelector("#edit-recipe-ingred h2 span");
-recipeNameUI.textContent = currRecipe;
+recipeNameUI.textContent = `${recipes[currRecipe].emoji} ${currRecipe}`;
 updateIngredListUI();
 
 //DOM SELECTORS FOR FORM INPUT
@@ -217,6 +212,7 @@ deleteBtn.addEventListener("click", () => {
 //favorite
 
 const favStar = document.getElementById("fav-star");
+
 let recFav = recipes[currRecipe].favorite || false;
 
 if (recFav) {
@@ -444,7 +440,3 @@ sortClearBtn.addEventListener("click", () => {
   const sortPopup = document.getElementById("filter-popup");
   sortPopup.classList.add("hidden");
 });
-
-//BUGS
-//-allowing ingred with no name to be added
-//-cancel button should clear placeholders and values

@@ -16,7 +16,7 @@
     <!-- ===== TOP BAR ===== -->
     <header id="top-bar">
       <nav>
-        <a href="#" aria-label="Go to the homepage" id="home"
+        <a href="index.html" aria-label="Go to the homepage" id="home"
           ><svg
             width="22"
             height="22"
@@ -196,8 +196,8 @@
         </div>
         <h3>Category</h3>
         <ul>
+          <li><span>No recipes added</span><span></span><span></span></li>
           <!-- <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
-          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
@@ -225,8 +225,8 @@
 
       <!-- ===== RECIPE INFO ===== -->
       <section id="recipe-info" class="hidden">
-        <h2>
-          <svg
+        <div id="recipe-info-header">
+        <svg
             id="fav-star"
             class="w-6 h-6 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -241,14 +241,16 @@
               stroke-width="2"
               d="M11.083 5.104c.35-.8 1.485-.8 1.834 0l1.752 4.022a1 1 0 0 0 .84.597l4.463.342c.9.069 1.255 1.2.556 1.771l-3.33 2.723a1 1 0 0 0-.337 1.016l1.03 4.119c.214.858-.71 1.552-1.474 1.106l-3.913-2.281a1 1 0 0 0-1.008 0L7.583 20.8c-.764.446-1.688-.248-1.474-1.106l1.03-4.119A1 1 0 0 0 6.8 14.56l-3.33-2.723c-.698-.571-.342-1.702.557-1.771l4.462-.342a1 1 0 0 0 .84-.597l1.753-4.022Z"
             /></svg
-          >🍝 Recipe Name
-        </h2> <button id="info-close-btn">×</button>
+          >
+        <h2>
+          🍝 Recipe Name
+        </h2></div> <button id="info-close-btn">×</button>
         <div id="actions-bar">
           <button id="add-to-menu-btn">Add to Menu</button>
           <p>|</p>
           <a href="edit-recipe.html" id="edit-btn">Edit</a>
           <p>|</p>
-          <button id="ingred-list-btn">Ingredients List</button>
+          <a href="edit-recipe-ingred.html" id="ingred-list-btn">Add Ingredients</a>
         </div>
         <dl>
           <dt>Serves:</dt>
