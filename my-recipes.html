@@ -114,27 +114,28 @@
         <!-- Right items -->
         <ul>
           <li>
-            <svg
-              id="add-svg"
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="black"
-                stroke-width="1.5"
-              />
-              <path
-                d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-            </svg>
+            <a href="edit-recipe.html"
+              ><a href="edit-recipe.html"><svg
+                id="add-svg"
+                width="24px"
+                height="24px"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="black"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                /></svg
+            ></a>
           </li>
           <li>
             <svg
@@ -195,6 +196,7 @@
         </div>
         <h3>Category</h3>
         <ul>
+          <!-- <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
@@ -217,13 +219,12 @@
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
           <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
-          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
-          <li><span>Recipe Name</span><span>Method</span><span>##</span></li>
+          <li><span>Recipe Name</span><span>Method</span><span>##</span></li> -->
         </ul>
       </section>
 
       <!-- ===== RECIPE INFO ===== -->
-      <section id="recipe-info">
+      <section id="recipe-info" class="hidden">
         <h2>
           <svg
             id="fav-star"
@@ -241,32 +242,33 @@
               d="M11.083 5.104c.35-.8 1.485-.8 1.834 0l1.752 4.022a1 1 0 0 0 .84.597l4.463.342c.9.069 1.255 1.2.556 1.771l-3.33 2.723a1 1 0 0 0-.337 1.016l1.03 4.119c.214.858-.71 1.552-1.474 1.106l-3.913-2.281a1 1 0 0 0-1.008 0L7.583 20.8c-.764.446-1.688-.248-1.474-1.106l1.03-4.119A1 1 0 0 0 6.8 14.56l-3.33-2.723c-.698-.571-.342-1.702.557-1.771l4.462-.342a1 1 0 0 0 .84-.597l1.753-4.022Z"
             /></svg
           >🍝 Recipe Name
-        </h2>
+        </h2> <button id="info-close-btn">×</button>
         <div id="actions-bar">
           <button id="add-to-menu-btn">Add to Menu</button>
           <p>|</p>
-          <button id="edit-btn">Edit</button>
+          <a href="edit-recipe.html" id="edit-btn">Edit</a>
           <p>|</p>
           <button id="ingred-list-btn">Ingredients List</button>
         </div>
         <dl>
           <dt>Serves:</dt>
-          <dd>#</dd>
+          <dd id="serves">#</dd>
 
           <dt>Cook Time:</dt>
-          <dd>0hr</dd>
+          <dd id="time">0hr</dd>
 
           <dt>Category:</dt>
-          <dd>Category</dd>
+          <dd id="category">Category</dd>
 
-          <dt>Cook Time:</dt>
-          <dd>Time</dd>
 
           <dt>Cooking Method:</dt>
-          <dd>Method</dd>
+          <dd id="method">Method</dd>
 
           <dt>Recipe Creator:</dt>
-          <dd>Link</dd>
+          <dd id="creator">Creator</dd>
+
+          <dt>Recipe Link:</dt>
+          <dd id="link">Link</dd>
 
           <dt>Ingredients</dt>
           <dd>
@@ -288,5 +290,5 @@
       </section>
     </main>
   </body>
-  <script src="app.js"></script>
+  <script src="javascript/recipe-list.js"></script>
 </html>

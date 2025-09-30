@@ -5,14 +5,30 @@ const recTypeInput = document.getElementById("meal-type");
 const recMethodInput = document.getElementById("method-input");
 const recCreatorInput = document.getElementById("creator");
 const recLinkInput = document.getElementById("recipe-link");
+let recipeNameUI = document.querySelector("#recipe-form h2 span");
+let recipeEmojiUI = document.getElementById("select-emoji");
 
+//LOAD DATA
 const savedCurrRecipe = localStorage.getItem("currRecipe");
 let currRecipe = savedCurrRecipe; // default if none saved
-//incorrect save testing
-// localStorage.setItem("currRecipe", currRecipe);
 
-let recipeNameUI = document.querySelector("#recipe-form h2 span");
+let addClicked = localStorage.getItem("addClicked") === "true";
+if (addClicked) {
+  newRecipeUI();
+  addClicked = false;
+  localStorage.setItem("addClicked", "false");
+}
+console.log(addClicked);
+
+const savedRecipes = localStorage.getItem("recipes");
+const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
+let recipe = recipes[currRecipe];
+let recFav;
+// let newRecipe;
+console.log(recipes);
+
 recipeNameUI.textContent = currRecipe || "New Recipe";
+recipeEmojiUI.textContent = recipes[currRecipe]?.emoji || "🥄";
 
 //Having issues with setting new recipe true/false correctly
 // Moving load into editRecipeBtn function fixed this issue
@@ -22,29 +38,15 @@ updatePlaceholders();
 
 const editRecipeBtn = document.querySelector("#recipe-form #submit-btn");
 editRecipeBtn.addEventListener("click", () => {
-  // Try to load saved recipes
-  const savedRecipes = localStorage.getItem("recipes");
-  // Parse saved recipes, or start with an empty object if nothing is saved
-  const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
-  console.log("currRecipe is", currRecipe);
-  console.log("recipes:", recipes);
-  console.log("Object.keys(recipes):", Object.keys(recipes));
-  console.log("Object.keys(recipes).length:", Object.keys(recipes).length);
-  let newRecipe;
-  // If recipes object is empty, this is a new recipe
-  if (Object.keys(recipes).length === 0) {
-    newRecipe = true;
-  } else {
-    newRecipe = false;
-  }
   let inputName = recNameInput.value.trim();
 
+  let newRecipe = isNewRecipe();
+  console.log("newRecipe is", newRecipe);
   if (!inputName && newRecipe) {
     alert("Recipe name required");
     return;
   }
 
-  console.log("newRecipe is", newRecipe);
   if (newRecipe) {
     //New recipe
     recName = inputName;
@@ -66,18 +68,20 @@ editRecipeBtn.addEventListener("click", () => {
       delete recipes[prevName];
     }
     // recName = inputName || recipe.name;
-    recServes = recServesInput.value || recipe.serves || "Unknown";
-    recTime = recTimeInput.value || recipe.time || "Unknown";
-    recType = recTypeInput.value || recipe.type || "Unknown";
-    recMethod = recMethodInput.value || recipe.method || "Unknown";
-    recCreator = recCreatorInput.value || recipe.creator || "Unknown";
-    recLink = recLinkInput.value || recipe.link || "Unknown";
+    recServes = recServesInput.value || recipe?.serves || "Unknown";
+    recTime = recTimeInput.value || recipe?.time || "Unknown";
+    recType = recTypeInput.value || recipe?.type || "Unknown";
+    recMethod = recMethodInput.value || recipe?.method || "Unknown";
+    recCreator = recCreatorInput.value || recipe?.creator || "Unknown";
+    recLink = recLinkInput.value || recipe?.link || "Unknown";
     recIngreds = recipes[currRecipe]?.ingredients || {};
   }
 
   recipeNameUI.textContent = currRecipe;
+  recipeEmojiUI.textContent = selectedEmoji || "🥄";
 
   recipes[currRecipe] = {
+    emoji: selectedEmoji,
     name: currRecipe,
     serves: recServes || "Unknown",
     time: recTime || "Unknown",
@@ -89,19 +93,89 @@ editRecipeBtn.addEventListener("click", () => {
     favorite: recFav,
   };
 
-  console.log("recipes map:");
+  saveInfo();
+  // addClicked = false;
   console.log(recipes);
+});
 
-  localStorage.setItem("recipes", JSON.stringify(recipes));
-  localStorage.setItem("currRecipe", currRecipe);
+//choose emoji-----------------------------
+let selectedEmoji = "🥄"; // store the chosen emoji
+document.addEventListener("DOMContentLoaded", () => {
+  const emojiBtn = document.getElementById("select-emoji");
+  const emojiPopup = document.getElementById("emoji-popup");
 
-  console.log(recipes[currRecipe]);
-  console.log("Recipes saved");
+  // Show popup
+  emojiBtn.addEventListener("click", () => {
+    emojiPopup.classList.remove("hidden"); // Show the popup
+  });
+
+  //close button
+  const closeEmojiBtn = document.getElementById("emoji-close");
+  closeEmojiBtn.addEventListener("click", () => {
+    emojiPopup.classList.add("hidden"); // Show the popup
+  });
+
+  const emojiCategoryList = document.querySelectorAll(
+    "#emoji-categories ul li"
+  );
+  const emojiCategories = document.querySelectorAll(".emoji-category");
+
+  const categoryMap = {
+    Meals: "meals-category",
+    Fruit: "fruit-category",
+    Veggies: "veg-category",
+    "Dairy/Meat": "dairy-meat",
+    "Pantry/Staples": "pantry-staples",
+    Other: "other-category",
+  };
+
+  emojiCategoryList.forEach((li) => {
+    li.addEventListener("click", () => {
+      const categoryId = categoryMap[li.textContent.trim()];
+
+      emojiCategories.forEach((ul) => {
+        if (ul.id === categoryId) {
+          ul.classList.remove("hidden");
+        } else {
+          ul.classList.add("hidden");
+        }
+      });
+    });
+  });
+
+  // Select all emoji items
+  const emojiItems = document.querySelectorAll(".emoji-category li");
+
+  emojiItems.forEach((li) => {
+    li.addEventListener("click", () => {
+      // Remove 'selected' class from all emojis
+      emojiItems.forEach((e) => e.classList.remove("selected"));
+
+      // Add 'selected' class to the clicked one
+      li.classList.add("selected");
+
+      // Save the clicked emoji
+      selectedEmoji = li.textContent;
+      console.log("Selected emoji:", selectedEmoji);
+    });
+  });
+
+  const emojiSaveBtn = document.getElementById("select-emoji-btn");
+  // hide popup and change ui
+  emojiSaveBtn.addEventListener("click", () => {
+    emojiPopup.classList.add("hidden");
+    recipeEmojiUI.textContent = selectedEmoji || "🥄";
+  });
+});
+
+//close
+const closeBtn = document.getElementById("larger-close-btn");
+closeBtn.addEventListener("click", () => {
+  localStorage.removeItem("currRecipe");
 });
 
 //favorite
 const favStar = document.getElementById("fav-star");
-
 if (currRecipe) {
   if (recFav) {
     favStar.classList.add("favorited");
@@ -116,11 +190,15 @@ favStar.addEventListener("click", () => {
   if (currRecipe && recipes[currRecipe]) {
     recipes[currRecipe].favorite = recFav;
     localStorage.setItem("recipes", JSON.stringify(recipes));
-
-    //testing
-    console.log("recipes map");
-    console.log(recipes);
   }
+});
+
+// When #add-svg is clicked, force newRecipe to true
+const addBtn = document.getElementById("add-svg");
+
+addBtn.addEventListener("click", () => {
+  addClicked = true;
+  newRecipeUI();
 });
 
 // FUNCTIONS
@@ -146,13 +224,31 @@ function updatePlaceholders() {
   }
 }
 
+function newRecipeUI() {
+  recipeNameUI.textContent = "New Recipe";
+
+  //clear name
+  recNameInput.value = "";
+  recNameInput.placeholder = "";
+
+  clearValues();
+  clearPlaceholders();
+}
+
 function clearValues() {
   recServesInput.value = "";
   recTimeInput.value = "";
   recTypeInput.value = "";
   recMethodInput.value = "";
   recCreatorInput.value = "";
-  recLink = "";
+  recLinkInput.value = "";
+}
+
+function clearPlaceholders() {
+  recServesInput.placeholder = "";
+  recTimeInput.placeholder = "";
+  recCreatorInput.placeholder = "";
+  recLinkInput.placeholder = "";
 }
 
 function clearData() {
@@ -160,7 +256,6 @@ function clearData() {
   localStorage.removeItem("currRecipe");
 
   currRecipe = null;
-  recipe = null;
   recName = "";
   recServes = "";
   recTime = "";
@@ -169,5 +264,13 @@ function clearData() {
   recCreator = "";
   recLink = "";
   recIngreds = {};
-  recFav = false;
+}
+
+function saveInfo() {
+  localStorage.setItem("recipes", JSON.stringify(recipes));
+  localStorage.setItem("currRecipe", currRecipe);
+}
+
+function isNewRecipe() {
+  return Object.keys(recipes).length === 0 || addClicked;
 }

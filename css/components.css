@@ -88,6 +88,34 @@ li:hover .checkbox {
   color: var(--v-lt-orange);
 }
 
+/* for edit recipe info */
+#larger-close-btn {
+  font-weight: 380;
+  font-size: 1.4rem;
+  position: absolute;
+  top: 5.6em;
+  right: 0.5em;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* for recipe info */
+#info-close-btn {
+  font-weight: 380;
+  font-size: 1.4rem;
+  position: absolute;
+  top: 23.5em;
+  right: 0.5em;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+#recipes-list.recipe-info-shown {
+  height: 50vh;
+}
+
 /*----------pop ups-----------*/
 .popup {
   position: absolute;
@@ -276,4 +304,128 @@ form[role="search"] button {
   box-shadow: 0 15px 30px rgba(124, 129, 144, 0.2); /* horizontal, vertical, blur, color */
   position: relative;
   z-index: 10; /* makes sure the shadow sits above other elements if needed */
+}
+
+/*-----------------------------   EMOJI PICKER -----------------------------*/
+
+/* Center the popup */
+.center-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  width: 90%;
+  max-width: 600px;
+  height: 60%; /* fixed height */
+  max-height: 60%;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* Header with close button */
+.center-popup header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-left: 0.35em;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.center-popup .popup-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 380;
+  cursor: pointer;
+}
+
+/* Category list at top */
+#emoji-categories ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.selected {
+  background-color: var(--lt-gray);
+}
+
+#emoji-categories ul li {
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+#emoji-categories ul li:hover,
+#emoji-categories ul li.active {
+  background: #f0f0f0;
+}
+
+/* Emoji grids */
+#emoji-categories ul {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+#emoji-categories li {
+  font-size: 1rem;
+  padding-right: 3em;
+  width: calc(100% / 4); /* 3 items per row, adjust as needed */
+  text-align: center;
+}
+
+ul.emoji-category {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 0.5rem;
+  padding: 0;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+ul.emoji-category li {
+  font-size: 1.5em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  transition: transform 0.1s, background 0.2s;
+}
+
+#emoji-popup ul li:hover {
+  background: #f0f0f0;
+  transform: scale(1.2);
+}
+
+/* Save button at bottom */
+/* Save button stays at bottom */
+#select-emoji-btn {
+  margin-top: auto;
+  padding: 1em;
+  border: none;
+  background: #4caf50;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#select-emoji-btn:hover {
+  background: #45a049;
 }

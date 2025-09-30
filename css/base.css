@@ -167,7 +167,7 @@ p,
 li,
 #submit-and-add-to-list-btn,
 #recipe-form #delete-btn,
-#actions-bar a,
+/* #actions-bar a, */
 #actions-bar p {
   font-size: 0.85rem;
 }
@@ -292,7 +292,7 @@ select {
 #search-edit-filter-sort ul,
 #menu-list ul,
 #ingred-list ul,
-#recipes-list ul,
+#recipes-list,
 #shopping-list ul,
 .used-in-list ul,
 #shopping-serves-list {

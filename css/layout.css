@@ -118,7 +118,10 @@ select {
   padding: 0.5em 1em 0.5em 0.75em; /* right padding for arrow */
 }
 /*---------LISTS---------*/
-
+#recipes-list h3 {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
 #ingred-list,
 #menu-list,
 #recipes-list,
@@ -140,7 +143,7 @@ select {
 
 #ingred-list li:last-of-type,
 #menu-list li:last-of-type,
-#recipes-list li:last-of-type,
+/* #recipes-list li:last-of-type, */
 #shopping-list li:last-of-type {
   padding-bottom: 1.5em;
 }
@@ -299,10 +302,13 @@ form[role="search"] button svg {
 /*-----------------------------   BASE LISTS  -----------------------------*/
 #ingred-list,
 #menu-list,
-#recipes-list,
 #shopping-list {
   height: 50vh; /* Limit height (adjust as needed) */
   overflow-y: auto;
+}
+
+#recipes-list {
+  height: 100vh;
 }
 
 /*-----------------------------   EDIT MENU-----------------------------*/
@@ -580,6 +586,10 @@ form[role="search"] button svg {
 #recipe-form h2 {
   display: flex;
   align-items: center;
+}
+
+#select-emoji {
+  margin-right: 0.2em;
 }
 
 /*-----------------------------   RECIPES FORM  -----------------------------*/
