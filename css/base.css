@@ -37,32 +37,50 @@ a {
   --lt-orange: #ff7a38;
   --dk-orange: #ff6721;
   --v-lt-orange: #ffbd76;
-  --lt-green: #38ae40;
-  --dk-green: #2b9540;
+  --lt-orange2: #fdcc98;
+  --v-lt-green: #16c066;
+  --lt-green: #13b15d;
+  --dk-green: #259956;
+  --dk-green2: #1a8e4e;
+  --v-dk-green: #005b26;
   --lt-color: #ffffff;
-  --lt-gray: rgb(237, 237, 240);
-  --md-gray: #c6c7cb;
+  --lt-gray: rgb(237, 240, 240);
+  --md-gray: #c6c9cb;
   --md-dk-gray: #84868d;
   --dk-gray: #474747;
   /* --top-bar-bg: #c8caca; */
 }
 
 #home svg,
-#add-svg,
-#sort-svg {
-  stroke: var(--dk-gray);
+#light-mode svg,
+#dark-mode svg {
+  stroke: var(--dk-orange);
+  fill: var(--dk-orange);
 }
 
-#light-mode svg,
-#dark-mode svg,
+#light-mode path,
+#dark-mode path {
+  stroke: var(--dk-orange);
+  fill: var(--dk-orange);
+}
+
+#search-add-filter-sort circle,
+#search-add-filter-sort path:not(#filter-svg path):not(#search-svg path) {
+  stroke: var(--v-dk-green);
+}
+
+#add-svg,
+#sort-svg {
+  stroke: var(--v-dk-green);
+}
 #filter-svg:not(#delete-sort-bar #filter-svg),
 #edit-svg,
 #sort-svg {
-  fill: var(--dk-gray);
+  fill: var(--v-dk-green);
 }
 
 #top-bar {
-  background-color: var(--lt-gray);
+  background-color: var(--lt-orange2);
 }
 
 #tabs li:hover {
@@ -86,7 +104,7 @@ a {
 #search-edit-filter-sort,
 input:not(#search input, #recipe-form input, #add-item input),
 select {
-  background-color: var(--md-gray); /* your desired background color */
+  background-color: var(--v-lt-green); /* your desired background color */
 }
 
 #recipe-form select,
@@ -97,7 +115,7 @@ select {
 }
 
 form[role="search"] button {
-  background-color: var(--md-dk-gray);
+  background-color: var(--dk-green2);
   color: var(--lt-color, white);
 }
 
@@ -107,7 +125,6 @@ form[role="search"] button:hover {
 
 #ingred-and-recipe-info,
 .buttons:not(#recipe-form .buttons),
-#recipe-info,
 #edit-meal-chefs-notes,
 #view-item-chefs-notes,
 #add-item-chefs-notes {
@@ -164,7 +181,7 @@ h1 {
 }
 
 p,
-li,
+li,#search-bar,
 #submit-and-add-to-list-btn,
 #recipe-form #delete-btn,
 /* #actions-bar a, */
@@ -172,7 +189,6 @@ li,
   font-size: 0.85rem;
 }
 
-#search-bar,
 input,
 select,
 #edit-recipe-ingred-list li {
