@@ -17,7 +17,9 @@ const savedRecipes = localStorage.getItem("recipes");
 const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
 const recipeList = document.getElementById("recipes-list");
 console.log(recipes);
+
 populateRecipeList();
+autoSelect();
 
 let currRecipe;
 recipeList.addEventListener("click", (event) => {
@@ -100,6 +102,7 @@ favStar.addEventListener("click", () => {
   recipes[currRecipe].favorite = recFav;
   localStorage.setItem("recipes", JSON.stringify(recipes));
 });
+
 //FUNCTION
 
 function loadData() {
@@ -199,5 +202,27 @@ function clearData() {
   localStorage.removeItem("currRecipe");
 }
 
+function autoSelect() {
+  // Grab the first <li> inside the menuList
+  const firstLi = recipeList.querySelector("li");
+
+  if (!firstLi) return; // nothing to select
+
+  // Remove any previous selection
+  const prev = recipeList.querySelector(".selected-li");
+  if (prev) prev.classList.remove("selected-li");
+
+  // Select the new one
+  firstLi.classList.add("selected-li");
+  let fullText = firstLi.querySelector("span")?.textContent.trim();
+  let currRecipe = fullText.replace(/^[\p{Emoji}\s]+/u, "").trim();
+  fillRecipeDetails(fullText, currRecipe);
+}
+
+// populateRecipeList();
+// autoSelect();
+
 //WIP add categories
 //WIP add "No recipes added, click the + button to add recipes"
+
+//bug favStar saying accessed before init
