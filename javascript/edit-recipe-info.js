@@ -10,7 +10,8 @@ let recipeEmojiUI = document.getElementById("select-emoji");
 
 //LOAD DATA
 const savedCurrRecipe = localStorage.getItem("currRecipe");
-let currRecipe = savedCurrRecipe; // default if none saved
+let currRecipe = savedCurrRecipe;
+console.log("loaded currRecipe:", currRecipe);
 
 let addClicked = localStorage.getItem("addClicked") === "true";
 
@@ -76,6 +77,7 @@ editRecipeBtn.addEventListener("click", () => {
   recipeNameUI.textContent = currRecipe;
   recipeEmojiUI.textContent = selectedEmoji || "🥄";
 
+  console.log("selectedEmoji is", selectedEmoji);
   recipes[currRecipe] = {
     emoji: selectedEmoji,
     name: currRecipe,

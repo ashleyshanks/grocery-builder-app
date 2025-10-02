@@ -4,17 +4,32 @@ const currRecipeIngredList = document.getElementById("edit-recipe-ingred-list");
 const addRecipeIngredSubmit = document.querySelector(
   "#add-recipe-ingred-form #submit-btn"
 );
-const ingreds = {};
+// const fallbackRecipe = {
+//   creator: "",
+//   emoji: "🍽️",
+//   favorite: false,
+//   ingredients: {},
+//   link: "",
+//   method: "",
+//   name: "",
+//   serves: "",
+//   time: "",
+//   type: ""
+// };
 let ingred = {};
-
 const savedItems = localStorage.getItem("items");
 const items = savedItems ? JSON.parse(savedItems) : {};
 const savedRecipes = localStorage.getItem("recipes");
 const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
 const savedCurrRecipe = localStorage.getItem("currRecipe");
 let currRecipe = savedCurrRecipe ? savedCurrRecipe : "Untitled"; // default if none saved
-if (recipes[currRecipe]) {
-  const recipe = recipes[currRecipe];
+currRecipe =
+  recipes[currRecipe] ||
+  alert("To add ingredients, name your recipe by clicking 'Recipe Info'.");
+let ingredients = currRecipe.ingredients || {};
+let currIngred;
+if (recipes[currRecipe.name]) {
+  const recipe = recipes[currRecipe.name];
 
   const recName = recipe.name || "Unknown";
   const recServes = recipe.serves || "Unknown";
@@ -26,8 +41,10 @@ if (recipes[currRecipe]) {
   const recIngreds = recipe.ingredients || {};
 }
 
-let recipeNameUI = document.querySelector("#edit-recipe-ingred h2 span");
-recipeNameUI.textContent = `${recipes[currRecipe].emoji} ${currRecipe}`;
+let recipeNameUI = document.querySelector("#recipe-ingred-info h2 span");
+recipeNameUI.textContent = `${recipes[currRecipe.name].emoji} ${
+  currRecipe.name
+}`;
 updateIngredListUI();
 
 //DOM SELECTORS FOR FORM INPUT
@@ -55,15 +72,15 @@ let recIngredCost = "";
 
 const editRecipeBtn = document.querySelector("#add-item #submit-btn");
 editRecipeBtn.addEventListener("click", () => {
-  recIngredNameInput.value && (recIngredName = recIngredNameInput.value);
-  recIngredQuantityInput.value &&
-    (recIngredQuantity = recIngredQuantityInput.value);
-  recIngredUnitInput.value && (recIngredUnit = recIngredUnitInput.value);
-  recIngredCategoryInput.value &&
-    (recIngredCategory = recIngredCategoryInput.value);
-  recIngredCostInput.value && (recIngredCost = recIngredCostInput.value);
-
-  console.log("recIngredQuantityInput.value 2", recIngredQuantityInput.value);
+  if (!recIngredNameInput.value) {
+    alert("Ingredient must have a name!");
+  } else {
+    recIngredName = recIngredNameInput.value;
+    recIngredQuantity = recIngredQuantityInput.value;
+    recIngredUnit = recIngredUnitInput.value;
+    recIngredCategory = recIngredCategoryInput.value;
+    recIngredCost = recIngredCostInput.value;
+  }
 
   item = {
     name: recIngredName,
@@ -77,21 +94,19 @@ editRecipeBtn.addEventListener("click", () => {
     quantity: recIngredQuantity,
   };
 
-  ingreds[ingred.name] = ingred;
+  if (currIngred) {
+    if (currIngred.name !== ingred.name) {
+      delete ingredients[currIngred.name];
+      delete recipes[currRecipe.name].ingredients[currIngred.name];
+    }
+  }
   items[item.name] = item;
-  recipes[currRecipe].ingredients[ingred.name] = ingred;
-
-  console.log("Recipes map:");
-  console.log(recipes);
+  recipes[currRecipe.name].ingredients[ingred.name] = ingred;
 
   updateIngredListUI();
 
   localStorage.setItem("recipes", JSON.stringify(recipes));
   localStorage.setItem("items", JSON.stringify(items));
-
-  console.log("ingred...", ingred);
-  console.log("item...", item);
-  console.log("Saved!");
 
   // Optional: clear form values
   recIngredNameInput.value = "";
@@ -110,7 +125,7 @@ editRecipeBtn.addEventListener("click", () => {
 
 function updateIngredListUI() {
   const listEl = currRecipeIngredList;
-  const recipe = recipes[currRecipe]; // get the recipe object
+  const recipe = recipes[currRecipe.name]; // get the recipe object
 
   // Clear previous list
   listEl.innerHTML = "";
@@ -146,14 +161,13 @@ ingredList.addEventListener("click", (event) => {
       // If already selected, deselect it
       clickedItem.classList.remove("selected-li");
       selectedIngredName = null;
-      console.log("Deselected ingredient");
       //clear placeholders
       if (!selectedIngredName) {
-        recIngredNameInput.placeholder = "";
-        recIngredQuantityInput.placeholder = "";
+        recIngredNameInput.value = "";
+        recIngredQuantityInput.value = "";
         recIngredUnitInput.value = "";
         recIngredCategoryInput.value = "";
-        recIngredCostInput.placeholder = "";
+        recIngredCostInput.value = "";
       }
     } else {
       // Remove .selected-li from all other items
@@ -164,18 +178,19 @@ ingredList.addEventListener("click", (event) => {
       // Add .selected-li to the clicked item
       clickedItem.classList.add("selected-li");
       selectedIngredName = clickedItem.textContent;
+      currIngred = currRecipe.ingredients[selectedIngredName];
 
-      //fill placeholders
+      //fill placeholders, jk make value
       if (selectedIngredName && items[selectedIngredName]) {
         const selectedItem = items[selectedIngredName];
         const selectedIngred =
-          recipes[currRecipe].ingredients[selectedIngredName];
+          recipes[currRecipe.name].ingredients[selectedIngredName];
 
-        recIngredNameInput.placeholder = selectedItem.name || "";
-        recIngredQuantityInput.placeholder = selectedIngred?.quantity || "";
+        recIngredNameInput.value = selectedItem.name || "";
+        recIngredQuantityInput.value = selectedIngred?.quantity || "";
         recIngredUnitInput.value = selectedItem.unit || "";
         recIngredCategoryInput.value = selectedItem.category || "";
-        recIngredCostInput.placeholder = selectedItem.cost || "";
+        recIngredCostInput.value = selectedItem.cost || "";
 
         //fill values
         recIngredName =
@@ -197,9 +212,8 @@ deleteBtn.addEventListener("click", () => {
   if (!selectedIngredName) return; // nothing selected
 
   // Example: deleting from recipes
-  if (recipes[currRecipe]?.ingredients[selectedIngredName]) {
-    delete recipes[currRecipe].ingredients[selectedIngredName];
-    console.log(`${selectedIngredName} deleted from ${currRecipe}`);
+  if (recipes[currRecipe.name]?.ingredients[selectedIngredName]) {
+    delete recipes[currRecipe.name].ingredients[selectedIngredName];
 
     // Update UI after deletion
     updateIngredListUI();
@@ -213,7 +227,7 @@ deleteBtn.addEventListener("click", () => {
 
 const favStar = document.getElementById("fav-star");
 
-let recFav = recipes[currRecipe].favorite || false;
+let recFav = recipes[currRecipe.name].favorite || false;
 
 if (recFav) {
   favStar.classList.add("favorited");
@@ -225,11 +239,82 @@ favStar.addEventListener("click", () => {
   favStar.classList.toggle("favorited");
   recFav = favStar.classList.contains("favorited"); // true if favorited, false otherwise
 
-  if (currRecipe && recipes[currRecipe]) {
-    recipes[currRecipe].favorite = recFav;
+  if (currRecipe && recipes[currRecipe.name]) {
+    recipes[currRecipe.name].favorite = recFav;
     localStorage.setItem("recipes", JSON.stringify(recipes));
   }
 });
+//item emoji
+// let selectedEmoji = "🥕"; // store the chosen emoji
+// document.addEventListener("DOMContentLoaded", () => {
+//   const emojiBtn = document.getElementById("select-emoji");
+//   const emojiPopup = document.getElementById("emoji-popup");
+
+//   // Show popup
+//   emojiBtn.addEventListener("click", () => {
+//     emojiPopup.classList.remove("hidden"); // Show the popup
+//   });
+
+//   //close button
+//   const closeEmojiBtn = document.getElementById("emoji-close");
+//   closeEmojiBtn.addEventListener("click", () => {
+//     emojiPopup.classList.add("hidden"); // Show the popup
+//   });
+
+//   const emojiCategoryList = document.querySelectorAll(
+//     "#emoji-categories ul li"
+//   );
+//   const emojiCategories = document.querySelectorAll(".emoji-category");
+
+//   const categoryMap = {
+//     Meals: "meals-category",
+//     Fruit: "fruit-category",
+//     Veggies: "veg-category",
+//     "Dairy/Meat": "dairy-meat",
+//     "Pantry/Staples": "pantry-staples",
+//     Other: "other-category",
+//   };
+
+//   emojiCategoryList.forEach((li) => {
+//     li.addEventListener("click", () => {
+//       const categoryId = categoryMap[li.textContent.trim()];
+
+//       emojiCategories.forEach((ul) => {
+//         if (ul.id === categoryId) {
+//           ul.classList.remove("hidden");
+//         } else {
+//           ul.classList.add("hidden");
+//         }
+//       });
+//     });
+//   });
+
+//   // Select all emoji items
+//   const emojiItems = document.querySelectorAll(".emoji-category li");
+
+//   emojiItems.forEach((li) => {
+//     li.addEventListener("click", () => {
+//       // Remove 'selected' class from all emojis
+//       emojiItems.forEach((e) => e.classList.remove("selected"));
+
+//       // Add 'selected' class to the clicked one
+//       li.classList.add("selected");
+
+//       // Save the clicked emoji
+//       selectedEmoji = li.textContent;
+//       console.log("Selected emoji:", selectedEmoji);
+//     });
+//   });
+
+//   const emojiSaveBtn = document.getElementById("select-emoji-btn");
+//   // hide popup and change ui
+//   emojiSaveBtn.addEventListener("click", () => {
+//     emojiPopup.classList.add("hidden");
+//     recipeEmojiUI.textContent = selectedEmoji || "🥄";
+//   });
+// });
+
+//sort and filter
 
 //filter popup
 
@@ -260,7 +345,7 @@ filterSelect.addEventListener("change", (e) => {
   }
 
   const listEl = document.getElementById("edit-recipe-ingred-list");
-  const recipe = recipes[currRecipe];
+  const recipe = recipes[currRecipe.name];
   if (!recipe) return;
 
   listEl.innerHTML = "";
@@ -291,7 +376,7 @@ filterClearBtn.addEventListener("click", () => {
 
   // Show all ingredients
   const listEl = document.getElementById("edit-recipe-ingred-list");
-  const recipe = recipes[currRecipe];
+  const recipe = recipes[currRecipe.name];
   if (!recipe) return;
 
   listEl.innerHTML = "";
@@ -325,7 +410,7 @@ sortCloseBtn.addEventListener("click", () => {
 const sortSelect = document.getElementById("sort-category");
 sortSelect.addEventListener("change", (e) => {
   // Render ingredients ?
-  const recipe = recipes[currRecipe];
+  const recipe = recipes[currRecipe.name];
   currRecipeIngredList.innerHTML = "";
   for (const ingredName in recipe.ingredients) {
     const li = document.createElement("li");
@@ -334,14 +419,12 @@ sortSelect.addEventListener("change", (e) => {
   }
 
   const sortOption = e.target.value;
-  console.log("sortOption: ", sortOption);
 
   let sortedIngredients = [];
 
   if (sortOption === "abc") {
     // Get ingredient names and sort alphabetically
     sortedIngredients = Object.keys(recipe.ingredients).sort();
-    console.log("sortedIngredients", sortedIngredients);
   }
   //wip sort by category
   if (sortOption === "category") {
@@ -358,7 +441,6 @@ sortSelect.addEventListener("change", (e) => {
     sortedIngredients = Object.keys(recipe.ingredients).sort(
       (a, b) => order.indexOf(a.category) - order.indexOf(b.category)
     );
-    console.log("sortedIngredients", sortedIngredients);
   }
 
   //displaying sorted list
@@ -425,7 +507,7 @@ sortClearBtn.addEventListener("click", () => {
 
   // Show all ingredients
   const listEl = document.getElementById("edit-recipe-ingred-list");
-  const recipe = recipes[currRecipe];
+  const recipe = recipes[currRecipe.name];
   if (!recipe) return;
 
   listEl.innerHTML = "";
@@ -440,3 +522,9 @@ sortClearBtn.addEventListener("click", () => {
   const sortPopup = document.getElementById("filter-popup");
   sortPopup.classList.add("hidden");
 });
+
+function clearData() {
+  localStorage.removeItem("recipes");
+  localStorage.removeItem("currRecipe");
+  localStorage.removeItem("items");
+}

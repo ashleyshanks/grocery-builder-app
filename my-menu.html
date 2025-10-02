@@ -78,7 +78,7 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li><h1>Shopping List</h1></li>
+          <li><h1>My Menu</h1></li>
         </ul>
       </div>
     </header>
@@ -226,30 +226,6 @@
           <li>Recipe Name</li>
           <li>Recipe Name</li>
         </ul>
-        <h3>Tuesday</h3>
-        <h4>🥞 Breakfast</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h4>🥗 Lunch</h4>
-        <ul>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-          <li>Recipe Name</li>
-        </ul>
-        <h4>🍔 Dinner</h4>
-        <h3>Wednesday</h3>
-        <h4>🥞 Breakfast</h4>
-        <h4>🥗 Lunch</h4>
-        <h4>🍔 Dinner</h4>
-        <h3>Thursday</h3>
-        <h4>🥞 Breakfast</h4>
-        <h4>🥗 Lunch</h4>
-        <h4>🍔 Dinner</h4>
-        <h3>Friday</h3>
-        <h3>Saturday</h3>
       </section>
       <!-- ===== RECIPE INFO ===== -->
       <section id="recipe-info" class="hidden">
@@ -273,20 +249,26 @@
           <h2>🍝 Recipe Name</h2>
         </div>
         <button id="info-close-btn">×</button>
+        <div id="actions-bar">
+          <a href="my-menu-edit.html" id="edit-recipe-btn">Edit Menu</a>
+          <p>|</p>
+          <!-- <p id="edit-btn">Edit</p> -->
+          <a href="edit-recipe.html" id="edit-recipe-btn">Edit in My Recipes</a>
+        </div>
         <dl>
-          <dt>Serves:</dt>
+          <dt id="serves-label">Serves:</dt>
           <dd id="serves">#</dd>
-          <dt>Category:</dt>
+          <dt id="category-label">Course:</dt>
           <dd id="category">Category</dd>
-          <dt>Cook Time:</dt>
+          <dt id="time-label">Cook Time:</dt>
           <dd id="time">Time</dd>
-          <dt>Cooking Method:</dt>
+          <dt id="method-label">Cooking Method:</dt>
           <dd id="method">Method</dd>
-          <dt>Recipe Creator:</dt>
+          <dt id="creator-label">Recipe Creator:</dt>
           <dd id="creator">Creator</dd>
-          <dt>Recipe Link:</dt>
+          <dt id="link-label">Recipe Link:</dt>
           <dd id="link">Link</dd>
-          <dt>Ingredients</dt>
+          <dt id="ingred-label">Ingredients</dt>
           <dd>
             <ul id="subingredients-list">
               <li>Ingredient</li>

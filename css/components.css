@@ -15,10 +15,6 @@
   outline: none;
 }
 
-form[role="search"] button svg {
-  stroke-width: 2;
-}
-
 /*-----------------------------   INTERACTIVE  -----------------------------*/
 
 #sort-svg,
@@ -51,8 +47,56 @@ form[role="search"] button,
   transition: background-color 0.2s;
 }
 
+#home svg,
+#light-mode svg,
+#dark-mode svg,
+#light-mode path,
+#dark-mode path {
+  transition: stroke 0.2s;
+  transition: fill 0.2s;
+}
+
 #search-bar {
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+/* hover states */
+#add-svg:hover,
+#sort-svg:hover path,
+#sort-svg:hover,
+#search-add-filter-sort:hover circle,
+#search-add-filter-sort
+  path:not(#filter-svg path):not(#search-svg path):hover
+  path,
+#delete-sort-bar #sort-svg:hover path,
+#delete-sort-bar #delete-svg:hover path,
+#delete-sort-bar #filter-svg:hover path {
+  stroke: var(--lt-orange);
+}
+
+#filter-svg:not(#delete-sort-bar #filter-svg):hover,
+#edit-svg:hover {
+  fill: var(--lt-orange);
+}
+
+#actions-bar button:hover:not(.active-mode),
+#actions-bar a:hover:not(.active-mode) {
+  color: var(--lt-orange);
+  transform: scale(1.06);
+}
+
+#search:hover * {
+  border-color: var(--lt-orange);
+  stroke: var(--lt-orange);
+}
+
+#fav-star:hover path {
+  stroke: var(--v-lt-orange);
+}
+
+:focus-visible {
+  outline: none; /* remove default outline */
+  border-radius: 2px; /* set desired radius */
+  box-shadow: 0 0 0 2px var(--lt-orange); /* acts like outline */
 }
 
 /*---CHECKBOXES----*/
@@ -210,6 +254,31 @@ select {
   height: 23px;
 }
 
+/* search */
+form[role="search"] button {
+  /* background-color: var(--dk-green2); */
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 80px;
+}
+
+form[role="search"] button svg {
+  stroke-width: 2;
+}
+
+form[role="search"] button {
+  width: 1.95em;
+  height: 1.95em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form[role="search"] button svg {
+  width: 0.9em; /* scale SVG inside button */
+  height: 0.9em;
+}
+
 /* home buttons */
 #hero-nav ul li {
   display: inline-block; /* make list items behave like buttons */
@@ -253,11 +322,6 @@ select {
   border-style: solid;
 }
 
-form[role="search"] button {
-  border: none;
-  border-radius: 8px;
-}
-
 #actions-bar,
 #ingred-list,
 #menu-list,
@@ -277,6 +341,7 @@ form[role="search"] button {
   border-top-width: 1px;
   border-top-style: solid;
 }
+
 /*-----------------------------   CHEFS NOTES  -----------------------------*/
 
 /*-----------------------------   HOME  -----------------------------*/

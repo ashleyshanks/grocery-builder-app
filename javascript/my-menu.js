@@ -1,10 +1,17 @@
 const servesOutput = document.getElementById("serves");
+const servesLabel = document.getElementById("serves-label");
 const timeOutput = document.getElementById("time");
+const timeLabel = document.getElementById("time-label");
 const categoryOutput = document.getElementById("category");
+const categoryLabel = document.getElementById("category-label");
 const methodOutput = document.getElementById("method");
+const methodLabel = document.getElementById("method-label");
 const creatorOutput = document.getElementById("creator");
+const creatorLabel = document.getElementById("creator-label");
 const linkOutput = document.getElementById("link");
+const linkLabel = document.getElementById("link-label");
 const ingredOutput = document.getElementById("subingredients-list");
+const ingredLabel = document.getElementById("ingred-label");
 const recipeTitle = document.querySelector("h2");
 const svgHTML = recipeTitle.querySelector("svg")?.outerHTML || "";
 const menuList = document.getElementById("menu-list");
@@ -38,86 +45,72 @@ const dayMap = {
   sat: "Saturday",
 };
 
-// Step 1: populate organizedMenu
+// Step 1: Group recipes by day and course
 const organizedMenu = {};
-
-// initialize all days and courses
-for (const dayKey in dayMap) {
-  const dayName = dayMap[dayKey];
-  organizedMenu[dayName] = {};
-  for (const course in courseMap) {
-    organizedMenu[dayName][course] = [];
-  }
-}
-
-// populate organizedMenu
-for (const [name, info] of Object.entries(menu)) {
-  const dayName =
-    info.day && dayMap[info.day] ? dayMap[info.day] : dayMap.anyday;
-  const course =
-    info.course && courseMap[info.course] ? info.course : "unknown";
-  organizedMenu[dayName][course].push(name);
-}
-
-// Step 2: generate HTML
 menuList.innerHTML = "";
+let currMeal = null;
 
-// loop through days in the order of dayMap
-for (const dayKey in dayMap) {
-  const dayName = dayMap[dayKey];
+// Step 1: Build organizedMenu with keys
 
-  // skip day if no recipes at all
-  const hasRecipes = Object.values(organizedMenu[dayName]).some(
-    (arr) => arr.length > 0
-  );
-  if (!hasRecipes) continue;
+for (const key in menu) {
+  const recipe = menu[key];
+  let day = recipe.day || "anyday";
+  day = dayMap[day] || "Any Day";
+  const course = recipe.course || "unknown";
 
+  if (!organizedMenu[day]) organizedMenu[day] = {};
+  if (!organizedMenu[day][course]) organizedMenu[day][course] = {}; // object to store key
+
+  // Store the recipe under its original menu key
+  organizedMenu[day][course][key] = recipe;
+}
+
+// Step 2: Loop through organizedMenu to display by day and course
+for (const dayName in organizedMenu) {
   const dayHeader = document.createElement("h3");
-  dayHeader.textContent = dayName;
+  dayHeader.textContent = dayName.charAt(0).toUpperCase() + dayName.slice(1);
   menuList.appendChild(dayHeader);
 
   for (const course in courseMap) {
-    const recipes = organizedMenu[dayName][course];
-    if (recipes.length === 0) continue; // skip empty courses
+    const recipesForCourse = organizedMenu[dayName][course] || {};
+
+    // Skip empty courses
+    if (Object.keys(recipesForCourse).length === 0) continue;
 
     const courseHeader = document.createElement("h4");
     courseHeader.textContent = courseMap[course];
     menuList.appendChild(courseHeader);
 
-    const ul = document.createElement("ul");
-    recipes.forEach((recipeName) => {
+    // Loop through each recipe by key
+    for (const key in recipesForCourse) {
+      const recipe = recipesForCourse[key];
       const li = document.createElement("li");
-      li.textContent = recipeName;
-      ul.appendChild(li);
-    });
-    menuList.appendChild(ul);
+      li.textContent = recipe.name;
+
+      // Store original key on the <li>
+      li.dataset.recipeKey = key;
+
+      menuList.appendChild(li);
+    }
   }
 }
-autoSelect();
 
-let currRecipe;
+// Step 3: Add click handler to access original key
 menuList.addEventListener("click", (event) => {
-  // Find the closest <li> ancestor of whatever was clicked
   const clickedLi = event.target.closest("li");
-  // If click was outside an li or the li isn't in this list, ignore
   if (!clickedLi || !menuList.contains(clickedLi)) return;
 
-  if (clickedLi.classList.contains("selected-li")) {
-    // Deselect
-    clickedLi.classList.remove("selected-li");
-    currRecipe = null;
-    console.log("Deselected recipe");
-  } else {
-    // Remove previous selection (only one at a time)
-    const prev = menuList.querySelector(".selected-li");
-    if (prev) prev.classList.remove("selected-li");
+  const recipeKey = clickedLi.dataset.recipeKey;
+  currMeal = menu[recipeKey];
+  console.log("Clicked recipe key:", recipeKey);
 
-    // Select clicked one
-    clickedLi.classList.add("selected-li");
-    currRecipe = clickedLi.textContent.trim();
+  // Optional: single selection highlight
+  const prev = menuList.querySelector(".selected-li");
+  if (prev) prev.classList.remove("selected-li");
+  clickedLi.classList.add("selected-li");
 
-    fillRecipeDetails(currRecipe);
-  }
+  // Call your function with the original key
+  fillRecipeDetails(recipeKey);
 });
 
 //fav star
@@ -125,12 +118,14 @@ const favStar = document.getElementById("fav-star");
 
 favStar.addEventListener("click", () => {
   favStar.classList.toggle("favorited");
+  console.log("fav");
   recFav = favStar.classList.contains("favorited"); // true if favorited, false otherwise
-  console.log("currRecipe");
-  console.log(currRecipe);
-  recipes[currRecipe].favorite = recFav;
+  console.log("currMeal.name is", currMeal.name);
+  recipes[currMeal.name].favorite = recFav;
   localStorage.setItem("recipes", JSON.stringify(recipes));
 });
+
+autoSelect();
 
 //close recipe info
 const closeInfoBtn = document.getElementById("info-close-btn");
@@ -142,63 +137,122 @@ closeInfoBtn.addEventListener("click", () => {
   if (selected) selected.classList.remove("selected-li");
 
   // Reset current recipe
-  currRecipe = null;
+  currMeal = null;
 });
 
 //functions
-function fillRecipeDetails(currRecipe) {
+function fillRecipeDetails(currMeal) {
   recipeInfo.classList.remove("hidden");
   menuList.classList.add("recipe-info-shown");
 
-  console.log(currRecipe);
-  if (!currRecipe || !recipes[currRecipe]) {
-    console.warn("Recipe not found:", currRecipe);
-    return;
-  }
+  const meal = menu[currMeal];
+  const recipe = recipes[meal.name];
 
-  const recipe = recipes[currRecipe];
-
-  //fav star
-  console.log(recipes[currRecipe]);
-
+  //fav star recipes
   if (recipe.favorite) {
     favStar.classList.add("favorited");
   } else {
     favStar.classList.remove("favorited");
   }
 
-  recipeTitle.innerHTML = `${svgHTML} ${recipe.emoji} ${currRecipe}`;
+  recipeTitle.innerHTML = `${svgHTML} ${recipe.emoji} ${meal.name}`;
   servesOutput.textContent = recipe.serves || "Unknown";
-  timeOutput.textContent = recipe.time || "0hr";
-  categoryOutput.textContent = recipe.type || "Unknown";
-  methodOutput.textContent = recipe.method || "Unknown";
-  creatorOutput.textContent = recipe.creator || "Unknown";
+  if (servesOutput.textContent == "Unknown") {
+    // or whatever your condition is for "unknown"
+    servesLabel.classList.add("hidden");
+    servesOutput.classList.add("hidden");
+  } else {
+    servesLabel.classList.remove("hidden");
+  }
+
+  let timeText = formatTime(recipe.time);
+  timeOutput.textContent = timeText || "Unknown";
+  if (timeOutput.textContent == "Unknown") {
+    // or whatever your condition is for "unknown"
+    timeLabel.classList.add("hidden");
+    timeOutput.classList.add("hidden");
+  } else {
+    timeLabel.classList.remove("hidden");
+    timeOutput.classList.remove("hidden");
+  }
+
+  let categoryText = capitalize(meal.course);
+  categoryOutput.textContent = categoryText || "Unknown";
+  if (categoryOutput.textContent == "Unknown") {
+    // or whatever your condition is for "unknown"
+    categoryLabel.classList.add("hidden");
+    categoryOutput.classList.add("hidden");
+  } else {
+    categoryLabel.classList.remove("hidden");
+    categoryOutput.classList.remove("hidden");
+  }
+
+  let methodText = capitalize(recipe.method);
+  methodOutput.textContent = methodText || "Unknown";
+  if (methodOutput.textContent == "Unknown") {
+    // or whatever your condition is for "unknown"
+    methodLabel.classList.add("hidden");
+    methodOutput.classList.add("hidden");
+  } else {
+    methodLabel.classList.remove("hidden");
+    methodOutput.classList.remove("hidden");
+  }
+
+  let creatorText = capitalize(recipe.creator);
+  creatorOutput.textContent = creatorText || "Unknown";
+  if (creatorOutput.textContent == "Unknown") {
+    // or whatever your condition is for "unknown"
+    creatorLabel.classList.add("hidden");
+    creatorOutput.classList.add("hidden");
+  } else {
+    creatorLabel.classList.remove("hidden");
+    creatorOutput.classList.remove("hidden");
+  }
 
   // If link is available, make it a clickable link
   if (recipe.link) {
-    linkOutput.innerHTML = `<a href="${recipe.link}" target="_blank">${recipe.link}</a>`;
+    // Add http:// if missing
+    let url = recipe.link;
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      url = "https://" + url;
+    }
+
+    linkOutput.innerHTML = `<a href="${url}" target="_blank">${recipe.link}</a>`;
   } else {
     linkOutput.textContent = "Unknown";
   }
+  if (linkOutput.textContent == "Unknown") {
+    // or whatever your condition is for "unknown"
+    linkLabel.classList.add("hidden");
+    linkOutput.classList.add("hidden");
+  } else {
+    linkLabel.classList.remove("hidden");
+    linkOutput.classList.remove("hidden");
+  }
 
   // Populate ingredients
+
   ingredOutput.innerHTML = ""; // clear old list
 
   if (recipe.ingredients && Object.keys(recipe.ingredients).length > 0) {
+    ingredLabel.classList.remove("hidden");
+    ingredOutput.classList.remove("hidden");
     Object.values(recipe.ingredients).forEach((ing) => {
       const li = document.createElement("li");
       li.textContent = ing.name;
       ingredOutput.appendChild(li);
     });
   } else {
-    const li = document.createElement("li");
-    li.textContent = "No ingredients";
-    ingredOutput.appendChild(li);
+    ingredLabel.classList.add("hidden");
+    ingredOutput.classList.add("hidden");
   }
 }
 
 function autoSelect() {
   // Grab the first <li> inside the menuList
+  recipeInfo.classList.remove("hidden");
+  menuList.classList.add("recipe-info-shown");
+
   const firstLi = menuList.querySelector("li");
 
   if (!firstLi) return; // nothing to select
@@ -209,5 +263,38 @@ function autoSelect() {
 
   // Select the new one
   firstLi.classList.add("selected-li");
-  let currRecipe = firstLi.textContent.trim();
+
+  const recipeKey = firstLi.dataset.recipeKey;
+  console.log("Auto selected recipe key:", recipeKey);
+  currMeal = menu[recipeKey];
+
+  fillRecipeDetails(recipeKey);
+}
+
+function formatTime(input) {
+  if (!input) return "";
+
+  const lower = input.toLowerCase();
+  let hours = 0;
+  let minutes = 0;
+
+  // Match hours (e.g., "4 hours", "2 hr", "1h")
+  const hrMatch = lower.match(/(\d+)\s*(h|hr|hour|hours)/);
+  if (hrMatch) hours = parseInt(hrMatch[1]);
+
+  // Match minutes (e.g., "30 minutes", "20 min", "15m")
+  const minMatch = lower.match(/(\d+)\s*(m|min|minute|minutes)/);
+  if (minMatch) minutes = parseInt(minMatch[1]);
+
+  // Build formatted string
+  let result = "";
+  if (hours > 0) result += `${hours}hr`;
+  if (minutes > 0) result += hours > 0 ? ` ${minutes} min` : `${minutes} min`;
+
+  return result || input; // fallback to original if nothing matched
+}
+
+function capitalize(str) {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

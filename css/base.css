@@ -15,7 +15,6 @@ input[type="reset"] {
   display: inline-block;
   box-sizing: border-box;
   font-family: inherit; /* inherit from parent */
-  font-size: 100%; /* normalize font size */
   line-height: 1.2;
   text-align: center;
   cursor: pointer;
@@ -26,104 +25,150 @@ input[type="reset"] {
   color: inherit;
 }
 
+.active-mode {
+  cursor: default;
+}
+
 a {
   text-decoration: none; /* remove underline */
   color: inherit; /* inherit text color */
 }
 
+/* All placeholders black */
+input::placeholder,
+textarea::placeholder {
+  color: black;
+  opacity: 1; /* ensures full color in some browsers */
+}
+
+/* Exclude #search-bar */
+#search-bar::placeholder {
+  color: initial; /* or any color you want for search-bar placeholder */
+}
+
 /*-----------------------------   COLORS  -----------------------------*/
 
 :root {
-  --lt-orange: #ff7a38;
-  --dk-orange: #ff6721;
-  --v-lt-orange: #ffbd76;
-  --lt-orange2: #fdcc98;
+  --lt-orange: #fe671c;
+  --dk-orange: #f35208;
+  --v-lt-orange: #fead3c;
+  --lt-orange2: #ffba85; /* top bar*/
   --v-lt-green: #16c066;
-  --lt-green: #13b15d;
+  --lt-green: #1e9a57; /* buttons */
+  --dk-green: #047c36;
+  --dk-green2: #00612d; /*top control bar*/
+  --v-dk-green: #005b26;
+  --lt-color: #fdfcfd;
+  --lt-gray: #f8f5f2;
+  --md-gray: #dad7d3; /*forms*/
+  --md-dk-gray: #6f685a;
+  --dk-gray: #484545;
+  --control-bar: #98948c;
+}
+
+/* :root {
+  --lt-orange: #ff7a38;
+  --dk-orange: #fb6018;
+  --v-lt-orange: #fec07d;
+  --lt-orange2: #ffba85; 
+  --v-lt-green: #16c066;
+  --lt-green: #0eab57;
   --dk-green: #259956;
-  --dk-green2: #1a8e4e;
+  --dk-green2: #088249;
   --v-dk-green: #005b26;
   --lt-color: #ffffff;
   --lt-gray: rgb(237, 240, 240);
   --md-gray: #c6c9cb;
   --md-dk-gray: #84868d;
   --dk-gray: #474747;
-  /* --top-bar-bg: #c8caca; */
+} */
+
+body,
+#add-item,
+#recipe-form select,
+#recipe-form input,
+#top-bar {
+  background-color: var(--lt-gray);
+}
+
+#recipes-list,
+#ingred-list,
+#shopping-list,
+#menu-list,
+#recipe-form,
+body.white-bg,
+#recipe-ingred-info {
+  background-color: var(--lt-color);
 }
 
 #home svg,
 #light-mode svg,
-#dark-mode svg {
-  stroke: var(--dk-orange);
-  fill: var(--dk-orange);
-}
-
+#dark-mode svg,
 #light-mode path,
 #dark-mode path {
-  stroke: var(--dk-orange);
-  fill: var(--dk-orange);
+  stroke: var(--lt-green);
+  fill: var(--lt-green);
 }
-
-#search-add-filter-sort circle,
-#search-add-filter-sort path:not(#filter-svg path):not(#search-svg path) {
-  stroke: var(--v-dk-green);
+#home svg:hover,
+#light-mode svg:hover,
+#dark-mode svg:hover,
+#light-mode path:hover,
+#dark-mode path:hover {
+  stroke: var(--dk-green);
+  fill: var(--dk-green);
 }
 
 #add-svg,
-#sort-svg {
-  stroke: var(--v-dk-green);
+#sort-svg path,
+#sort-svg,
+#search-add-filter-sort circle,
+#search-add-filter-sort path:not(#filter-svg path):not(#search-svg path) {
+  stroke: var(--lt-color);
 }
+
+#delete-sort-bar #sort-svg path,
+#delete-sort-bar #sort-svg {
+  stroke: black;
+}
+
 #filter-svg:not(#delete-sort-bar #filter-svg),
 #edit-svg,
 #sort-svg {
-  fill: var(--v-dk-green);
-}
-
-#top-bar {
-  background-color: var(--lt-orange2);
-}
-
-#tabs li:hover {
-  background-color: var(--dk-orange);
-}
-
-#tabs li.active {
-  background-color: var(--dk-orange);
+  fill: var(--lt-color);
 }
 
 #tabs li {
-  background-color: var(--lt-orange); /* fill color */
+  background-color: var(--lt-orange);
   color: var(--lt-color);
+}
+
+#recipe-info dd a {
+  color: var(--lt-orange);
 }
 
 #search-bar {
   border-color: #ccc;
 }
 
+/* top control bar */
 #search-add-filter-sort,
-#search-edit-filter-sort,
-input:not(#search input, #recipe-form input, #add-item input),
-select {
-  background-color: var(--v-lt-green); /* your desired background color */
+#search-edit-filter-sort {
+  background-color: var(--control-bar);
 }
 
-#recipe-form select,
-#recipe-form input,
-#add-item select,
-#add-item input {
-  background-color: var(--lt-gray);
+input:not(#search input, #recipe-form input),
+select {
+  background-color: var(--md-gray);
 }
 
 form[role="search"] button {
-  background-color: var(--dk-green2);
+  /* background-color: var(--dk-green2); */
+  border-color: var(--lt-color);
   color: var(--lt-color, white);
 }
 
-form[role="search"] button:hover {
-  background-color: var(--lt-orange);
-}
-
 #ingred-and-recipe-info,
+#recipe-info,
 .buttons:not(#recipe-form .buttons),
 #edit-meal-chefs-notes,
 #view-item-chefs-notes,
@@ -141,7 +186,7 @@ form[role="search"] button:hover {
 #shopping-list,
 #edit-recipe-ingred-list,
 #delete-sort-bar {
-  border-bottom-color: #e7e7e7;
+  border-bottom-color: var(--lt-color);
 }
 
 #ingred-list h3,
@@ -149,6 +194,22 @@ form[role="search"] button:hover {
 #recipes-list h3,
 #list-total {
   border-bottom-color: #97989a;
+}
+
+input:focus-visible,
+select:focus-visible,
+input:active,
+select:active {
+  outline-color: var(--v-lt-orange);
+  border-color: var(--v-lt-orange);
+}
+
+#tabs li:hover {
+  background-color: var(--dk-orange);
+}
+
+#tabs li.active {
+  background-color: var(--dk-orange);
 }
 /*-----------------------------   zebra ZEBRA STRIPES  -----------------------------*/
 
@@ -173,7 +234,7 @@ h1 {
   font-variation-settings: "wght" 300; */
 
   font-family: "sidenote-variable", sans-serif;
-  font-variation-settings: "slnt" -2, "wdth" 120, "wght" 900;
+  font-variation-settings: "slnt" -1, "wdth" 110, "wght" 600;
 
   /* font-family: Fillip; */
 
@@ -191,7 +252,11 @@ li,#search-bar,
 
 input,
 select,
-#edit-recipe-ingred-list li {
+#edit-recipe-ingred-list li,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
   font-size: 1rem;
 }
 
@@ -221,8 +286,9 @@ h3 {
 #recipes-list li,
 #shopping-list li,
 #need-for-list li,
-#item-info h3 {
-  font-size: 1.3rem;
+#item-info h3,
+#menu-list p {
+  font-size: 1.2rem;
 }
 
 h4,
@@ -306,7 +372,7 @@ select {
 #tabs ul,
 #search-add-filter-sort ul,
 #search-edit-filter-sort ul,
-#menu-list ul,
+#menu-list li,
 #ingred-list ul,
 #recipes-list,
 #shopping-list ul,

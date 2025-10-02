@@ -56,7 +56,12 @@ function populateMenu() {
   }
 
   // generate HTML
-  menuList.innerHTML = "";
+  if (Object.keys(menu).length === 0) {
+    menuList.innerHTML =
+      "<p>Nothing is added to your menu. Add some on My Recipes!</p>";
+  } else {
+    menuList.innerHTML = "";
+  }
 
   for (const dayKey in dayMap) {
     const dayName = dayMap[dayKey];

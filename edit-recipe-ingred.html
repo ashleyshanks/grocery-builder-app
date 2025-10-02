@@ -157,7 +157,7 @@
       </section>
 
       <!-- ===== EDIT RECIPE INGREDIENTS  ===== -->
-      <section id="edit-recipe-ingred">
+      <section id="recipe-ingred-info">
         <h2>
           <svg
             id="fav-star"
@@ -182,7 +182,7 @@
 
           <p>|</p>
 
-          <a href="#">Ingredients List</a>
+          <a href="#" class="active-mode">Ingredients List</a>
         </div>
 
         <div id="delete-sort-bar">
@@ -257,75 +257,69 @@
         <ul id="edit-recipe-ingred-list">
           <li>No ingredients added</li>
         </ul>
+      </section>
+      <section id="add-item">
+        <h2>🥕 Add Ingredient</h2>
+        <form id="add-recipe-ingred-form">
+          <label for="ingred-name-input">Ingredient Name</label>
+          <input
+            type="text"
+            id="ingred-name-input"
+            name="ingred-name-input"
+            placeholder=""
+            required
+          />
 
-        <section id="add-item">
-          <h2>🥕 Add Ingredient</h2>
-          <form id="add-recipe-ingred-form">
-            <label for="ingred-name-input">Ingredient Name</label>
-            <input
-              type="text"
-              id="ingred-name-input"
-              name="ingred-name-input"
-              placeholder=""
-              required
-            />
+          <label for="quantity-input">Quantity</label>
+          <input
+            type="text"
+            id="quantity-input"
+            name="quantity-input"
+            pattern="^\d+([\/.]\d+)?$"
+            inputmode="decimal"
+            placeholder=""
+          />
 
-            <label for="quantity-input">Quantity</label>
-            <input
-              type="text"
-              id="quantity-input"
-              name="quantity-input"
-              pattern="^\d+([\/.]\d+)?$"
-              inputmode="decimal"
-              placeholder=""
-            />
+          <label for="unit-input">Unit</label>
+          <select id="unit-input" name="unit-input">
+            <option value=""></option>
+            <!-- Volume -->
+            <option value="tsp">tsp</option>
+            <option value="tbsp">tbsp</option>
+            <option value="cup">cup</option>
+            <option value="pt">pint</option>
+            <option value="qt">quart</option>
+            <option value="gal">gal</option>
+            <option value="l">liter</option>
+            <!-- Weight -->
+            <option value="oz">oz</option>
+            <option value="lb">lb</option>
+            <option value="g">g</option>
+            <option value="kg">kg</option>
+            <!-- Count-based -->
+            <option value="can">can</option>
+            <option value="pkg">pkg</option>
+          </select>
 
-            <label for="unit-input">Unit</label>
-            <select id="unit-input" name="unit-input">
-              <option value=""></option>
-              <!-- Volume -->
-              <option value="tsp">tsp</option>
-              <option value="tbsp">tbsp</option>
-              <option value="cup">cup</option>
-              <option value="pt">pint</option>
-              <option value="qt">quart</option>
-              <option value="gal">gal</option>
-              <option value="l">liter</option>
-              <!-- Weight -->
-              <option value="oz">oz</option>
-              <option value="lb">lb</option>
-              <option value="g">g</option>
-              <option value="kg">kg</option>
-              <!-- Count-based -->
-              <option value="can">can</option>
-              <option value="pkg">pkg</option>
-            </select>
+          <label for="category-input">Category</label>
+          <select id="category-input" name="category-input">
+            <option value=""></option>
+            <option value="produce">Produce</option>
+            <option value="meat">Meat</option>
+            <option value="dairy">Dairy</option>
+            <option value="frozen">Frozen</option>
+            <option value="bakery">Bakery</option>
+            <option value="beverages">Beverages</option>
+            <option value="snacks">Snacks</option>
+            <option value="pantry">Pantry</option>
+            <option value="other">Other</option>
+          </select>
 
-            <label for="category-input">Category</label>
-            <select id="category-input" name="category-input">
-              <option value=""></option>
-              <option value="produce">Produce</option>
-              <option value="meat">Meat</option>
-              <option value="dairy">Dairy</option>
-              <option value="frozen">Frozen</option>
-              <option value="bakery">Bakery</option>
-              <option value="beverages">Beverages</option>
-              <option value="snacks">Snacks</option>
-              <option value="pantry">Pantry</option>
-              <option value="other">Other</option>
-            </select>
-
-            <label for="cost-input">Estimated Cost</label>
-            <input
-              type="text"
-              id="cost-input"
-              name="cost-input"
-              placeholder=""
-            />
-            <button type="button" id="submit-btn">Save</button
-            ><button id="cancel-btn">Cancel</button>
-          </form>
-        </section>
+          <label for="cost-input">Estimated Cost</label>
+          <input type="text" id="cost-input" name="cost-input" placeholder="" />
+          <button type="button" id="submit-btn">Save</button
+          ><button id="cancel-btn">Cancel</button>
+        </form>
       </section>
     </main>
     <aside>
