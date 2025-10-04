@@ -83,6 +83,7 @@ editRecipeBtn.addEventListener("click", () => {
   }
 
   item = {
+    emoji: selectedEmoji,
     name: recIngredName,
     unit: recIngredUnit,
     category: recIngredCategory,
@@ -96,7 +97,7 @@ editRecipeBtn.addEventListener("click", () => {
 
   if (currIngred) {
     if (currIngred.name !== ingred.name) {
-      delete ingredients[currIngred.name];
+      delete items[currIngred.name];
       delete recipes[currRecipe.name].ingredients[currIngred.name];
     }
   }
@@ -152,6 +153,7 @@ const ingredList = document.getElementById("edit-recipe-ingred-list");
 
 let selectedIngredName = null; // global variable to store selection
 
+//fill info
 ingredList.addEventListener("click", (event) => {
   const clickedItem = event.target;
 
@@ -163,6 +165,7 @@ ingredList.addEventListener("click", (event) => {
       selectedIngredName = null;
       //clear placeholders
       if (!selectedIngredName) {
+        emojiBtn.textContent = "🥕";
         recIngredNameInput.value = "";
         recIngredQuantityInput.value = "";
         recIngredUnitInput.value = "";
@@ -186,6 +189,7 @@ ingredList.addEventListener("click", (event) => {
         const selectedIngred =
           recipes[currRecipe.name].ingredients[selectedIngredName];
 
+        emojiBtn.textContent = selectedItem.emoji || "🥕";
         recIngredNameInput.value = selectedItem.name || "";
         recIngredQuantityInput.value = selectedIngred?.quantity || "";
         recIngredUnitInput.value = selectedItem.unit || "";
@@ -245,74 +249,74 @@ favStar.addEventListener("click", () => {
   }
 });
 //item emoji
-// let selectedEmoji = "🥕"; // store the chosen emoji
-// document.addEventListener("DOMContentLoaded", () => {
-//   const emojiBtn = document.getElementById("select-emoji");
-//   const emojiPopup = document.getElementById("emoji-popup");
+const emojiBtn = document.getElementById("select-emoji");
+let selectedEmoji = "🥕"; // store the chosen emoji
+document.addEventListener("DOMContentLoaded", () => {
+  const emojiPopup = document.getElementById("emoji-popup");
 
-//   // Show popup
-//   emojiBtn.addEventListener("click", () => {
-//     emojiPopup.classList.remove("hidden"); // Show the popup
-//   });
+  // Show popup
+  emojiBtn.addEventListener("click", () => {
+    emojiPopup.classList.remove("hidden"); // Show the popup
+  });
 
-//   //close button
-//   const closeEmojiBtn = document.getElementById("emoji-close");
-//   closeEmojiBtn.addEventListener("click", () => {
-//     emojiPopup.classList.add("hidden"); // Show the popup
-//   });
+  //close button
+  const closeEmojiBtn = document.getElementById("emoji-close");
+  closeEmojiBtn.addEventListener("click", () => {
+    emojiPopup.classList.add("hidden"); // Show the popup
+  });
 
-//   const emojiCategoryList = document.querySelectorAll(
-//     "#emoji-categories ul li"
-//   );
-//   const emojiCategories = document.querySelectorAll(".emoji-category");
+  const emojiCategoryList = document.querySelectorAll(
+    "#emoji-categories ul li"
+  );
+  const emojiCategories = document.querySelectorAll(".emoji-category");
 
-//   const categoryMap = {
-//     Meals: "meals-category",
-//     Fruit: "fruit-category",
-//     Veggies: "veg-category",
-//     "Dairy/Meat": "dairy-meat",
-//     "Pantry/Staples": "pantry-staples",
-//     Other: "other-category",
-//   };
+  const categoryMap = {
+    Meals: "meals-category",
+    Fruit: "fruit-category",
+    Veggies: "veg-category",
+    "Dairy/Meat": "dairy-meat",
+    "Pantry/Staples": "pantry-staples",
+    Other: "other-category",
+  };
 
-//   emojiCategoryList.forEach((li) => {
-//     li.addEventListener("click", () => {
-//       const categoryId = categoryMap[li.textContent.trim()];
+  emojiCategoryList.forEach((li) => {
+    li.addEventListener("click", () => {
+      const categoryId = categoryMap[li.textContent.trim()];
 
-//       emojiCategories.forEach((ul) => {
-//         if (ul.id === categoryId) {
-//           ul.classList.remove("hidden");
-//         } else {
-//           ul.classList.add("hidden");
-//         }
-//       });
-//     });
-//   });
+      emojiCategories.forEach((ul) => {
+        if (ul.id === categoryId) {
+          ul.classList.remove("hidden");
+        } else {
+          ul.classList.add("hidden");
+        }
+      });
+    });
+  });
 
-//   // Select all emoji items
-//   const emojiItems = document.querySelectorAll(".emoji-category li");
+  // Select all emoji items
+  const emojiItems = document.querySelectorAll(".emoji-category li");
 
-//   emojiItems.forEach((li) => {
-//     li.addEventListener("click", () => {
-//       // Remove 'selected' class from all emojis
-//       emojiItems.forEach((e) => e.classList.remove("selected"));
+  emojiItems.forEach((li) => {
+    li.addEventListener("click", () => {
+      // Remove 'selected' class from all emojis
+      emojiItems.forEach((e) => e.classList.remove("selected"));
 
-//       // Add 'selected' class to the clicked one
-//       li.classList.add("selected");
+      // Add 'selected' class to the clicked one
+      li.classList.add("selected");
 
-//       // Save the clicked emoji
-//       selectedEmoji = li.textContent;
-//       console.log("Selected emoji:", selectedEmoji);
-//     });
-//   });
+      // Save the clicked emoji
+      selectedEmoji = li.textContent;
+      console.log("Selected emoji:", selectedEmoji);
+    });
+  });
 
-//   const emojiSaveBtn = document.getElementById("select-emoji-btn");
-//   // hide popup and change ui
-//   emojiSaveBtn.addEventListener("click", () => {
-//     emojiPopup.classList.add("hidden");
-//     recipeEmojiUI.textContent = selectedEmoji || "🥄";
-//   });
-// });
+  const emojiSaveBtn = document.getElementById("select-emoji-btn");
+  // hide popup and change ui
+  emojiSaveBtn.addEventListener("click", () => {
+    emojiPopup.classList.add("hidden");
+    emojiBtn.textContent = selectedEmoji || "🥕";
+  });
+});
 
 //sort and filter
 

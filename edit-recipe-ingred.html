@@ -121,7 +121,7 @@
         <!-- Right items -->
       </header>
       <!-- ===== RECIPES LIST  ===== -->
-      <section id="recipes-list" class="hidden-mobile">
+      <section id="recipes-list" class="hidden-mobile white-bg">
         <div id="col-headers">
           <p>Recipe Name</p>
           <p>Cooking Method</p>
@@ -157,7 +157,7 @@
       </section>
 
       <!-- ===== EDIT RECIPE INGREDIENTS  ===== -->
-      <section id="recipe-ingred-info">
+      <section id="recipe-ingred-info" class="white-bg">
         <h2>
           <svg
             id="fav-star"
@@ -259,7 +259,9 @@
         </ul>
       </section>
       <section id="add-item">
-        <h2>🥕 Add Ingredient</h2>
+        <h2>
+          <button id="select-emoji">🥕</button><span> Add Ingredient</span>
+        </h2>
         <form id="add-recipe-ingred-form">
           <label for="ingred-name-input">Ingredient Name</label>
           <input
@@ -357,6 +359,138 @@
         </select>
         <button type="button" id="sort-btn" class="popup-btn">Sort</button>
         <button type="button" id="clear-btn" class="popup-btn">Clear</button>
+      </div>
+
+      <div id="emoji-popup" class="center-popup popup hidden">
+        <header>
+          <span>Choose an Emoji</span
+          ><button id="emoji-close" class="popup-close">×</button>
+        </header>
+        <div id="emoji-categories">
+          <ul>
+            <li>Meals</li>
+            <li>Fruit</li>
+            <li>Veggies</li>
+            <li>Dairy/Meat</li>
+            <li>Pantry/Staples</li>
+            <li>Other</li>
+          </ul>
+        </div>
+        <ul id="meals-category" class="emoji-category">
+          <li>🥞</li>
+          <li>🧇</li>
+          <li>🌭</li>
+          <li>🍔</li>
+          <li>🍟</li>
+          <li>🍕</li>
+          <li>🥪</li>
+          <li>🥙</li>
+          <li>🧆</li>
+          <li>🌮</li>
+          <li>🌯</li>
+          <li>🫔</li>
+          <li>🥗</li>
+          <li>🥘</li>
+          <li>🫕</li>
+          <li>🍝</li>
+          <li>🍜</li>
+          <li>🍲</li>
+          <li>🍛</li>
+          <li>🍣</li>
+          <li>🍱</li>
+          <li>🥟</li>
+          <li>🍙</li>
+          <li>🍘</li>
+          <li>🍢</li>
+          <li>🥧</li>
+          <li>🧁</li>
+          <li>🍰</li>
+          <li>🍮</li>
+          <li>🍪</li>
+        </ul>
+        <ul id="fruit-category" class="emoji-category hidden">
+          <li>🍎</li>
+          <li>🍐</li>
+          <li>🍊</li>
+          <li>🍋</li>
+          <li>🍌</li>
+          <li>🍉</li>
+          <li>🍇</li>
+          <li>🍓</li>
+          <li>🫐</li>
+          <li>🍒</li>
+          <li>🍑</li>
+          <li>🥭</li>
+          <li>🥥</li>
+          <li>🥝</li>
+          <li>🍍</li>
+          <li>🫒</li>
+          <li>🍈</li>
+          <li>🍅</li>
+          <li>🥑</li>
+          <li>🌶</li>
+          <li>🫑</li>
+        </ul>
+        <ul id="veg-category" class="emoji-category hidden">
+          <li>🥦</li>
+          <li>🥬</li>
+          <li>🥒</li>
+          <li>🥕</li>
+          <li>🌽</li>
+          <li>🧄</li>
+          <li>🧅</li>
+          <li>🥔</li>
+          <li>🍆</li>
+          <li>🫑</li>
+          <li>🍠</li>
+          <li>🫛</li>
+          <li>🍅</li>
+          <li>🫚</li>
+          <li>🫘</li>
+          <li>🥗</li>
+          <li>🍄</li>
+          <li>🍄‍🟫</li>
+        </ul>
+        <ul id="dairy-meat" class="emoji-category hidden">
+          <li>🧀</li>
+          <li>🥛</li>
+          <li>🧈</li>
+          <li>🥩</li>
+          <li>🍗</li>
+          <li>🍖</li>
+          <li>🥓</li>
+          <li>🍣</li>
+          <li>🍤</li>
+          <li>🦞</li>
+          <li>🦀</li>
+        </ul>
+        <ul id="pantry-staples" class="emoji-category hidden">
+          <li>🍞</li>
+          <li>🥐</li>
+          <li>🥖</li>
+          <li>🥨</li>
+          <li>🥯</li>
+          <li>🫓</li>
+          <li>🥜</li>
+          <li>🥫</li>
+          <li>🧂</li>
+          <li>🍷</li>
+          <li>🍚</li>
+          <li>🍫</li>
+          <li>🍯</li>
+        </ul>
+        <ul id="other-category" class="emoji-category hidden">
+          <li>🥄</li>
+          <li>🍴</li>
+          <li>🫙</li>
+          <li>🥣</li>
+          <li>🧊</li>
+          <li>🌿</li>
+          <li>🧃</li>
+          <li>🥚</li>
+          <li>🍳</li>
+        </ul>
+        <button id="select-emoji-btn">Save</button>
       </div>
     </aside>
   </body>

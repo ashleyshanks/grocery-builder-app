@@ -41,12 +41,14 @@ recipeList.addEventListener("click", (event) => {
     // Deselect
     clickedLi.classList.remove("selected-li");
     recipeInfo.classList.add("hidden");
-    recipeList.classList.remove("recipe-info-shown");
+    recipeList.classList.remove("info-shown");
+    closeInfoBtn.classList.add("hidden");
     currRecipe = null;
     console.log("Deselected recipe");
   } else {
     recipeInfo.classList.remove("hidden");
-    recipeList.classList.add("recipe-info-shown");
+    closeInfoBtn.classList.remove("hidden");
+    recipeList.classList.add("info-shown");
     // Remove previous selection (only one at a time)
     const prev = recipeList.querySelector(".selected-li");
     if (prev) prev.classList.remove("selected-li");
@@ -84,7 +86,8 @@ addBtn.addEventListener("click", () => {
 const closeInfoBtn = document.getElementById("info-close-btn");
 closeInfoBtn.addEventListener("click", () => {
   recipeInfo.classList.add("hidden");
-  recipeList.classList.remove("recipe-info-shown");
+  recipeList.classList.remove("info-shown");
+  closeInfoBtn.classList.add("hidden");
 
   const selected = recipeList.querySelector(".selected-li");
   if (selected) selected.classList.remove("selected-li");
@@ -160,7 +163,8 @@ function saveInfo() {
 
 function fillRecipeDetails(fullText, currRecipe) {
   recipeInfo.classList.remove("hidden");
-  recipeList.classList.add("recipe-info-shown");
+  recipeList.classList.add("info-shown");
+  closeInfoBtn.classList.remove("hidden");
 
   const recipe = recipes[currRecipe];
 

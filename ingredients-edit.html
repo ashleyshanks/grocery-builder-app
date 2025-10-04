@@ -78,7 +78,7 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li><h1>Shopping List</h1></li>
+          <li><h1>My Ingredients</h1></li>
         </ul>
       </div>
     </header>
@@ -195,7 +195,7 @@
         </ul>
       </header>
       <!-- =====INGREDIENTS LIST ===== -->
-      <section id="ingred-list">
+      <section id="ingred-list" class="white-bg info-shown">
         <h3>Produce</h3>
         <ul>
           <li>🥄 Ingred Name</li>
@@ -223,17 +223,20 @@
       </section>
       <div id="add-item-chefs-notes">
         <!-- ===== ADD INGREDIENTS  ===== -->
-        <section id="add-ingred">
-          <h2>🛒 Ingredient Name</h2>
+        <section id="add-item">
+          <h2>
+            <button id="select-emoji">🥕</button> <span>Adding Ingredient</span>
+          </h2>
+          <button id="info-close-btn">×</button>
           <div id="actions-bar">
-            <button id="add-to-list-btn">Add to Shopping List</button>
+            <button id="add-to-list-btn">Add to List</button>
             <p>|</p>
             <button id="edit-btn">View</button>
             <p>|</p>
             <button id="delete-btn">Delete</button>
           </div>
           <form>
-            <label for="ingred-name-input">Ingredient Name</label>
+            <label for="ingred-name-input">Name</label>
             <input
               type="text"
               id="ingred-name-input"
@@ -242,17 +245,21 @@
               required
             />
 
-            <label for="quantity-input">Quantity</label>
-            <input
-              type="text"
-              id="quantity-input"
-              name="quantity-input"
-              pattern="^\d+([\/.]\d+)?$"
-              inputmode="decimal"
-              placeholder=""
-            />
+            <label for="category-input">Category</label>
+            <select id="category-input" name="category-input">
+              <option value=""></option>
+              <option value="produce">Produce</option>
+              <option value="meat">Meat</option>
+              <option value="dairy">Dairy</option>
+              <option value="frozen">Frozen</option>
+              <option value="bakery">Bakery</option>
+              <option value="beverages">Beverages</option>
+              <option value="snacks">Snacks</option>
+              <option value="pantry">Pantry</option>
+              <option value="other">Other</option>
+            </select>
 
-            <label for="unit-input">Unit</label>
+            <label for="unit-input">Default Unit</label>
             <select id="unit-input" name="unit-input">
               <option value=""></option>
               <!-- Volume -->
@@ -273,19 +280,6 @@
               <option value="pkg">pkg</option>
             </select>
 
-            <label for="category-input">Meal Category</label>
-            <select id="category-input" name="category-input">
-              <option value=""></option>
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-              <option value="snack">Snack</option>
-              <option value="dessert">Dessert</option>
-              <option value="drink">Drink</option>
-              <option value="appetizer">Appetizer</option>
-              <option value="side">Side Dish</option>
-            </select>
-
             <label for="cost-input">Estimated Cost</label>
             <input
               type="text"
@@ -293,7 +287,7 @@
               name="cost-input"
               placeholder=""
             />
-            <button type="submit" id="submit-btn">Save</button>
+            <button id="submit-btn">Save</button>
             <button id="cancel-btn">Cancel</button>
           </form>
           <div class="buttons">
@@ -321,6 +315,192 @@
         </section>
       </div>
     </main>
+    <aside>
+      <div id="emoji-popup" class="center-popup popup hidden">
+        <header>
+          <span>Choose an Emoji</span
+          ><button id="emoji-close" class="popup-close">×</button>
+        </header>
+        <div id="emoji-categories">
+          <ul>
+            <li>Meals</li>
+            <li>Fruit</li>
+            <li>Veggies</li>
+            <li>Dairy/Meat</li>
+            <li>Pantry/Staples</li>
+            <li>Other</li>
+          </ul>
+        </div>
+        <ul id="meals-category" class="emoji-category">
+          <li>🥞</li>
+          <li>🧇</li>
+          <li>🌭</li>
+          <li>🍔</li>
+          <li>🍟</li>
+          <li>🍕</li>
+          <li>🥪</li>
+          <li>🥙</li>
+          <li>🧆</li>
+          <li>🌮</li>
+          <li>🌯</li>
+          <li>🫔</li>
+          <li>🥗</li>
+          <li>🥘</li>
+          <li>🫕</li>
+          <li>🍝</li>
+          <li>🍜</li>
+          <li>🍲</li>
+          <li>🍛</li>
+          <li>🍣</li>
+          <li>🍱</li>
+          <li>🥟</li>
+          <li>🍙</li>
+          <li>🍘</li>
+          <li>🍢</li>
+          <li>🥧</li>
+          <li>🧁</li>
+          <li>🍰</li>
+          <li>🍮</li>
+          <li>🍪</li>
+        </ul>
+        <ul id="fruit-category" class="emoji-category hidden">
+          <li>🍎</li>
+          <li>🍐</li>
+          <li>🍊</li>
+          <li>🍋</li>
+          <li>🍌</li>
+          <li>🍉</li>
+          <li>🍇</li>
+          <li>🍓</li>
+          <li>🫐</li>
+          <li>🍒</li>
+          <li>🍑</li>
+          <li>🥭</li>
+          <li>🥥</li>
+          <li>🥝</li>
+          <li>🍍</li>
+          <li>🫒</li>
+          <li>🍈</li>
+          <li>🍅</li>
+          <li>🥑</li>
+          <li>🌶</li>
+          <li>🫑</li>
+        </ul>
+        <ul id="veg-category" class="emoji-category hidden">
+          <li>🥦</li>
+          <li>🥬</li>
+          <li>🥒</li>
+          <li>🥕</li>
+          <li>🌽</li>
+          <li>🧄</li>
+          <li>🧅</li>
+          <li>🥔</li>
+          <li>🍆</li>
+          <li>🫑</li>
+          <li>🍠</li>
+          <li>🫛</li>
+          <li>🍅</li>
+          <li>🫚</li>
+          <li>🫘</li>
+          <li>🥗</li>
+          <li>🍄</li>
+          <li>🍄‍🟫</li>
+        </ul>
+        <ul id="dairy-meat" class="emoji-category hidden">
+          <li>🧀</li>
+          <li>🥛</li>
+          <li>🧈</li>
+          <li>🥩</li>
+          <li>🍗</li>
+          <li>🍖</li>
+          <li>🥓</li>
+          <li>🍣</li>
+          <li>🍤</li>
+          <li>🦞</li>
+          <li>🦀</li>
+        </ul>
+        <ul id="pantry-staples" class="emoji-category hidden">
+          <li>🍞</li>
+          <li>🥐</li>
+          <li>🥖</li>
+          <li>🥨</li>
+          <li>🥯</li>
+          <li>🫓</li>
+          <li>🥜</li>
+          <li>🥫</li>
+          <li>🧂</li>
+          <li>🍷</li>
+          <li>🍚</li>
+          <li>🍫</li>
+          <li>🍯</li>
+        </ul>
+        <ul id="other-category" class="emoji-category hidden">
+          <li>🥄</li>
+          <li>🍴</li>
+          <li>🫙</li>
+          <li>🥣</li>
+          <li>🧊</li>
+          <li>🌿</li>
+          <li>🧃</li>
+          <li>🥚</li>
+          <li>🍳</li>
+        </ul>
+        <button id="select-emoji-btn">Save</button>
+      </div>
+      <div id="add-to-shopping-list-popup" class="popup center-popup hidden">
+        <header>
+          <span>🥕 Adding Item </span>
+          <button id="add-close" class="popup-close">×</button>
+        </header>
+
+        <label>
+          Quantity
+          <input id="popup-quantity" />
+        </label>
+
+        <label>
+          Unit
+          <select id="popup-unit">
+            <option value=""></option>
+            <!-- Volume -->
+            <option value="tsp">tsp</option>
+            <option value="tbsp">tbsp</option>
+            <option value="cup">cup</option>
+            <option value="pt">pint</option>
+            <option value="qt">quart</option>
+            <option value="gal">gal</option>
+            <option value="l">liter</option>
+            <!-- Weight -->
+            <option value="oz">oz</option>
+            <option value="lb">lb</option>
+            <option value="g">g</option>
+            <option value="kg">kg</option>
+            <!-- Count-based -->
+            <option value="can">can</option>
+            <option value="pkg">pkg</option>
+          </select>
+        </label>
+
+        <button id="save-popup" class="popup-btn">Save</button>
+      </div>
+      <div id="delete-confirm-popup" class="center-popup popup hidden">
+        <header>
+          <span>Are You Sure?</span>
+          <button id="delete-confirm-close" class="popup-close">×</button>
+        </header>
+        <p>Deleting this item will delete it in the following recipes:</p>
+        <ul id="used-in">
+          <li>No recipes</li>
+          <li>No recipes</li>
+          <li>No recipes</li>
+          <li>No recipes</li>
+          <li>No recipes</li>
+          <li>No recipes</li>
+        </ul>
+        <button id="confirm-delete-button" class="popup-btn">Delete</button>
+        <button id="cancel-delete-button" class="popup-btn">Cancel</button>
+      </div>
+    </aside>
   </body>
-  <script src="app.js"></script>
+  <script src="javascript/edit-ingred.js"></script>
 </html>

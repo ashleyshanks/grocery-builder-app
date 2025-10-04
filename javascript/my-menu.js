@@ -127,11 +127,17 @@ favStar.addEventListener("click", () => {
 
 autoSelect();
 
+//save direct from
+const editRecipeBtn = document.getElementById("edit-recipe-btn");
+editRecipeBtn.addEventListener("click", () => {
+  localStorage.setItem("directedFrom", "myMenu");
+});
+
 //close recipe info
 const closeInfoBtn = document.getElementById("info-close-btn");
 closeInfoBtn.addEventListener("click", () => {
   recipeInfo.classList.add("hidden");
-  menuList.classList.remove("recipe-info-shown");
+  menuList.classList.remove("info-shown");
 
   const selected = menuList.querySelector(".selected-li");
   if (selected) selected.classList.remove("selected-li");
@@ -143,7 +149,7 @@ closeInfoBtn.addEventListener("click", () => {
 //functions
 function fillRecipeDetails(currMeal) {
   recipeInfo.classList.remove("hidden");
-  menuList.classList.add("recipe-info-shown");
+  menuList.classList.add("info-shown");
 
   const meal = menu[currMeal];
   const recipe = recipes[meal.name];
@@ -251,7 +257,7 @@ function fillRecipeDetails(currMeal) {
 function autoSelect() {
   // Grab the first <li> inside the menuList
   recipeInfo.classList.remove("hidden");
-  menuList.classList.add("recipe-info-shown");
+  menuList.classList.add("info-shown");
 
   const firstLi = menuList.querySelector("li");
 

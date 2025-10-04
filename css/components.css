@@ -125,7 +125,7 @@ li:hover .checkbox {
 /*----------------JAVASCRIPT-------------------*/
 .selected-li {
   background-color: var(--lt-gray);
-  border-radius: 3px; /* rounded corners */
+  border-radius: 5px; /* rounded corners */
 }
 
 .favorited,
@@ -158,9 +158,9 @@ li:hover .checkbox {
   border: none;
 }
 
-#recipe-list.recipe-info-shown,
-#menu-list.recipe-info-shown,
-.recipe-info-shown {
+#recipe-list.info-shown,
+#menu-list.info-shown,
+.info-shown {
   height: 50vh !important;
 }
 
@@ -495,6 +495,7 @@ ul.emoji-category li {
 
 /* Save button at bottom */
 /* Save button stays at bottom */
+
 #select-emoji-btn {
   margin-top: auto;
   padding: 1em;
@@ -509,4 +510,91 @@ ul.emoji-category li {
 
 #select-emoji-btn:hover {
   background: #45a049;
+}
+
+/* add to shopping list popup */
+#add-to-shopping-list-popup {
+  max-width: 45vw;
+  max-height: 40vh;
+  background-color: var(--lt-color);
+}
+#add-to-shopping-list-popup span {
+  margin: 0 auto;
+  margin-top: 0.4em;
+  padding-right: 0.5em;
+}
+
+#add-to-shopping-list-popup select,
+#add-to-shopping-list-popup input,
+#add-to-shopping-list-popup #save-popup {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#add-to-shopping-list-popup #save-popup {
+  margin-top: auto;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+#add-to-shopping-list-popup label {
+  margin-bottom: 0.2em;
+}
+
+#add-to-shopping-list-popup select,
+#add-to-shopping-list-popup input {
+  margin-top: 0.3em;
+  background-color: var(--lt-gray) !important;
+}
+
+#add-to-shopping-list-popup label:last-of-type {
+  margin-top: 0.7em;
+}
+
+#popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* black with opacity */
+  z-index: 999; /* below popup content */
+  display: none; /* hidden by default */
+}
+
+/* confirm delete popup */
+#delete-confirm-popup {
+  max-width: 100vw;
+  max-height: 70vh;
+  /* background-color: var(--lt-color); */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pushes first elements to top, last to bottom */
+  padding: 1em;
+}
+
+#delete-confirm-popup li {
+  margin-left: 2em;
+}
+
+#delete-confirm-popup {
+  line-height: 1.7em;
+}
+
+#confirm-delete-button {
+  margin-top: 1.2em;
+}
+#cancel-delete-button {
+  margin-bottom: 1em;
+}
+
+#delete-confirm-popup ul {
+  background-color: var(--lt-gray);
+  min-height: 200px;
+  max-height: 220px; /* or whatever height fits your popup */
+  overflow-y: auto;
+  border-radius: 8px;
+  margin-top: 0.5em;
+  padding-top: 0.4em;
+  padding-bottom: 2.5em;
 }

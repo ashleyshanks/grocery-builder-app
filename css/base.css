@@ -87,15 +87,17 @@ body,
 #add-item,
 #recipe-form select,
 #recipe-form input,
-#top-bar {
+#top-bar,
+#ingred-and-recipe-info,
+#recipe-info,
+.buttons:not(#recipe-form .buttons),
+#edit-meal-chefs-notes,
+#view-item-chefs-notes,
+#add-item-chefs-notes {
   background-color: var(--lt-gray);
 }
 
-#recipes-list,
-#ingred-list,
-#shopping-list,
-#menu-list,
-#recipe-form,
+section.white-bg,
 body.white-bg,
 #recipe-ingred-info {
   background-color: var(--lt-color);
@@ -167,15 +169,6 @@ form[role="search"] button {
   color: var(--lt-color, white);
 }
 
-#ingred-and-recipe-info,
-#recipe-info,
-.buttons:not(#recipe-form .buttons),
-#edit-meal-chefs-notes,
-#view-item-chefs-notes,
-#add-item-chefs-notes {
-  background-color: var(--lt-gray);
-}
-
 #actions-bar {
   border-bottom-color: black;
 }
@@ -241,61 +234,54 @@ h1 {
   /* font-family: margot; */
 }
 
-p,
-li,#search-bar,
-#submit-and-add-to-list-btn,
-#recipe-form #delete-btn,
-/* #actions-bar a, */
-#actions-bar p {
-  font-size: 0.85rem;
-}
+/* 1 300
+1.2 500 
+1.55 600
+1.9 */
 
-input,
+p,
+li,
+button, a,
+#recipe-form,
+/* #actions-bar a, */
+#actions-bar p, input,
 select,
-#edit-recipe-ingred-list li,
-button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
   font-size: 1rem;
 }
 
-#ingred-info dl,
-#recipe-info dl,
-#item-info dl,
-#subingredients-list li,
-.used-in-list p,
-.used-in-list li,
+dl,
+.info-list li,
 .needed-for-list p,
-.needed-for-list li,
 #hero-nav a,
-#hero-nav button {
-  font-size: 1.15rem;
-}
-
-h1 {
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1.8rem;
-}
-
+#hero-nav button,
 #ingred-list li,
 #menu-list li,
 #recipes-list li,
 #shopping-list li,
 #need-for-list li,
 #item-info h3,
-#menu-list p {
+#menu-list p,
+#delete-confirm-popup p,
+#delete-confirm-popup li {
   font-size: 1.2rem;
 }
 
 h4,
 #cost,
 #quantity,
-#list-total p {
-  font-size: 1.5rem;
+#list-total p,
+h3,
+h2 button,
+#add-to-shopping-list-popup span,
+#delete-confirm-popup span {
+  font-size: 1.55rem;
+}
+
+h1 {
+  font-size: 1.9em;
 }
 
 h2,
@@ -305,7 +291,6 @@ h4,
 #recipe-info dl dt,
 #item-info dl dt,
 label,
-.used-in-list p,
 .needed-for-list p,
 #item-info h3 {
   font-weight: 600;
@@ -326,14 +311,6 @@ h4,
 p,
 li {
   font-weight: 300;
-}
-
-/*-----------------------------   base  -----------------------------*/
-
-main > section,
-main > div {
-  padding: 0em 2.4em;
-  padding-top: 0.5em;
 }
 
 /*-----------------------------   HIDDEN  -----------------------------*/
@@ -369,14 +346,23 @@ select {
 }
 
 /*-----------------------------   LISTS / UL -----------------------------*/
-#tabs ul,
+/* #tabs ul,
 #search-add-filter-sort ul,
 #search-edit-filter-sort ul,
 #menu-list li,
 #ingred-list ul,
 #recipes-list,
 #shopping-list ul,
-.used-in-list ul,
+.needed-for-list ul,
 #shopping-serves-list {
   list-style: none;
+} */
+
+li {
+  list-style: none;
+}
+
+.info-list li,
+#delete-confirm-popup li {
+  list-style: disc;
 }

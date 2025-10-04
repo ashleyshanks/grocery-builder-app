@@ -168,8 +168,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //close
 const closeBtn = document.getElementById("larger-close-btn");
-closeBtn.addEventListener("click", () => {
+let closeBtnURL = "my-recipes.html"; // default
+
+const directedFrom = localStorage.getItem("directedFrom");
+if (directedFrom === "myMenu") {
+  closeBtnURL = "my-menu.html"; // make sure the file name matches
+}
+
+closeBtn.addEventListener("click", (event) => {
+  event.preventDefault(); // prevent the default <a> behavior
+  localStorage.removeItem("directedFrom");
   localStorage.removeItem("currRecipe");
+  window.location.href = closeBtnURL; // manually navigate
 });
 
 //favorite
