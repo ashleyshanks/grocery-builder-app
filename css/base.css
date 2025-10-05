@@ -15,7 +15,7 @@ input[type="reset"] {
   display: inline-block;
   box-sizing: border-box;
   font-family: inherit; /* inherit from parent */
-  line-height: 1.2;
+  line-height: 0.7em;
   text-align: center;
   cursor: pointer;
   background: none;
@@ -23,10 +23,6 @@ input[type="reset"] {
   padding: 0;
   margin: 0;
   color: inherit;
-}
-
-.active-mode {
-  cursor: default;
 }
 
 a {
@@ -52,18 +48,18 @@ textarea::placeholder {
   --lt-orange: #fe671c;
   --dk-orange: #f35208;
   --v-lt-orange: #fead3c;
-  --lt-orange2: #ffba85; /* top bar*/
-  --v-lt-green: #16c066;
+  --lt-orange2: #ff923e; /* top bar*/
+  --v-lt-green: #82d98e;
   --lt-green: #1e9a57; /* buttons */
   --dk-green: #047c36;
   --dk-green2: #00612d; /*top control bar*/
   --v-dk-green: #005b26;
   --lt-color: #fdfcfd;
-  --lt-gray: #f8f5f2;
-  --md-gray: #dad7d3; /*forms*/
+  --lt-gray: #ffd4a4;
+  --md-gray: #eae8e5; /*forms*/
   --md-dk-gray: #6f685a;
   --dk-gray: #484545;
-  --control-bar: #98948c;
+  --control-bar: #1e9a57;
 }
 
 /* :root {
@@ -83,48 +79,36 @@ textarea::placeholder {
   --dk-gray: #474747;
 } */
 
-body,
-#add-item,
-#recipe-form select,
-#recipe-form input,
-#top-bar,
-#ingred-and-recipe-info,
-#recipe-info,
-.buttons:not(#recipe-form .buttons),
-#edit-meal-chefs-notes,
-#view-item-chefs-notes,
-#add-item-chefs-notes {
-  background-color: var(--lt-gray);
-}
-
 section.white-bg,
 body.white-bg,
-#recipe-ingred-info {
+#recipe-ingred-info,
+body {
   background-color: var(--lt-color);
 }
 
-#home svg,
-#light-mode svg,
-#dark-mode svg,
-#light-mode path,
-#dark-mode path {
-  stroke: var(--lt-green);
-  fill: var(--lt-green);
+/* add all bottom info */
+#ingred-and-recipe-info,
+#edit-meal-chefs-notes,
+#add-item-chefs-notes,
+#recipe-info,
+#view-item-chefs-notes,
+#add-recipe-item {
+  box-shadow: 0 -4px 50px -4px rgba(0, 0, 0, 0.063);
 }
-#home svg:hover,
-#light-mode svg:hover,
-#dark-mode svg:hover,
-#light-mode path:hover,
-#dark-mode path:hover {
-  stroke: var(--dk-green);
-  fill: var(--dk-green);
+
+#view-item-chefs-notes {
+  padding-bottom: 5em;
+}
+
+#home svg:hover {
+  fill: var(--lt-orange);
 }
 
 #add-svg,
 #sort-svg path,
 #sort-svg,
 #search-add-filter-sort circle,
-#search-add-filter-sort path:not(#filter-svg path):not(#search-svg path) {
+#add-svg path {
   stroke: var(--lt-color);
 }
 
@@ -159,14 +143,10 @@ body.white-bg,
 }
 
 input:not(#search input, #recipe-form input),
-select {
+select,
+#recipe-form select,
+#recipe-form input {
   background-color: var(--md-gray);
-}
-
-form[role="search"] button {
-  /* background-color: var(--dk-green2); */
-  border-color: var(--lt-color);
-  color: var(--lt-color, white);
 }
 
 #actions-bar {
@@ -186,7 +166,7 @@ form[role="search"] button {
 #menu-list h3,
 #recipes-list h3,
 #list-total {
-  border-bottom-color: #97989a;
+  border-bottom-color: black;
 }
 
 input:focus-visible,
@@ -197,54 +177,41 @@ select:active {
   border-color: var(--v-lt-orange);
 }
 
-#tabs li:hover {
-  background-color: var(--dk-orange);
-}
-
-#tabs li.active {
-  background-color: var(--dk-orange);
-}
-/*-----------------------------   zebra ZEBRA STRIPES  -----------------------------*/
-
-#need-for-list li:nth-child(odd) {
-  background-color: var(--md-gray); /* light gray */
-  border-radius: 8px;
-}
-
-/* #need-for-list li:nth-child(even) {
-  background-color: #ffffff; 
-} */
 /*-----------------------------   TYPOGRAPHY  -----------------------------*/
 
-body {
+body,
+#search-bar::placeholder,
+select,
+input {
   /* font-family: "elza-text", sans-serif; */
   font-family: "sofia-pro", sans-serif;
 }
 
-h1 {
-  /* font-family: "elza-text", sans-serif; */
-  /* font-family: "superpop-variable", sans-serif;
+/* h1 { */
+/* font-family: "elza-text", sans-serif; */
+/* font-family: "superpop-variable", sans-serif;
   font-variation-settings: "wght" 300; */
 
-  font-family: "sidenote-variable", sans-serif;
-  font-variation-settings: "slnt" -1, "wdth" 110, "wght" 600;
+/* font-family: "sidenote-variable", sans-serif;
+  font-variation-settings: "slnt" -1, "wdth" 110, "wght" 600; */
 
-  /* font-family: Fillip; */
+/* font-family: Fillip; */
 
-  /* font-family: margot; */
-}
+/* font-family: margot; */
+/* } */
 
 /* 1 300
 1.2 500 
 1.55 600
 1.9 */
 
-p,
+/* p,
 li,
-button, a,
+button,
+a,
 #recipe-form,
-/* #actions-bar a, */
-#actions-bar p, input,
+#actions-bar p,
+input,
 select,
 input[type="button"],
 input[type="submit"],
@@ -276,15 +243,72 @@ h4,
 h3,
 h2 button,
 #add-to-shopping-list-popup span,
-#delete-confirm-popup span {
-  font-size: 1.55rem;
+#delete-confirm-popup span,
+h1 {
+  font-size: 1.6rem;
+} */
+
+h1,
+#name-cost-quantity h2,
+#quantity,
+#cost,
+h2,
+h3 {
+  font-size: 25px;
 }
 
-h1 {
-  font-size: 1.9em;
+#menu-list h4 {
+  font-size: 22px;
+}
+
+body,
+h4,
+#item-info h3 {
+  font-size: 20px;
+}
+
+#delete-sort-bar {
+  font-size: 0.8em;
+}
+
+#search-bar,
+#actions-bar {
+  font-size: 16px;
+}
+
+#need-for-list li,
+select,
+input {
+  font-size: 18px;
+}
+
+p,
+li,
+dd,
+#search-bar::placeholder,
+#ingred-and-recipe-info h3 span,
+#menu-list h4,
+select,
+input {
+  font-weight: 300;
 }
 
 h2,
+h3,
+h4,
+label,
+#quantity,
+#list-total span:first-of-type,
+#cost,
+.needed-for-list p {
+  font-weight: 500;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+/* h2,
 h3,
 h4,
 #ingred-info dl dt,
@@ -292,7 +316,8 @@ h4,
 #item-info dl dt,
 label,
 .needed-for-list p,
-#item-info h3 {
+#item-info h3,
+h1 {
   font-weight: 600;
 }
 
@@ -311,7 +336,7 @@ h4,
 p,
 li {
   font-weight: 300;
-}
+} */
 
 /*-----------------------------   HIDDEN  -----------------------------*/
 #recipes-list span:nth-of-type(2),
@@ -321,7 +346,9 @@ li {
 .hidden,
 #ingred-info .buttons,
 #recipe-info .buttons,
-#item-info .buttons {
+#item-info .buttons,
+#light-mode,
+#dark-mode {
   display: none !important;
 }
 
@@ -358,7 +385,8 @@ select {
   list-style: none;
 } */
 
-li {
+li,
+ul {
   list-style: none;
 }
 

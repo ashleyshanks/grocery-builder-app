@@ -1,38 +1,28 @@
 /*-----------------------------   MARGIN  & PADDING-----------------------------*/
-/*---------TOP BAR / CONTROL BAR/ ACTION BARS---------*/
 
 main > section,
 main > div {
-  padding: 0em 2.4em;
+  padding: 0em 1.5em;
   padding-top: 1.1em;
 }
-#top-bar {
-  padding: 1.4em 1em 0;
+
+#ingred-list,
+#menu-list,
+#recipes-list,
+#shopping-list {
+  padding: 1em 1.4em;
 }
 
-#sort-svg,
-#add-svg,
-#filter-svg,
-#edit-svg,
-h2 svg,
-#select-emoji,
-nav svg {
-  margin: 0 0.15em;
+#shopping-list h3,
+#menu-list h3,
+#ingred-list h3 {
+  padding-bottom: 0.03em;
 }
 
-#tabs,
-.info-list li {
-  margin: 0 1.4em;
-}
-
-#tabs li,
-form:not(#search) {
-  padding-bottom: 0.35em;
-  padding-top: 0.7em;
-}
+/*---------TOP BAR / CONTROL BAR/ ACTION BARS---------*/
 
 nav {
-  margin-bottom: 0.6em;
+  margin-bottom: 6px;
   align-self: end;
 }
 
@@ -46,29 +36,19 @@ nav {
   padding: 0.15em 3em;
 }
 
-/* x */
-#search-add-filter-sort,
-#search-edit-filter-sort {
-  padding: 0.5em 0.7em 0.5em 1.2em;
-}
-
-#search {
-  margin-right: 0.6em;
-}
-
-#search-add-filter-sort ul {
-  gap: 0.25em;
-}
-
 /*---------INFO---------*/
 
 #name-cost-quantity,
 #recipe-info {
-  margin-bottom: 0.35em;
+  margin-bottom: 0.5em;
+}
+
+.add-item-full-form h2 {
+  margin-bottom: 0.1em;
 }
 
 #item-info h3 {
-  margin-bottom: 0.6em;
+  margin: 0.4em 0;
 }
 
 /*---------FORMS---------*/
@@ -77,18 +57,14 @@ label {
   margin-bottom: -0.15em;
 }
 
-#recipe-form {
-  margin-top: 1.4em;
-}
-
-#edit-meal,
-#add-item {
-  margin-bottom: 2em;
-}
-
-input,
+input:not(#search input),
 select {
   padding: 0.5em 0.75em; /* comfortable spacing */
+}
+
+#edit-meal input,
+#edit-meal select {
+  margin-bottom: 0.4em;
 }
 
 /* select {
@@ -100,28 +76,43 @@ select {
   margin-bottom: 0.2em;
 }
 
-/* x */
-#ingred-list,
-#menu-list,
-#recipes-list,
-#shopping-list {
-  padding: 1em 2.3em;
+#recipes-list li span:first-of-type
+/* #ingred-list li { */ {
+  padding-left: 0.5em;
 }
 
-input,
-select,
-#ingred-list li,
-#menu-list li,
 #recipes-list li,
 #edit-recipe-ingred-list li,
 #shopping-list li {
-  padding: 0.5em 0.7em; /* comfortable spacing */
+  padding: 0.4em 0;
+}
+
+#ingred-list li {
+  padding: 0.4em 0.5em;
+}
+
+#menu-list li {
+  padding: 0.3em 0.5em;
+  margin: 0.25em 0;
+}
+
+#fav-star:not(#recipe-ingred-info #fav-star) {
+  padding-top: 0.2em;
+  margin-right: -0.1em;
+}
+
+#recipe-ingred-info #fav-star {
+  padding-top: 0.2em;
 }
 
 #ingred-list li:last-of-type,
 #shopping-list li:last-of-type {
   margin-bottom: 1.5em;
 }
+
+/* #menu-list ul {
+  margin-left: 0.7em;
+} */
 #menu-list h3 {
   margin-bottom: 0.5em;
 }
@@ -129,9 +120,14 @@ select,
   margin-bottom: 1em;
 }
 
-#need-for-list li {
-  padding: 0.2em 0.35em;
-  margin: 0 -0.15em;
+#menu-list ul li::before {
+  content: "•";
+  display: inline-block;
+  width: 1.1em;
+}
+
+#menu-list ul li::marker {
+  margin-right: 0.1em !important;
 }
 
 #list-total {
@@ -153,102 +149,6 @@ select,
   margin-top: 0.35em;
 }
 
-/*-----------------------------   TOP BAR  -----------------------------*/
-
-#top-bar {
-  display: grid;
-  grid-template-areas: "nav  tabs";
-  grid-template-columns: auto 1fr;
-  align-items: center;
-}
-
-#nav {
-  grid-area: nav;
-}
-
-#tabs {
-  grid-area: tabs;
-  justify-self: start;
-}
-
-#tabs li {
-  width: 250px;
-  text-align: center;
-}
-
-/*-----------------------------   ACTION BARS  -----------------------------*/
-form[role="search"] {
-  display: flex;
-  align-items: center;
-  gap: 0.3em; /* space between input and button */
-}
-
-#search-bar {
-  padding: 0.4em 0.6em;
-  width: 175px; /* adjust as needed */
-}
-
-#search-add-filter-sort,
-#search-edit-filter-sort {
-  display: flex;
-  align-items: center; /* vertically center items */
-  justify-content: space-between; /* spread out items across the width */
-  width: 100vw; /* full viewport width */
-  box-sizing: border-box;
-}
-
-/* Make the ul horizontal and remove default list styles */
-#search-add-filter-sort ul,
-#search-edit-filter-sort ul {
-  display: flex;
-  align-items: center;
-}
-
-#sort-svg,
-#add-svg,
-#filter-svg {
-  width: 21px;
-  height: 21px;
-  display: block; /* removes extra inline space */
-}
-
-#edit-svg {
-  padding-top: 2.6px;
-  margin-right: 2.6px;
-  width: 25.5px;
-  height: 25.5px;
-}
-/* #filter-svg {
-  width: 23px;
-  height: 23px;
-}
-
-#add-svg {
-  width: 23px;
-  height: 23px;
-}
-
-#sort-svg {
-  width: 23px;
-  height: 29px;
-} */
-
-#delete-sort-bar {
-  display: flex; /* layout items in a row */
-  justify-content: flex-end; /* push to the right */
-  align-items: center; /* vertically center if needed */
-  gap: 0.25em; /* space between the SVGs */
-}
-
-#delete-sort-bar svg {
-  width: 1.3em; /* smaller width */
-  height: 1.3em; /* smaller height */
-}
-
-#delete-sort-bar #sort-svg {
-  margin-left: -0.4em;
-}
-
 /*-----------------------------   BASE LISTS  -----------------------------*/
 #ingred-list,
 #shopping-list,
@@ -265,7 +165,7 @@ form[role="search"] {
 /*-----------------------------   EDIT INGRED-----------------------------*/
 #add-item form {
   display: grid;
-  grid-gap: 1em;
+  grid-gap: 0.7em;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "name-label name-label"
@@ -273,7 +173,13 @@ form[role="search"] {
     "category-label category-label"
     "category category"
     "unit-label cost-label"
-    "unit cost";
+    "unit cost"
+    "buttons buttons";
+}
+
+#add-item .buttons {
+  grid-area: buttons;
+  margin: 0;
 }
 
 #add-item label:first-of-type {
@@ -308,16 +214,65 @@ form[role="search"] {
   grid-area: cost;
 }
 
-/*-----------------------------   EDIT MENU-----------------------------*/
-
-#edit-meal form {
-  grid-gap: 1em;
+.add-item-full-form form {
+  display: grid;
+  grid-gap: 0.7em;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "weekday-label weekday-label"
-    "weekday weekday"
-    "category-label category-label"
-    "category category";
+    "name-label name-label"
+    "name name"
+    "category-label cost-label"
+    "category cost"
+    "quantity-label unit-label"
+    "quantity unit"
+    "buttons buttons";
 }
+
+.add-item-full-form label:first-of-type {
+  grid-area: name-label;
+}
+
+.add-item-full-form label:nth-of-type(2) {
+  grid-area: category-label;
+}
+
+.add-item-full-form label:nth-of-type(3) {
+  grid-area: cost-label;
+}
+
+.add-item-full-form label:nth-of-type(4) {
+  grid-area: quantity-label;
+}
+.add-item-full-form label:nth-of-type(5) {
+  grid-area: unit-label;
+}
+
+.add-item-full-form #ingred-name-input {
+  grid-area: name;
+}
+
+.add-item-full-form #unit-input {
+  grid-area: unit;
+}
+
+.add-item-full-form #category-input {
+  grid-area: category;
+}
+
+.add-item-full-form #cost-input {
+  grid-area: cost;
+}
+
+.add-item-full-form #quantity-input {
+  grid-area: quantity;
+}
+
+.add-item-full-form div.buttons {
+  margin: 0;
+  grid-area: buttons;
+}
+
+/*-----------------------------   EDIT MENU-----------------------------*/
 
 #edit-meal label:first-of-type {
   grid-area: weekday-label;
@@ -327,17 +282,13 @@ form[role="search"] {
   grid-area: category-label;
 }
 
-#meal-day-input {
-  grid-area: weekday;
-}
-
 #meal-category-input {
   grid-area: category;
 }
 
 #edit-meal form {
   display: grid;
-  grid-gap: 1em; /* same spacing as #add-ingred */
+  grid-gap: 0.7em; /* same spacing as #add-ingred */
   grid-template-areas:
     "weekday-label weekday-label"
     "weekday weekday"
@@ -367,9 +318,11 @@ form[role="search"] {
 #edit-meal .buttons {
   grid-area: buttons;
   display: flex;
+  padding: 0.7em 0;
   justify-content: center;
   gap: 1em;
   width: 100%;
+  margin: 0;
 }
 
 /*-----------------------------   BASE INFO +  FORMS-----------------------------*/
@@ -525,6 +478,7 @@ form[role="search"] {
 
 #quantity {
   grid-area: quantity;
+  padding-bottom: 0.1em;
 }
 
 /* Container for the heading */
@@ -600,7 +554,7 @@ form[role="search"] {
 }
 
 #recipe-info-header #fav-star {
-  margin-bottom: 0.29em;
+  margin-bottom: 0.4em;
 }
 
 /*-----------------------------   RECIPES FORM  -----------------------------*/
@@ -618,8 +572,19 @@ form[role="search"] {
     "creator-label creator-label"
     "creator creator"
     "link-label link-label"
-    "link link";
+    "link link"
+    "buttons buttons";
   grid-gap: 0.6em 1em; /* row-gap, column-gap */
+}
+
+#recipe-form #larger-close-btn,
+#recipe-ingred-info #larger-close-btn {
+  top: 5.1em;
+}
+
+#recipe-form .buttons {
+  grid-area: buttons;
+  margin: 0;
 }
 
 #recipe-form label:first-of-type {

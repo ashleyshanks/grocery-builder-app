@@ -8,11 +8,113 @@
   border-radius: 15px 15px 0 0; /* top-left, top-right, bottom-right, bottom-left */
 }
 
-/*-----------------------------   SEARCH BAR  -----------------------------*/
+#home svg {
+  margin-left: 0.6em;
+}
+/*-----------------------------   TOP BAR  -----------------------------*/
 
-/* Input field */
-#search-bar {
-  outline: none;
+#top-bar {
+  padding: 1.4em 1em 0;
+  padding-top: 0.6em;
+}
+
+#tabs,
+.info-list li {
+  margin: 0 1.4em;
+}
+
+#tabs li,
+form:not(#search) {
+  padding-bottom: 0.3em;
+  padding-top: 0.45em;
+}
+
+#top-bar {
+  display: grid;
+  grid-template-areas: "nav  tabs";
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+#nav {
+  grid-area: nav;
+}
+
+#tabs {
+  grid-area: tabs;
+  justify-self: start;
+  margin-left: 20px;
+}
+
+#tabs li {
+  width: 260px;
+  text-align: center;
+}
+
+/*-----------------------------   ACTION BARS  -----------------------------*/
+form[role="search"] {
+  display: flex;
+  align-items: center;
+  gap: 0.3em; /* space between input and button */
+}
+
+#search-add-filter-sort,
+#search-edit-filter-sort {
+  display: flex;
+  align-items: center; /* vertically center items */
+  justify-content: space-between; /* spread out items across the width */
+  width: 100vw; /* full viewport width */
+  box-sizing: border-box;
+}
+
+#search-add-filter-sort,
+#search-edit-filter-sort {
+  padding: 0.6em 0.7em 0.6em 1.2em;
+}
+
+#search-add-filter-sort ul {
+  gap: 0.25em;
+}
+
+/* Make the ul horizontal and remove default list styles */
+#search-add-filter-sort ul,
+#search-edit-filter-sort ul {
+  display: flex;
+  align-items: center;
+}
+
+#sort-svg,
+#add-svg,
+#filter-svg,
+h2 svg,
+#select-emoji,
+nav svg {
+  margin: 0 0.15em;
+}
+
+#sort-svg,
+#add-svg,
+#filter-svg {
+  display: block; /* removes extra inline space */
+}
+
+#edit-svg {
+  margin-top: 5.3px;
+  margin-left: 0.15em;
+  margin-right: 2.6px;
+  width: 22.5px;
+  height: 22.5px;
+}
+
+#delete-sort-bar {
+  display: flex; /* layout items in a row */
+  justify-content: flex-end; /* push to the right */
+  align-items: center; /* vertically center if needed */
+}
+
+#delete-sort-bar svg {
+  width: 1.3em; /* smaller width */
+  height: 1.3em; /* smaller height */
 }
 
 /*-----------------------------   INTERACTIVE  -----------------------------*/
@@ -29,12 +131,21 @@ form[role="search"] button,
 #submit-btn,
 #edit-item-btn,
 #delete-item-btn,
-#tabs li {
+li,
+#select-emoji-btn,
+ul.emoji-category li,
+#emoji-categories ul li,
+.center-popup .popup-close,
+.popup-close,
+#info-close-btn,
+#larger-close-btn,
+.checkbox {
   cursor: pointer;
 }
 
-li {
-  cursor: pointer; /* regular arrow cursor */
+.active-mode,
+#tabs li {
+  cursor: default;
 }
 
 /* Submit button */
@@ -60,16 +171,24 @@ form[role="search"] button,
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 /* hover states */
-#add-svg:hover,
+#add-svg:hover circle,
+#add-svg:hover path,
 #sort-svg:hover path,
 #sort-svg:hover,
-#search-add-filter-sort:hover circle,
+#search-add-filter-sort:hover #search circle,
 #search-add-filter-sort
   path:not(#filter-svg path):not(#search-svg path):hover
-  path,
+  path {
+  stroke: var(--lt-orange);
+}
+
 #delete-sort-bar #sort-svg:hover path,
 #delete-sort-bar #delete-svg:hover path,
 #delete-sort-bar #filter-svg:hover path {
+  stroke: var(--lt-orange);
+}
+
+#add-svg:hover path {
   stroke: var(--lt-orange);
 }
 
@@ -99,13 +218,19 @@ form[role="search"] button,
   box-shadow: 0 0 0 2px var(--lt-orange); /* acts like outline */
 }
 
-/*---CHECKBOXES----*/
+/*---CHECKBOXES--SHOPPING LIST shopping checkbox--*/
 #shopping-list li {
   display: flex;
   align-items: center;
   gap: 0.4em;
 }
+
+#shopping-list ul {
+  margin-top: 0.2em;
+}
+
 .checkbox {
+  margin-right: 0.1em;
   width: 1em;
   height: 1em;
   border: 1.5px solid var(--dk-gray);
@@ -113,7 +238,6 @@ form[role="search"] button,
   background-color: white;
   display: inline-block;
   flex-shrink: 0;
-  cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s;
 }
 
@@ -141,7 +265,6 @@ li:hover .checkbox {
   position: absolute;
   top: 5.6em;
   right: 0.5em;
-  cursor: pointer;
   background: none;
   border: none;
 }
@@ -153,7 +276,6 @@ li:hover .checkbox {
   position: absolute;
   top: 23.5em;
   right: 0.5em;
-  cursor: pointer;
   background: none;
   border: none;
 }
@@ -194,7 +316,6 @@ li:hover .checkbox {
   border: none;
   background: none;
   font-weight: bold;
-  cursor: pointer;
   font-size: 16px;
   line-height: 1;
   padding: 0;
@@ -214,8 +335,20 @@ select {
   display: flex; /* makes it a flex container */
   justify-content: center; /* centers horizontally */
   align-items: center; /* centers vertically if needed */
-  width: 100%; /* optional, makes sure it spans full width */
   padding: 1em 0; /* optional spacing around the button */
+  margin: 0.4em 1.27em;
+  gap: 0.6em;
+}
+
+.buttons button {
+  width: 100%; /* make each button fill container width */
+  flex-grow: 1; /* optional: ensures it takes all available space if needed */
+  padding: 1em; /* adjust padding for height */
+  text-align: center;
+  border-radius: 30px;
+  background-color: var(--lt-green);
+  color: var(--lt-color);
+  border: none; /* remove default border */
 }
 
 #cancel-btn,
@@ -226,17 +359,17 @@ select {
 #hero-nav ul li {
   background-color: var(--lt-green);
   color: var(--lt-color);
-  border-radius: 30px; /* rounded corners */
+  border-radius: 30px;
   text-align: center;
 }
 
-#cancel-btn,
+/* #cancel-btn,
 #submit-btn,
 #edit-item-btn,
 #delete-item-btn,
 .popup-btn {
   margin-top: 0.8em;
-}
+} */
 
 #cancel-btn:hover,
 #submit-btn:hover,
@@ -247,80 +380,101 @@ select {
 }
 
 /* top bar svgs nav */
-#home svg,
+/* #home svg,
 #dark-mode svg,
 #light-mode svg {
   width: 23px;
   height: 23px;
+} */
+#home svg {
+  height: 26px;
+  width: 26px;
+  fill: var(--lt-orange);
+  fill: white;
+  stroke: var(--lt-orange);
+}
+
+#sort-svg,
+#add-svg,
+#filter-svg,
+form[role="search"] button {
+  height: 20px;
+  width: 20px;
 }
 
 /* search */
+
+#search-li {
+  background-color: white;
+  border-radius: 30px;
+  width: 360px;
+}
+
+#search {
+  margin-right: 6px;
+}
+
+#search-bar {
+  padding: 0.4em 0.6em;
+  outline: none;
+  background-color: transparent;
+  height: 29px;
+  width: 330px; /* adjust as needed */
+}
+
 form[role="search"] button {
   /* background-color: var(--dk-green2); */
   border-style: solid;
-  border-width: 1px;
+  border-color: var(--lt-green);
+  border-width: 1.5px;
   border-radius: 80px;
 }
 
-form[role="search"] button svg {
-  stroke-width: 2;
+#search-svg path {
+  stroke-width: 4px;
+  stroke: var(--lt-green);
 }
 
+/* form[role="search"] button svg {
+  stroke-width: 2;
+} */
+
 form[role="search"] button {
-  width: 1.95em;
-  height: 1.95em;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 form[role="search"] button svg {
-  width: 0.9em; /* scale SVG inside button */
-  height: 0.9em;
-}
-
-/* home buttons */
-#hero-nav ul li {
-  display: inline-block; /* make list items behave like buttons */
-  padding: 0.8em 10vw; /* vertical and horizontal padding */
-}
-
-/* buttons with bg */
-#cancel-btn,
-#submit-btn {
-  padding: 1em 1em; /* vertical and horizontal padding */
-  text-align: center;
+  width: 10px; /* scale SVG inside button */
+  height: 10px;
+  margin-bottom: 0.5px;
 }
 
 /* no bg buttons */
-#edit-item-btn,
-#delete-item-btn {
-  padding: 1em 15vw; /* vertical and horizontal padding */
-}
 #submit-and-add-to-list-btn,
 #recipe-form #delete-btn {
   text-decoration: underline;
 }
 
-#edit-item-btn {
-  margin-right: 1em;
-}
 /* popup buttons */
 
 .popup-btn {
   padding: 0.8em 1.5em; /* vertical and horizontal padding */
 }
 
+#search-bar {
+  margin-left: 6px;
+  background-color: none;
+  border-radius: 5px;
+  border-width: 0px;
+  border-style: solid;
+}
+
 /*-----------------------------   BORDERS  -----------------------------*/
 /* #top-bar {
   border-bottom: 1.5px solid;
 } */
-
-#search-bar {
-  border-radius: 8px;
-  border-width: 0px;
-  border-style: solid;
-}
 
 #actions-bar,
 #ingred-list,
@@ -346,30 +500,35 @@ form[role="search"] button svg {
 
 /*-----------------------------   HOME  -----------------------------*/
 #hero-svg {
-  width: 250px; /* new width */
-  height: 250px; /* new height */
+  /* width: 200px;
+  height: 200px; */
   margin-bottom: 4vw;
 }
 
+/* home buttons */
+#hero-nav ul li {
+  display: inline-block; /* make list items behave like buttons */
+  padding: 0.6em 16vw; /* vertical and horizontal padding */
+}
+
 #hero-nav img {
-  width: 65%;
+  width: 40vh;
 }
 
 #hero-nav {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* horizontal centering */
-  align-items: center; /* vertical centering */
-  height: 80vh; /* full viewport height */
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
 }
 
 #hero-nav ul {
-  list-style: none; /* remove bullets */
   padding: 0;
   margin: 0;
-  display: flex; /* horizontal layout */
+  display: flex;
   flex-direction: column;
-  gap: 3vw; /* spacing between buttons */
+  gap: 3vw;
 }
 
 #hero-nav ul li:hover {
@@ -385,6 +544,26 @@ form[role="search"] button svg {
   box-shadow: 0 15px 30px rgba(124, 129, 144, 0.2);
   position: relative;
   z-index: 10;
+} */
+
+/*-----------------------------   zebra ZEBRA STRIPES  -----------------------------*/
+
+#need-for-list li:nth-child(odd) {
+  background-color: var(--md-gray); /* light gray */
+  border-radius: 8px;
+}
+
+#need-for-list li {
+  /* padding: 0.2em 0.35em; */
+  padding-bottom: 0.4em;
+  padding-top: 0.2em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  margin: 0.25em -0.15em;
+}
+
+/* #need-for-list li:nth-child(even) {
+  background-color: #ffffff; 
 } */
 
 /*-----------------------------   EMOJI PICKER -----------------------------*/
@@ -424,7 +603,6 @@ form[role="search"] button svg {
   border: none;
   font-size: 1.5rem;
   font-weight: 380;
-  cursor: pointer;
 }
 
 /* Category list at top */
@@ -442,7 +620,6 @@ form[role="search"] button svg {
 }
 
 #emoji-categories ul li {
-  cursor: pointer;
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
   transition: background 0.2s;
@@ -482,7 +659,6 @@ ul.emoji-category {
 ul.emoji-category li {
   font-size: 1.5em;
   text-align: center;
-  cursor: pointer;
   padding: 0.25rem;
   border-radius: 6px;
   transition: transform 0.1s, background 0.2s;
@@ -504,7 +680,6 @@ ul.emoji-category li {
   color: white;
   font-weight: bold;
   border-radius: 8px;
-  cursor: pointer;
   transition: background 0.2s;
 }
 
@@ -598,3 +773,8 @@ ul.emoji-category li {
   padding-top: 0.4em;
   padding-bottom: 2.5em;
 }
+
+/* organize */
+/* #name-cost-quantity {
+  border-bottom: 2px solid black;
+} */
