@@ -36,7 +36,13 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li><h1>Shopping List</h1></li>
+          <li id="current-page"><h1>My Recipes</h1></li>
+          <li id="prev-page" class="desktop-tabs">
+            <h1>My Menu</h1>
+          </li>
+          <li id="prev-prev-page" class="desktop-tabs">
+            <h1>Ingredients</h1>
+          </li>
         </ul>
       </div>
     </header>
@@ -155,72 +161,16 @@
       </header>
 
       <!-- ===== SHOPPING LIST ===== -->
-      <section id="shopping-list" class="white-bg">
+
+      <section id="shopping-list" class="white-bg main-element top-element">
         <h3>Produce</h3>
         <ul>
           <li>
             <div class="checkbox"></div>
             🥄 Ingredient Name
           </li>
-          <li>
-            <div class="checkbox"></div>
-            🥕 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🥄 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🥬 Ingredient Name
-          </li>
         </ul>
-        <h3>Meat</h3>
-        <ul>
-          <li>
-            <div class="checkbox"></div>
-            🥄 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🍚 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🥄 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🥄 Ingredient Name
-          </li>
-        </ul>
-        <h3>Frozen</h3>
-        <ul>
-          <li>
-            <div class="checkbox"></div>
-            🥩 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🥄 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🧀 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🧀 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            🧀 Ingredient Name
-          </li>
-          <li>
-            <div class="checkbox"></div>
-            Ingredient Name
-          </li>
-        </ul>
+
         <div id="list-total">
           <p>$000</p>
         </div>
@@ -229,7 +179,10 @@
       <!-- ===== ADD ITEM + CHEFS NOTES ===== -->
       <div id="add-item-chefs-notes">
         <!-- ===== ADD/EDIT ITEM  ===== -->
-        <section id="add-item-shop" class="add-item-full-form">
+        <section
+          id="add-item-shop"
+          class="add-item-full-form main-element white-bg bottom-element"
+        >
           <h2>🛒 Add Item</h2>
           <form>
             <label for="ingred-name-input">Ingredient Name</label>
@@ -251,7 +204,7 @@
               placeholder=""
             />
 
-            <label for="unit-input">Unit:</label>
+            <label for="unit-input">Unit</label>
             <select id="unit-input" name="unit-input">
               <option value=""></option>
               <!-- Volume -->
@@ -272,17 +225,18 @@
               <option value="pkg">pkg</option>
             </select>
 
-            <label for="category-input">Meal Category:</label>
+            <label for="category-input">Category</label>
             <select id="category-input" name="category-input">
               <option value=""></option>
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-              <option value="snack">Snack</option>
-              <option value="dessert">Dessert</option>
-              <option value="drink">Drink</option>
-              <option value="appetizer">Appetizer</option>
-              <option value="side">Side Dish</option>
+              <option value="produce">Produce</option>
+              <option value="meat">Meat</option>
+              <option value="dairy">Dairy</option>
+              <option value="frozen">Frozen</option>
+              <option value="bakery">Bakery</option>
+              <option value="beverages">Beverages</option>
+              <option value="snacks">Snacks</option>
+              <option value="pantry">Pantry</option>
+              <option value="other">Other</option>
             </select>
 
             <label for="cost-input">Estimated Cost</label>
@@ -293,7 +247,7 @@
               placeholder=""
             />
             <div class="buttons">
-              <button type="submit" id="submit-btn">Save</button>
+              <button id="submit-btn">Save</button>
               <button id="cancel-btn">Cancel</button>
             </div>
           </form>
@@ -319,5 +273,5 @@
       </div>
     </main>
   </body>
-  <script src="app.js"></script>
+  <script src="javascript/edit-shoppinglist.js"></script>
 </html>

@@ -36,13 +36,19 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li><h1>My Recipes</h1></li>
+          <li id="current-page"><h1>My Recipes</h1></li>
+          <li id="prev-page" class="desktop-tabs">
+            <h1>My Menu</h1>
+          </li>
+          <li id="prev-prev-page" class="desktop-tabs">
+            <h1>Ingredients</h1>
+          </li>
         </ul>
       </div>
     </header>
     <main>
       <!-- ===== TOP CONTROL BAR (search, add, filter, sort) ===== -->
-      <header id="search-add-filter-sort">
+      <header id="search-add-filter-sort" class="only-search">
         <ul>
           <!-- Left items -->
           <li id="search-li">

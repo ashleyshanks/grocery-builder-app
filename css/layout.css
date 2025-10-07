@@ -1,9 +1,22 @@
 /*-----------------------------   MARGIN  & PADDING-----------------------------*/
 
-main > section,
-main > div {
+/* main > section,
+main > div:not(main > div#actions-bar) {
   padding: 0em 1.5em;
   padding-top: 1.1em;
+} */
+
+#recipe-form,
+#recipe-ingred-info,
+#add-recipe-item,
+section.bottom-element {
+  padding: 0 1em;
+  padding-top: 1em;
+}
+
+form input,
+form select {
+  width: 100%;
 }
 
 #ingred-list,
@@ -82,9 +95,12 @@ select {
 }
 
 #recipes-list li,
-#edit-recipe-ingred-list li,
-#shopping-list li {
+#edit-recipe-ingred-list li {
   padding: 0.4em 0;
+}
+
+#shopping-list li {
+  padding: 0.4em 0.4em;
 }
 
 #ingred-list li {
@@ -99,6 +115,10 @@ select {
 #fav-star:not(#recipe-ingred-info #fav-star) {
   padding-top: 0.2em;
   margin-right: -0.1em;
+}
+
+#recipe-form #fav-star {
+  margin-bottom: 0.2em;
 }
 
 #recipe-ingred-info #fav-star {
@@ -118,12 +138,6 @@ select {
 }
 #menu-list li:last-of-type {
   margin-bottom: 1em;
-}
-
-#menu-list ul li::before {
-  content: "•";
-  display: inline-block;
-  width: 1.1em;
 }
 
 #menu-list ul li::marker {
@@ -233,18 +247,18 @@ select {
 }
 
 .add-item-full-form label:nth-of-type(2) {
-  grid-area: category-label;
+  grid-area: quantity-label;
 }
 
 .add-item-full-form label:nth-of-type(3) {
-  grid-area: cost-label;
+  grid-area: unit-label;
 }
 
 .add-item-full-form label:nth-of-type(4) {
-  grid-area: quantity-label;
+  grid-area: category-label;
 }
 .add-item-full-form label:nth-of-type(5) {
-  grid-area: unit-label;
+  grid-area: cost-label;
 }
 
 .add-item-full-form #ingred-name-input {

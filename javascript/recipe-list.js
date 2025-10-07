@@ -17,6 +17,7 @@ const recipeTitle = document.querySelector("h2");
 const svgHTML = recipeTitle.querySelector("svg")?.outerHTML || "";
 const recipeInfo = document.getElementById("recipe-info");
 const favStar = document.getElementById("fav-star");
+const closeInfoBtn = document.getElementById("info-close-btn");
 
 const savedMenu = localStorage.getItem("menu");
 const menu = savedMenu ? JSON.parse(savedMenu) : {};
@@ -83,7 +84,7 @@ addBtn.addEventListener("click", () => {
 });
 
 //close recipe info
-const closeInfoBtn = document.getElementById("info-close-btn");
+
 closeInfoBtn.addEventListener("click", () => {
   recipeInfo.classList.add("hidden");
   recipeList.classList.remove("info-shown");

@@ -6,8 +6,12 @@
 
 #tabs li {
   border-radius: 15px 15px 0 0; /* top-left, top-right, bottom-right, bottom-left */
+  margin-right: calc(-6em + 7vw); /* reliable overlapping */
 }
 
+#tabs h1 {
+  display: inline-block;
+}
 #home svg {
   margin-left: 0.6em;
 }
@@ -65,6 +69,23 @@ form[role="search"] {
   justify-content: space-between; /* spread out items across the width */
   width: 100vw; /* full viewport width */
   box-sizing: border-box;
+}
+
+#search-add-filter-sort.only-search {
+  justify-content: center;
+}
+
+.only-search #search-li {
+  width: 93vw;
+}
+
+.only-search #search-bar,
+.one-control-btn #search-bar {
+  width: 100%;
+}
+
+.one-control-btn #search-li {
+  width: 80vw;
 }
 
 #search-add-filter-sort,
@@ -227,6 +248,14 @@ form[role="search"] button,
 
 #shopping-list ul {
   margin-top: 0.2em;
+}
+
+/* Checked state shows the image */
+.checkbox.checked {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%234caf50' d='M469.402,35.492C334.09,110.664,197.114,324.5,197.114,324.5L73.509,184.176L0,254.336l178.732,222.172 l65.15-2.504C327.414,223.414,512,55.539,512,55.539L469.402,35.492z'/></svg>");
+  background-size: 14px 14px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .checkbox {
@@ -407,7 +436,7 @@ form[role="search"] button {
 #search-li {
   background-color: white;
   border-radius: 30px;
-  width: 360px;
+  width: 18em;
 }
 
 #search {
@@ -415,7 +444,7 @@ form[role="search"] button {
 }
 
 #search-bar {
-  padding: 0.4em 0.6em;
+  padding: 1em 0.6em;
   outline: none;
   background-color: transparent;
   height: 29px;
@@ -449,6 +478,10 @@ form[role="search"] button svg {
   width: 10px; /* scale SVG inside button */
   height: 10px;
   margin-bottom: 0.5px;
+}
+
+#control-btns {
+  margin-left: 0.5em;
 }
 
 /* no bg buttons */
@@ -508,7 +541,7 @@ form[role="search"] button svg {
 /* home buttons */
 #hero-nav ul li {
   display: inline-block; /* make list items behave like buttons */
-  padding: 0.6em 16vw; /* vertical and horizontal padding */
+  padding: 0.6em 5em; /* vertical and horizontal padding */
 }
 
 #hero-nav img {
@@ -528,7 +561,7 @@ form[role="search"] button svg {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 3vw;
+  gap: 1em;
 }
 
 #hero-nav ul li:hover {
@@ -755,16 +788,13 @@ ul.emoji-category li {
 #delete-confirm-popup {
   line-height: 1.7em;
 }
-
-#confirm-delete-button {
-  margin-top: 1.2em;
-}
-#cancel-delete-button {
-  margin-bottom: 1em;
+.popup .buttons,
+#item-info .buttons {
+  margin: 0;
 }
 
 #delete-confirm-popup ul {
-  background-color: var(--lt-gray);
+  background-color: var(--md-gray);
   min-height: 200px;
   max-height: 220px; /* or whatever height fits your popup */
   overflow-y: auto;

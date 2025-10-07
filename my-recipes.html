@@ -36,7 +36,13 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li><h1>My Recipes</h1></li>
+          <li id="current-page"><h1>My Recipes</h1></li>
+          <li id="prev-page" class="desktop-tabs">
+            <h1>My Menu</h1>
+          </li>
+          <li id="prev-prev-page" class="desktop-tabs">
+            <h1>Ingredients</h1>
+          </li>
         </ul>
       </div>
     </header>
@@ -153,7 +159,7 @@
         </ul>
       </header>
       <!-- ===== RECIPE LIST ===== -->
-      <section id="recipes-list" class="white-bg">
+      <section id="recipes-list" class="white-bg main-element top-element">
         <div id="col-headers" class="hidden-mobile">
           <p>Recipe Name</p>
           <p>Cooking Method</p>
@@ -189,7 +195,10 @@
       </section>
 
       <!-- ===== RECIPE INFO ===== -->
-      <section id="recipe-info" class="hidden">
+      <section
+        id="recipe-info"
+        class="hidden main-element white-bg bottom-element"
+      >
         <div id="recipe-info-header">
           <svg
             id="fav-star"

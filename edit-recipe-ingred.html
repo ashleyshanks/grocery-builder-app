@@ -36,13 +36,19 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li><h1>My Recipes</h1></li>
+          <li id="current-page"><h1>My Recipes</h1></li>
+          <li id="prev-page" class="desktop-tabs">
+            <h1>My Menu</h1>
+          </li>
+          <li id="prev-prev-page" class="desktop-tabs">
+            <h1>Ingredients</h1>
+          </li>
         </ul>
       </div>
     </header>
     <main>
       <!-- ===== TOP CONTROL BAR (search, add, filter, sort) ===== -->
-      <header id="search-add-filter-sort">
+      <header id="search-add-filter-sort" class="one-control-btn">
         <ul>
           <!-- Left items -->
           <li id="search-li">
@@ -78,7 +84,7 @@
         </ul>
 
         <!-- Right items -->
-        <ul>
+        <ul id="control-btns">
           <li>
             <svg
               id="add-svg"
@@ -102,7 +108,7 @@
               />
             </svg>
           </li>
-          <li>
+          <li class="hidden">
             <svg
               id="filter-svg"
               width="800px"
@@ -118,7 +124,7 @@
               />
             </svg>
           </li>
-          <li>
+          <li class="hidden">
             <svg
               id="sort-svg"
               width="24px"
@@ -189,7 +195,7 @@
       </section>
 
       <!-- ===== EDIT RECIPE INGREDIENTS  ===== -->
-      <section id="recipe-ingred-info" class="white-bg">
+      <section id="recipe-ingred-info" class="white-bg bottom-element">
         <h2>
           <svg
             id="fav-star"

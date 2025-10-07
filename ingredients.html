@@ -36,7 +36,13 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li><h1>Ingredients</h1></li>
+          <li id="current-page"><h1>My Recipes</h1></li>
+          <li id="prev-page" class="desktop-tabs">
+            <h1>My Menu</h1>
+          </li>
+          <li id="prev-prev-page" class="desktop-tabs">
+            <h1>Ingredients</h1>
+          </li>
         </ul>
       </div>
     </header>
@@ -154,7 +160,10 @@
       </header>
 
       <!-- =====INGREDIENTS LIST ===== -->
-      <section id="ingred-list" class="white-bg info-shown">
+      <section
+        id="ingred-list"
+        class="white-bg info-shown main-element top-element"
+      >
         <h3>Produce</h3>
         <ul>
           <li>🥄 Ingred Name</li>
@@ -181,9 +190,9 @@
         </ul>
       </section>
       <!-- ===== INGRED INFO + CHEFS NOTES ===== -->
-      <div id="view-item-chefs-notes">
+      <div id="view-item-chefs-notes" class="main-element white-bg">
         <!-- ===== INGREDIENT INFO ===== -->
-        <section id="ingred-info">
+        <section id="ingred-info" class="white-bg bottom-element">
           <div id="actions-bar">
             <button id="add-to-list-btn">Add to Shopping List</button>
             <p>|</p>
@@ -236,7 +245,7 @@
     </main>
     <aside>
       <!-- Overlay -->
-      <div id="popup-overlay" class="hidden"></div>
+
       <div id="add-to-shopping-list-popup" class="popup center-popup hidden">
         <header>
           <span>🥕 Adding Item </span>

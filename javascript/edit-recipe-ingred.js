@@ -70,7 +70,7 @@ let recIngredUnit = "";
 let recIngredCategory = "";
 let recIngredCost = "";
 
-const editRecipeBtn = document.querySelector("#add-item #submit-btn");
+const editRecipeBtn = document.getElementById("submit-btn");
 editRecipeBtn.addEventListener("click", () => {
   if (!recIngredNameInput.value) {
     alert("Ingredient must have a name!");

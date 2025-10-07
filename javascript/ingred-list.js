@@ -242,6 +242,7 @@ function populateIngredInfo(item) {
 }
 //delete item
 const deleteBtn = document.getElementById("delete-btn");
+//WIP wip add confirm ON edit-ingred
 console.log("before delete", currItem);
 deleteBtn.addEventListener("click", () => {
   //   console.log("items before delete");

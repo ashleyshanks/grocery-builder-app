@@ -34,7 +34,13 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li><h1>Shopping List</h1></li>
+          <li id="current-page"><h1>My Recipes</h1></li>
+          <li id="prev-page" class="desktop-tabs">
+            <h1>My Menu</h1>
+          </li>
+          <li id="prev-prev-page" class="desktop-tabs">
+            <h1>Ingredients</h1>
+          </li>
         </ul>
       </div>
     </header>
@@ -80,7 +86,8 @@
       </header>
       <!-- ===== SHOPPING LIST ===== -->
     <!-- ===== SHOPPING LIST ===== -->
-    <section id="shopping-list" class="white-bg">
+    <section id="shopping-list" class="white-bg main-element top-element">
+      
       <h3>Produce</h3>
       <ul>
           <li>
@@ -155,11 +162,12 @@
     <div id="ingred-and-recipe-info">
         
     <!-- ===== INGREDIENT INFO ===== -->
-      <section id="item-info">
+      <section id="item-info" class="main-element white-bg bottom-element">
         <div id="name-cost-quantity">
           <H2>🥕 Ingredient Name</H2>
+          <button id="info-close-btn">×</button>
           <p id="cost"  aria-label="item cost">$0.00</p>
-          <p id="quantity" aria-label="item quantity">5</p>
+          <p aria-label="item quantity"><span id="quantity">5</span><span id="unit"></span></p>
         </div>
         <h3><span>Needed For</span><span>Serves</span></h3>
         <ul id="need-for-list">
@@ -167,11 +175,12 @@
          <li><span class="need-name">Recipe</span><span class="need-serves">#</span></li>
          <li><span class="need-name">Recipe</span><span class="need-serves">#</span></li>
         </ul>
-        </div>
         <div class="buttons">
-            <button id="edit-item-btn">Edit Item</button>
-            <button id="delete-item-btn">Delete</button>
+          <button id="edit-item-btn">Edit Item</button>
+          <button id="delete-item-btn">Delete</button>
+      </div>
         </div>
+        
       </section>
 
       <!-- ===== RECIPE INFO ===== -->
@@ -196,6 +205,26 @@
 
     
     </main>
+    <aside>
+      <div id="delete-confirm-popup" class="center-popup popup hidden">
+        <header>
+          <span>Are You Sure?</span>
+          <button id="delete-confirm-close" class="popup-close">×</button>
+        </header>
+        <p>Deleting this item will delete it in the following recipes:</p>
+        <ul id="used-in">
+          <li>No recipes</li>
+          <li>No recipes</li>
+          <li>No recipes</li>
+          <li>No recipes</li>
+          <li>No recipes</li>
+          <li>No recipes</li>
+        </ul>
+        <div class="buttons">
+        <button id="confirm-delete-button" class="popup-btn">Delete</button>
+        <button id="cancel-delete-button" class="popup-btn">Cancel</button>
+      </div>
+    </aside>
   </body>
   <script src="javascript/shopping-list.js"></script>
 </html>

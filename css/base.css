@@ -47,17 +47,18 @@ textarea::placeholder {
 :root {
   --lt-orange: #fe671c;
   --dk-orange: #f35208;
-  --v-lt-orange: #fead3c;
+  --v-lt-orange: #ff9756;
   --lt-orange2: #ff923e; /* top bar*/
-  --v-lt-green: #82d98e;
+  --v-lt-green: #c2e0cf;
+  --v-lt-gray: #d2d2d2;
   --lt-green: #1e9a57; /* buttons */
   --dk-green: #047c36;
   --dk-green2: #00612d; /*top control bar*/
   --v-dk-green: #005b26;
-  --lt-color: #fdfcfd;
+  --lt-color: #ffffff;
   --lt-gray: #ffd4a4;
   --md-gray: #eae8e5; /*forms*/
-  --md-dk-gray: #6f685a;
+  --md-dk-gray: #b8b9b4;
   --dk-gray: #484545;
   --control-bar: #1e9a57;
 }
@@ -82,18 +83,14 @@ textarea::placeholder {
 section.white-bg,
 body.white-bg,
 #recipe-ingred-info,
-body {
+body,
+#add-recipe-item {
   background-color: var(--lt-color);
 }
 
 /* add all bottom info */
-#ingred-and-recipe-info,
-#edit-meal-chefs-notes,
-#add-item-chefs-notes,
-#recipe-info,
-#view-item-chefs-notes,
-#add-recipe-item {
-  box-shadow: 0 -4px 50px -4px rgba(0, 0, 0, 0.063);
+section.top-element {
+  box-shadow: inset 0 -4px 50px -4px rgba(0, 0, 0, 0.063);
 }
 
 #view-item-chefs-notes {
@@ -187,67 +184,6 @@ input {
   font-family: "sofia-pro", sans-serif;
 }
 
-/* h1 { */
-/* font-family: "elza-text", sans-serif; */
-/* font-family: "superpop-variable", sans-serif;
-  font-variation-settings: "wght" 300; */
-
-/* font-family: "sidenote-variable", sans-serif;
-  font-variation-settings: "slnt" -1, "wdth" 110, "wght" 600; */
-
-/* font-family: Fillip; */
-
-/* font-family: margot; */
-/* } */
-
-/* 1 300
-1.2 500 
-1.55 600
-1.9 */
-
-/* p,
-li,
-button,
-a,
-#recipe-form,
-#actions-bar p,
-input,
-select,
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
-  font-size: 1rem;
-}
-
-dl,
-.info-list li,
-.needed-for-list p,
-#hero-nav a,
-#hero-nav button,
-#ingred-list li,
-#menu-list li,
-#recipes-list li,
-#shopping-list li,
-#need-for-list li,
-#item-info h3,
-#menu-list p,
-#delete-confirm-popup p,
-#delete-confirm-popup li {
-  font-size: 1.2rem;
-}
-
-h4,
-#cost,
-#quantity,
-#list-total p,
-h3,
-h2 button,
-#add-to-shopping-list-popup span,
-#delete-confirm-popup span,
-h1 {
-  font-size: 1.6rem;
-} */
-
 h1,
 #name-cost-quantity h2,
 #quantity,
@@ -308,45 +244,14 @@ h1 {
   font-weight: 400;
 }
 
-/* h2,
-h3,
-h4,
-#ingred-info dl dt,
-#recipe-info dl dt,
-#item-info dl dt,
-label,
-.needed-for-list p,
-#item-info h3,
-h1 {
-  font-weight: 600;
-}
-
-h1,
-h4,
-#cost,
-#ingred-cost,
-#list-total p,
-#quantity {
-  font-weight: 500;
-}
-
-#ingred-info dd,
-#recipe-info dd,
-#item-info dd,
-p,
-li {
-  font-weight: 300;
-} */
-
 /*-----------------------------   HIDDEN  -----------------------------*/
 #recipes-list span:nth-of-type(2),
 #recipes-list span:nth-of-type(3),
 .editing,
 .hidden-mobile,
+.desktop-tabs,
 .hidden,
-#ingred-info .buttons,
 #recipe-info .buttons,
-#item-info .buttons,
 #light-mode,
 #dark-mode {
   display: none !important;
@@ -373,17 +278,6 @@ select {
 }
 
 /*-----------------------------   LISTS / UL -----------------------------*/
-/* #tabs ul,
-#search-add-filter-sort ul,
-#search-edit-filter-sort ul,
-#menu-list li,
-#ingred-list ul,
-#recipes-list,
-#shopping-list ul,
-.needed-for-list ul,
-#shopping-serves-list {
-  list-style: none;
-} */
 
 li,
 ul {
@@ -393,4 +287,95 @@ ul {
 .info-list li,
 #delete-confirm-popup li {
   list-style: disc;
+}
+
+/*--------------------------MEDIA QUERY -----------------------------*/
+
+/* min width 466/480 */
+@media (min-width: 750px) {
+  /* styles for tablets and larger screens */
+  /* main > section,
+  main > div {
+    padding: 0em 22vw;
+    padding-top: 1.1em;
+  } */
+
+  #recipe-form,
+  #recipe-ingred-info,
+  #add-recipe-item,
+  section.main-element,
+  section.bottom-element {
+    margin: 0 20% !important;
+    padding: 0 2em !important;
+    padding-top: 1em !important;
+  }
+
+  #actions-bar {
+    padding: 0.15em 15% !important;
+  }
+
+  #larger-close-btn,
+  #info-close-btn {
+    right: 21% !important;
+  }
+
+  main {
+    background-color: var(--md-dk-gray);
+    overflow: hidden;
+  }
+
+  .only-search #search-li {
+    width: 53.5vw !important;
+  }
+
+  .one-control-btn #search-li {
+    width: 46vw !important;
+  }
+
+  #search-add-filter-sort.one-control-btn {
+    justify-content: space-between !important;
+  }
+
+  #tabs li {
+    display: inline-block !important;
+  }
+
+  /* #recipe-form #larger-close-btn,
+  #recipe-ingred-info #larger-close-btn {
+    right: 5%;
+  } */
+
+  #tabs li {
+    position: relative;
+    /* display: flex !important;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between;  */
+    /* margin-right: -3.5em; */
+    transition: transform 0.2s ease, z-index 0.2s ease;
+    height: 49px;
+  }
+
+  /* Bring the current tab forward */
+  #tabs #current-page {
+    z-index: 3;
+  }
+
+  /* Previous tab slightly below */
+  #tabs #prev-page {
+    z-index: 2;
+    background: #ff893f;
+  }
+
+  /* Furthest tab behind */
+  #tabs #prev-prev-page {
+    z-index: 1;
+    background: #ffa162;
+  }
+}
+
+@media (min-width: 900px) {
+  /* #tabs li {
+    margin-right: -1.5em;
+  } */
 }
