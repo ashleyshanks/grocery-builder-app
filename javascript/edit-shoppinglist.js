@@ -9,100 +9,36 @@ const ingredCategory = document.getElementById("category-input");
 const saveBtn = document.getElementById("submit-btn");
 const cancelBtn = document.getElementById("cancel-btn");
 
-const shoppingListExample = {
-  Potato: {
-    name: "Potato",
-    quantityUnit: {
-      "Potato Soup": {
-        quantity: 5,
-        unit: "",
-      },
-      "Potato Salad": {
-        quantity: 3,
-        unit: "",
-      },
-    },
-  },
-  "Tomato Paste": {
-    name: "Tomato Paste",
-    quantityUnit: {
-      Spaghetti: {
-        quantity: 1,
-        unit: "tbsp",
-      },
-      Minestrone: {
-        quantity: "1/2",
-        unit: "can",
-      },
-    },
-  },
-};
-const shoppingList = shoppingListExample;
+const currentPageText = document.querySelector("#current-page h1").textContent;
+const prevPageTab = document.getElementById("prev-page");
+const prevText = document.querySelector("#prev-page h1");
+const prevPrevPageTab = document.getElementById("prev-prev-page");
+const prevPrevText = document.querySelector("#prev-prev-page h1");
 
-const itemsExample = {
-  Potato: {
-    name: "Potato",
-    unit: "cups",
-    category: "Baking",
-    cost: 2.5,
-    emoji: "🍞",
-  },
-  "Tomato Paste": {
-    name: "Tomato Paste",
-    unit: "",
-    category: "Produce",
-    cost: 1,
-    emoji: "🥕",
-  },
+const pageHistoryMap = {
+  editRecipeIngred: { display: "Edit Recipe", URL: "edit-recipe-ingred.html" },
+  editRecipe: { display: "Edit Recipe", URL: "edit-recipe.html" },
+  home: { display: "Home", URL: "index.html" },
+  viewRecipes: { display: "My Recipes", URL: "my-recipes.html" },
+  editIngred: { display: "Edit Ingredients", URL: "ingredients-edit.html" },
+  viewIngred: { display: "Ingredients", URL: "ingredients.html" },
+  viewMenu: { display: "My Menu", URL: "my-menu.html" },
+  editMenu: { display: "Edit Menu", URL: "my-menu-edit.html" },
+  viewList: { display: "Shopping List", URL: "shopping-list.html" },
+  editList: { display: "Edit List", URL: "shopping-list-add.html" },
 };
-const items = itemsExample;
+const storedMenu = localStorage.getItem("menu");
+const storedRecipes = localStorage.getItem("recipes");
+const storedShoppingList = localStorage.getItem("shoppingList");
+const storedItems = localStorage.getItem("items");
 
-const recipesExample = {
-  "Potato Soup": {
-    name: "Potato Soup",
-    emoji: "🍰",
-    serves: 3,
-    time: "30 min",
-    ingredients: {
-      Potato: { name: "Potato", quantity: 4 },
-      Milk: { name: "Milk", quantity: 3 },
-    },
-  },
-  "Potato Salad": {
-    name: "Lemonade",
-    emoji: "🍋",
-    serves: 2,
-    time: "10 min",
-    ingredients: {
-      Potato: { name: "Potato", quantity: 2 },
-      Lemon: { name: "Lemon", quantity: 3 },
-      Water: { name: "Water", quantity: 5 },
-    },
-  },
-  Spaghetti: {
-    name: "Spaghetti",
-    emoji: "🍝",
-    serves: 4,
-    time: "20 min",
-    ingredients: {
-      Tomato: { name: "Tomato", quantity: 3 },
-      Noodles: { name: "Noodles", quantity: 2 },
-      OliveOil: { name: "Olive Oil", quantity: 1 },
-    },
-  },
-  Minestrone: {
-    name: "Spaghetti",
-    emoji: "🍝",
-    serves: 4,
-    time: "20 min",
-    ingredients: {
-      Tomato: { name: "Tomato", quantity: 3 },
-      Noodles: { name: "Noodles", quantity: 2 },
-      OliveOil: { name: "Olive Oil", quantity: 1 },
-    },
-  },
-};
-const recipes = recipesExample;
+// Parse each if it exists, or fall back to an empty object
+const menu = storedMenu ? JSON.parse(storedMenu) : {};
+const recipes = storedRecipes ? JSON.parse(storedRecipes) : {};
+const shoppingList = storedShoppingList ? JSON.parse(storedShoppingList) : {};
+const items = storedItems ? JSON.parse(storedItems) : {};
+//wip load current item
+let pageHistory = loadPageHistory();
 
 populateIngredList(shoppingList);
 let currItem;
@@ -269,6 +205,96 @@ function calculateTotalQuantity(item) {
   }
 
   return total;
+}
+
+function savePages(currentPage) {
+  // Move prevPage to prevPrevPage
+  pageHistory.prevPrevPage = pageHistory.prevPage || "No page";
+
+  // Set prevPage to the page we’re leaving
+  pageHistory.prevPage = currentPage || "No page";
+
+  localStorage.setItem("pageHistory", JSON.stringify(pageHistory));
+}
+
+// savePages("My Recipes");
+
+function tabsUI() {
+  // If both tabs are hidden, do nothing
+  if (
+    prevPageTab.classList.contains("hidden") &&
+    prevPrevPageTab.classList.contains("hidden")
+  ) {
+    return;
+  }
+
+  // Set prevPage tab
+  if (
+    pageHistory.prevPage &&
+    pageHistoryMap[pageHistory.prevPage] &&
+    pageHistoryMap[pageHistory.prevPage].display != currentPageText
+  ) {
+    prevText.textContent = pageHistoryMap[pageHistory.prevPage].display;
+    prevPageTab.classList.remove("hidden");
+  } else {
+    prevPageTab.classList.add("hidden");
+  }
+
+  // Set prevPrevPage tab
+  if (
+    pageHistory.prevPrevPage &&
+    pageHistoryMap[pageHistory.prevPrevPage] &&
+    pageHistoryMap[pageHistory.prevPrevPage].display != currentPageText &&
+    pageHistoryMap[pageHistory.prevPage] !=
+      pageHistoryMap[pageHistory.prevPrevPage]
+  ) {
+    prevPrevText.textContent = pageHistoryMap[pageHistory.prevPrevPage].display;
+    prevPrevPageTab.classList.remove("hidden");
+  } else {
+    prevPrevPageTab.classList.add("hidden");
+  }
+}
+
+const homeBtn = document.getElementById("home");
+homeBtn.addEventListener("click", () => {
+  savePages("viewMenu");
+});
+
+prevPageTab.addEventListener("click", () => {
+  const prevKey = pageHistory.prevPage;
+  if (prevKey && pageHistoryMap[prevKey]) {
+    const url = pageHistoryMap[prevKey].URL;
+    savePages("viewMenu");
+    window.location.href = url; // navigate to the URL
+  }
+});
+
+// Click for previous-previous page tab
+prevPrevPageTab.addEventListener("click", () => {
+  const prevPrevKey = pageHistory.prevPrevPage;
+  if (prevPrevKey && pageHistoryMap[prevPrevKey]) {
+    const url = pageHistoryMap[prevPrevKey].URL;
+    savePages("viewMenu");
+    window.location.href = url; // navigate to the URL
+  }
+});
+
+function loadPageHistory() {
+  const storedPageHistory = localStorage.getItem("pageHistory");
+  console.log("load page function: storedPageHistory: ", storedPageHistory);
+
+  // If found, parse it; otherwise, use default fallback
+  const pageHistory = storedPageHistory
+    ? JSON.parse(storedPageHistory)
+    : {
+        prevPrevPage: "No page",
+        prevPage: "No page",
+        currentPage: "No page",
+      };
+
+  console.log("load page function: pageHistory:", pageHistory);
+
+  return pageHistory;
 }
 
 //WIP save checkboxes + save everything

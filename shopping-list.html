@@ -34,7 +34,7 @@
       </nav>
       <div id="tabs">
         <ul>
-          <li id="current-page"><h1>My Recipes</h1></li>
+          <li id="current-page"><h1>Shopping List</h1></li>
           <li id="prev-page" class="desktop-tabs">
             <h1>My Menu</h1>
           </li>
@@ -86,7 +86,7 @@
       </header>
       <!-- ===== SHOPPING LIST ===== -->
     <!-- ===== SHOPPING LIST ===== -->
-    <section id="shopping-list" class="white-bg main-element top-element">
+    <section id="shopping-list" class="white-bg main-element top-element info-shown">
       
       <h3>Produce</h3>
       <ul>
@@ -159,7 +159,7 @@
   </section>
 
       <!-- ===== INGRED + RECIPE INFO ===== -->
-    <div id="ingred-and-recipe-info">
+    <div id="ingred-and-recipe-info" class="white-bg">
         
     <!-- ===== INGREDIENT INFO ===== -->
       <section id="item-info" class="main-element white-bg bottom-element">
@@ -169,11 +169,19 @@
           <p id="cost"  aria-label="item cost">$0.00</p>
           <p aria-label="item quantity"><span id="quantity">5</span><span id="unit"></span></p>
         </div>
+        <div id="complex-quantity" class="hidden">
+          <h3><span>Quantity</span><span>Unit</span></h3>
+        <ul id="complex-quantity-list" class="zebra-list">
+         <li><span class="left-zebra">3</span><span class="right-zebra">Pounds</span></li>
+         <li><span class="left-zebra">5</span><span class="right-zebra">No Unit</span></li>
+         <li><span class="left-zebra">3</span><span class="right-zebra">Gallons</span></li>
+        </ul>
+        </div>
         <h3><span>Needed For</span><span>Serves</span></h3>
-        <ul id="need-for-list">
-         <li><span class="need-name">Recipe</span><span class="need-serves">#</span></li>
-         <li><span class="need-name">Recipe</span><span class="need-serves">#</span></li>
-         <li><span class="need-name">Recipe</span><span class="need-serves">#</span></li>
+        <ul id="need-for-list" class="zebra-list">
+         <li><span class="left-zebra">Recipe</span><span class="right-zebra">#</span></li>
+         <li><span class="left-zebra">Recipe</span><span class="right-zebra">#</span></li>
+         <li><span class="left-zebra">Recipe</span><span class="right-zebra">#</span></li>
         </ul>
         <div class="buttons">
           <button id="edit-item-btn">Edit Item</button>

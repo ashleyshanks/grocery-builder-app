@@ -2,6 +2,24 @@
 const ingredInfo = document.getElementById("ingred-info");
 const ingredList = document.getElementById("ingred-list");
 const addPopup = document.getElementById("add-to-shopping-list-popup");
+const currentPageText = document.querySelector("#current-page h1").textContent;
+const prevPageTab = document.getElementById("prev-page");
+const prevText = document.querySelector("#prev-page h1");
+const prevPrevPageTab = document.getElementById("prev-prev-page");
+const prevPrevText = document.querySelector("#prev-prev-page h1");
+
+const pageHistoryMap = {
+  editRecipeIngred: { display: "My Recipes", URL: "edit-recipe-ingred.html" },
+  editRecipe: { display: "My Recipes", URL: "edit-recipe.html" },
+  home: { display: "Home", URL: "index.html" },
+  viewRecipes: { display: "My Recipes", URL: "my-recipes.html" },
+  editIngred: { display: "Ingredients", URL: "ingredients-edit.html" },
+  viewIngred: { display: "Ingredients", URL: "ingredients.html" },
+  viewMenu: { display: "My Menu", URL: "my-menu.html" },
+  editMenu: { display: "My Menu", URL: "my-menu-edit.html" },
+  viewList: { display: "Shopping List", URL: "shopping-list.html" },
+  editList: { display: "Shopping List", URL: "shopping-list-add.html" },
+};
 
 //loading
 const savedItems = localStorage.getItem("items");
@@ -10,85 +28,9 @@ const savedRecipes = localStorage.getItem("recipes");
 const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
 const savedShoppingList = localStorage.getItem("shoppingList");
 const shoppingList = savedRecipes ? JSON.parse(savedShoppingList) : {};
+let pageHistory = loadPageHistory();
 
-// const shoppingListExample = {
-//   Potato: {
-//     name: "Potato",
-//     quantityUnit: {
-//       "potato soup": {
-//         quantity: 5,
-//         unit: "",
-//       },
-//       "potato salad": {
-//         quantity: 3,
-//         unit: "",
-//       },
-//     },
-//   },
-//   "Tomato Paste": {
-//     name: "Tomato Paste",
-//     quantityUnit: {
-//       spaghetti: {
-//         quantity: 1,
-//         unit: "tbsp",
-//       },
-//       minestrone: {
-//         quantity: "1/2",
-//         unit: "can",
-//       },
-//     },
-//   },
-// };
-// const shoppingList = shoppingListExample;
-
-// const itemsExample = {
-//   Flour: {
-//     name: "Flour",
-//     unit: "cups",
-//     category: "baking",
-//     cost: 2.5,
-//     emoji: "🍞",
-//   },
-//   Sugar: { name: "Sugar", unit: "", category: "produce", cost: 1, emoji: "🥕" },
-// };
-// const items = itemsExample;
-
-// const recipesExample = {
-//   Cake: {
-//     name: "Cake",
-//     emoji: "🍰",
-//     serves: 3,
-//     time: "30 min",
-//     ingredients: {
-//       Flour: { name: "Flour", quantity: 4 },
-//       Sugar: { name: "Sugar", quantity: 3 },
-//     },
-//   },
-//   Lemonade: {
-//     name: "Lemonade",
-//     emoji: "🍋",
-//     serves: 2,
-//     time: "10 min",
-//     ingredients: {
-//       Sugar: { name: "Sugar", quantity: 2 },
-//       Lemon: { name: "Lemon", quantity: 3 },
-//       Water: { name: "Water", quantity: 5 },
-//     },
-//   },
-//   Pasta: {
-//     name: "Pasta",
-//     emoji: "🍝",
-//     serves: 4,
-//     time: "20 min",
-//     ingredients: {
-//       Tomato: { name: "Tomato", quantity: 3 },
-//       Noodles: { name: "Noodles", quantity: 2 },
-//       OliveOil: { name: "Olive Oil", quantity: 1 },
-//     },
-//   },
-// };
-// const recipes = recipesExample;
-
+tabsUI();
 populateIngredList(items);
 let currItem;
 autoSelect();

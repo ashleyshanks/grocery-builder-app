@@ -83,6 +83,7 @@ textarea::placeholder {
 section.white-bg,
 body.white-bg,
 #recipe-ingred-info,
+main.homepage,
 body,
 #add-recipe-item {
   background-color: var(--lt-color);
@@ -249,12 +250,15 @@ h1 {
 #recipes-list span:nth-of-type(3),
 .editing,
 .hidden-mobile,
-.desktop-tabs,
 .hidden,
 #recipe-info .buttons,
 #light-mode,
 #dark-mode {
   display: none !important;
+}
+
+.desktop-tabs {
+  display: none;
 }
 
 .hide {
@@ -285,8 +289,13 @@ ul {
 }
 
 .info-list li,
-#delete-confirm-popup li {
+#delete-confirm-popup li,
+#subingredients-list li {
   list-style: disc;
+}
+
+#subingredients-list li {
+  margin-left: 1.6em;
 }
 
 /*--------------------------MEDIA QUERY -----------------------------*/
@@ -306,7 +315,8 @@ ul {
   section.main-element,
   section.bottom-element {
     margin: 0 20% !important;
-    padding: 0 2em !important;
+    padding-right: 2em !important;
+    padding-left: 2em !important;
     padding-top: 1em !important;
   }
 
@@ -336,8 +346,15 @@ ul {
     justify-content: space-between !important;
   }
 
-  #tabs li {
-    display: inline-block !important;
+  #current-page,
+  #prev-page,
+  #prev-prev-page {
+    display: inline-block;
+  }
+
+  #prev-page,
+  #prev-prev-page {
+    cursor: pointer !important;
   }
 
   /* #recipe-form #larger-close-btn,
@@ -372,10 +389,4 @@ ul {
     z-index: 1;
     background: #ffa162;
   }
-}
-
-@media (min-width: 900px) {
-  /* #tabs li {
-    margin-right: -1.5em;
-  } */
 }

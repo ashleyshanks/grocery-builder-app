@@ -311,7 +311,7 @@ li:hover .checkbox {
 
 #recipe-list.info-shown,
 #menu-list.info-shown,
-.info-shown {
+#shopping-list.info-shown {
   height: 50vh !important;
 }
 
@@ -384,8 +384,7 @@ select {
 #submit-btn,
 #edit-item-btn,
 #delete-item-btn,
-.popup-btn,
-#hero-nav ul li {
+.popup-btn {
   background-color: var(--lt-green);
   color: var(--lt-color);
   border-radius: 30px;
@@ -539,9 +538,20 @@ form[role="search"] button svg {
 }
 
 /* home buttons */
-#hero-nav ul li {
+
+#hero-nav a,
+#hero-nav #load {
+  background-color: var(--lt-green);
+  color: var(--lt-color);
+  border-radius: 30px;
+  width: 100%;
+  text-align: center;
   display: inline-block; /* make list items behave like buttons */
   padding: 0.6em 5em; /* vertical and horizontal padding */
+}
+
+#hero-nav #load {
+  background-color: var(--lt-orange);
 }
 
 #hero-nav img {
@@ -564,8 +574,12 @@ form[role="search"] button svg {
   gap: 1em;
 }
 
-#hero-nav ul li:hover {
+#hero-nav a:hover {
   background-color: var(--dk-green);
+}
+
+#hero-nav #load:hover {
+  background-color: var(--dk-orange);
 }
 
 /* #top-bar {
@@ -581,12 +595,12 @@ form[role="search"] button svg {
 
 /*-----------------------------   zebra ZEBRA STRIPES  -----------------------------*/
 
-#need-for-list li:nth-child(odd) {
+.zebra-list li:nth-child(odd) {
   background-color: var(--md-gray); /* light gray */
   border-radius: 8px;
 }
 
-#need-for-list li {
+.zebra-list li {
   /* padding: 0.2em 0.35em; */
   padding-bottom: 0.4em;
   padding-top: 0.2em;
@@ -594,10 +608,6 @@ form[role="search"] button svg {
   padding-right: 0.6em;
   margin: 0.25em -0.15em;
 }
-
-/* #need-for-list li:nth-child(even) {
-  background-color: #ffffff; 
-} */
 
 /*-----------------------------   EMOJI PICKER -----------------------------*/
 

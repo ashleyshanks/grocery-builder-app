@@ -18,6 +18,24 @@ const svgHTML = recipeTitle.querySelector("svg")?.outerHTML || "";
 const recipeInfo = document.getElementById("recipe-info");
 const favStar = document.getElementById("fav-star");
 const closeInfoBtn = document.getElementById("info-close-btn");
+const currentPageText = document.querySelector("#current-page h1").textContent;
+const prevPageTab = document.getElementById("prev-page");
+const prevText = document.querySelector("#prev-page h1");
+const prevPrevPageTab = document.getElementById("prev-prev-page");
+const prevPrevText = document.querySelector("#prev-prev-page h1");
+
+const pageHistoryMap = {
+  editRecipeIngred: { display: "My Recipes", URL: "edit-recipe-ingred.html" },
+  editRecipe: { display: "My Recipes", URL: "edit-recipe.html" },
+  home: { display: "Home", URL: "index.html" },
+  viewRecipes: { display: "My Recipes", URL: "my-recipes.html" },
+  editIngred: { display: "Ingredients", URL: "ingredients-edit.html" },
+  viewIngred: { display: "Ingredients", URL: "ingredients.html" },
+  viewMenu: { display: "My Menu", URL: "my-menu.html" },
+  editMenu: { display: "My Menu", URL: "my-menu-edit.html" },
+  viewList: { display: "Shopping List", URL: "shopping-list.html" },
+  editList: { display: "Shopping List", URL: "shopping-list-add.html" },
+};
 
 const savedMenu = localStorage.getItem("menu");
 const menu = savedMenu ? JSON.parse(savedMenu) : {};
@@ -25,7 +43,9 @@ const menu = savedMenu ? JSON.parse(savedMenu) : {};
 const savedRecipes = localStorage.getItem("recipes");
 const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
 const recipeList = document.getElementById("recipes-list");
+let pageHistory = loadPageHistory();
 
+tabsUI();
 populateRecipeList();
 let currRecipe;
 if (typeof currRecipe === "undefined" || currRecipe === null) {
@@ -321,6 +341,94 @@ function formatTime(input) {
 function capitalize(str) {
   if (!str) return "";
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function savePages(currentPage) {
+  // Move prevPage to prevPrevPage
+  pageHistory.prevPrevPage = pageHistory.prevPage || "No page";
+
+  // Set prevPage to the page we’re leaving
+  pageHistory.prevPage = currentPage || "No page";
+
+  localStorage.setItem("pageHistory", JSON.stringify(pageHistory));
+}
+
+// savePages("My Recipes");
+
+function tabsUI() {
+  // If both tabs are hidden, do nothing
+  if (
+    prevPageTab.classList.contains("hidden") &&
+    prevPrevPageTab.classList.contains("hidden")
+  ) {
+    return;
+  }
+
+  // Set prevPage tab
+  if (
+    pageHistory.prevPage &&
+    pageHistoryMap[pageHistory.prevPage] &&
+    pageHistoryMap[pageHistory.prevPage].display != currentPageText
+  ) {
+    prevText.textContent = pageHistoryMap[pageHistory.prevPage].display;
+    prevPageTab.classList.remove("hidden");
+  } else {
+    prevPageTab.classList.add("hidden");
+  }
+
+  // Set prevPrevPage tab
+  if (
+    pageHistory.prevPrevPage &&
+    pageHistoryMap[pageHistory.prevPrevPage] &&
+    pageHistoryMap[pageHistory.prevPrevPage].display != currentPageText &&
+    pageHistoryMap[pageHistory.prevPage] !=
+      pageHistoryMap[pageHistory.prevPrevPage]
+  ) {
+    prevPrevText.textContent = pageHistoryMap[pageHistory.prevPrevPage].display;
+    prevPrevPageTab.classList.remove("hidden");
+  } else {
+    prevPrevPageTab.classList.add("hidden");
+  }
+}
+
+const homeBtn = document.getElementById("home");
+homeBtn.addEventListener("click", () => {
+  savePages("viewList");
+});
+
+prevPageTab.addEventListener("click", () => {
+  const prevKey = pageHistory.prevPage;
+  if (prevKey && pageHistoryMap[prevKey]) {
+    const url = pageHistoryMap[prevKey].URL;
+    savePages("viewList");
+    window.location.href = url; // navigate to the URL
+  }
+});
+
+// Click for previous-previous page tab
+prevPrevPageTab.addEventListener("click", () => {
+  const prevPrevKey = pageHistory.prevPrevPage;
+  if (prevPrevKey && pageHistoryMap[prevPrevKey]) {
+    const url = pageHistoryMap[prevPrevKey].URL;
+    savePages("viewList");
+    window.location.href = url; // navigate to the URL
+  }
+});
+
+function loadPageHistory() {
+  const storedPageHistory = localStorage.getItem("pageHistory");
+  console.log("load page function: storedPageHistory: ", storedPageHistory);
+
+  // If found, parse it; otherwise, use default fallback
+  const pageHistory = storedPageHistory
+    ? JSON.parse(storedPageHistory)
+    : {
+        prevPrevPage: "No page",
+        prevPage: "No page",
+        currentPage: "No page",
+      };
+
+  return pageHistory;
 }
 
 // populateRecipeList();

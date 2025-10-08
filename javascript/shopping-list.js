@@ -9,110 +9,49 @@ const usedInList = document.getElementById("need-for-list");
 const deleteBtn = document.getElementById("delete-item-btn");
 const editBtn = document.getElementById("edit-item-btn");
 const totalQuantity = document.getElementById("quantity");
+const complexQuantityList = document.getElementById("complex-quantity");
 
-const shoppingListExample = {
-  Potato: {
-    name: "Potato",
-    quantityUnit: {
-      "Potato Soup": {
-        quantity: "1",
-        unit: "",
-      },
-      "Potato Salad": {
-        quantity: "1",
-        unit: "cup",
-      },
-      "Potato Casserole": {
-        quantity: "1",
-        unit: "cup",
-      },
-    },
-  },
+const currentPageText = document.querySelector("#current-page h1").textContent;
+const prevPageTab = document.getElementById("prev-page");
+const prevText = document.querySelector("#prev-page h1");
+const prevPrevPageTab = document.getElementById("prev-prev-page");
+const prevPrevText = document.querySelector("#prev-prev-page h1");
 
-  "Tomato Paste": {
-    name: "Tomato Paste",
-    quantityUnit: {
-      Spaghetti: {
-        quantity: 1,
-        unit: "tbsp",
-      },
-      Minestrone: {
-        quantity: "1/2",
-        unit: "can",
-      },
-    },
-  },
+const pageHistoryMap = {
+  editRecipeIngred: { display: "My Recipes", URL: "edit-recipe-ingred.html" },
+  editRecipe: { display: "My Recipes", URL: "edit-recipe.html" },
+  home: { display: "Home", URL: "index.html" },
+  viewRecipes: { display: "My Recipes", URL: "my-recipes.html" },
+  editIngred: { display: "Ingredients", URL: "ingredients-edit.html" },
+  viewIngred: { display: "Ingredients", URL: "ingredients.html" },
+  viewMenu: { display: "My Menu", URL: "my-menu.html" },
+  editMenu: { display: "My Menu", URL: "my-menu-edit.html" },
+  viewList: { display: "Shopping List", URL: "shopping-list.html" },
+  editList: { display: "Shopping List", URL: "shopping-list-add.html" },
 };
-const shoppingList = shoppingListExample;
 
-const itemsExample = {
-  Potato: {
-    name: "Potato",
-    unit: "cups",
-    category: "Produce",
-    cost: 2.5,
-    emoji: "🍞",
-  },
-  "Tomato Paste": {
-    name: "Tomato Paste",
-    unit: "",
-    category: "produce",
-    cost: 1,
-    emoji: "🥕",
-  },
-};
-const items = itemsExample;
+let checkedState = JSON.parse(localStorage.getItem("checkedState")) || {};
 
-const recipesExample = {
-  "Potato Soup": {
-    name: "Potato Soup",
-    emoji: "🍰",
-    serves: 3,
-    time: "30 min",
-    ingredients: {
-      Potato: { name: "Potato", quantity: 4 },
-      Milk: { name: "Milk", quantity: 3 },
-    },
-  },
-  "Potato Salad": {
-    name: "Lemonade",
-    emoji: "🍋",
-    serves: 2,
-    time: "10 min",
-    ingredients: {
-      Potato: { name: "Potato", quantity: 2 },
-      Lemon: { name: "Lemon", quantity: 3 },
-      Water: { name: "Water", quantity: 5 },
-    },
-  },
-  Spaghetti: {
-    name: "Spaghetti",
-    emoji: "🍝",
-    serves: 4,
-    time: "20 min",
-    ingredients: {
-      Tomato: { name: "Tomato", quantity: 3 },
-      Noodles: { name: "Noodles", quantity: 2 },
-      OliveOil: { name: "Olive Oil", quantity: 1 },
-    },
-  },
-  Minestrone: {
-    name: "Spaghetti",
-    emoji: "🍝",
-    serves: 4,
-    time: "20 min",
-    ingredients: {
-      Tomato: { name: "Tomato", quantity: 3 },
-      Noodles: { name: "Noodles", quantity: 2 },
-      OliveOil: { name: "Olive Oil", quantity: 1 },
-    },
-  },
-};
-const recipes = recipesExample;
+const storedMenu = localStorage.getItem("menu");
+const storedRecipes = localStorage.getItem("recipes");
+const storedShoppingList = localStorage.getItem("shoppingList");
+const storedItems = localStorage.getItem("items");
+
+// Parse each if it exists, or fall back to an empty object
+const menu = storedMenu ? JSON.parse(storedMenu) : {};
+const recipes = storedRecipes ? JSON.parse(storedRecipes) : {};
+const shoppingList = storedShoppingList ? JSON.parse(storedShoppingList) : {};
+const items = storedItems ? JSON.parse(storedItems) : {};
+let pageHistory = loadPageHistory();
 
 let simpleQuantity = false;
 let currItem;
 
+// if (!localStorage.getItem("pageHistoryInitialized")) {
+//   savePages("viewList");
+//   localStorage.setItem("pageHistoryInitialized", "true");
+// }
+tabsUI();
 populateIngredList(shoppingList);
 autoSelect();
 
@@ -120,7 +59,7 @@ ingredList.addEventListener("click", (event) => {
   if (Object.keys(items).length === 0) {
     return;
   }
-  console.log("manually selected ", currItem);
+
   ingredInfo.classList.remove("hidden");
   ingredList.classList.add("info-shown");
   closeInfoBtn.classList.remove("hidden");
@@ -129,16 +68,20 @@ ingredList.addEventListener("click", (event) => {
 
   //get name - emoji
   currItem = clickedLi.textContent;
+  console.log("manually selected ", currItem);
   currItem = currItem
     .replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, "")
     .trim();
-  currItem = items[currItem];
+  console.log("Trimmed currItem is", currItem);
+  console.log(shoppingList);
+  currItem = shoppingList[currItem];
 
   // Optional: single selection highlight
   const prev = ingredList.querySelector(".selected-li");
   if (prev) prev.classList.remove("selected-li");
   clickedLi.classList.add("selected-li");
 
+  console.log("BAD manual select: currItem is", currItem);
   populateIngredInfo(currItem);
 });
 
@@ -194,7 +137,7 @@ function populateIngredList(shoppingList) {
     checkbox.classList.add("checkbox");
 
     // Default emoji (you can assign by category later if you want)
-    const emoji = "🥕";
+    const emoji = items[ingredientName].emoji;
 
     // Example display: 🥕 Potato — used in: potato soup, potato salad
     const text = document.createTextNode(` ${emoji} ${data.name}`);
@@ -208,11 +151,20 @@ function populateIngredList(shoppingList) {
       e.stopPropagation(); // prevent li click from firing
       checkbox.classList.toggle("checked"); // toggle checkmark
       li.classList.toggle("checked"); // optional: strike-through li
+      // Update state
+      checkedState[ingredientName] = checkbox.classList.contains("checked");
+
+      // Save to localStorage
+      localStorage.setItem("checkedState", JSON.stringify(checkedState));
     });
 
     // Clickable checklist toggle
     li.addEventListener("click", () => {
       li.classList.toggle("checked");
+
+      // Update state
+      checkedState[ingredientName] = checkbox.classList.contains("checked");
+      localStorage.setItem("checkedState", JSON.stringify(checkedState));
     });
   }
 
@@ -230,21 +182,30 @@ function populateIngredList(shoppingList) {
 
 function populateIngredInfo(item) {
   //if info does not exist, remove from UI
-  ingredCost.classList.toggle("hidden", !item.cost);
+  console.log("populating info : item is", item);
+  ingredCost.classList.toggle("hidden", !items[item.name].cost);
 
-  let displayEmoji = item.emoji && item.emoji.trim() !== "" ? item.emoji : "🥕";
+  console.log(item);
+  let displayEmoji =
+    items[item.name].emoji && items[item.name].emoji.trim() !== ""
+      ? items[item.name].emoji
+      : "🥕";
   ingredName.textContent = `${displayEmoji} ${item.name}`;
 
-  let unitQuantityInfo = convertUnits(item);
+  //wip fix
+  // let unitQuantityInfo = convertUnits(item);
+  const itemQuantityInfo = convertUnits(item);
   if (simpleQuantity) {
-    totalQuantity.textContent = calculateTotalQuantity(item);
+    complexQuantityList.classList.add("hidden");
+    totalQuantity.textContent = `${itemQuantityInfo.quantity} ${itemQuantityInfo.unit}`;
   } else {
+    complexQuantityList.classList.remove("hidden");
     totalQuantity.textContent = "";
-    //wip make new div in info that lists quantities and units
+    populateComplexQuantity(itemQuantityInfo);
   }
 
-  if (item.cost !== "" && item.cost != null) {
-    ingredCost.textContent = `$${item.cost.toFixed(2)}`;
+  if (items[item.name].cost !== "" && items[item.name].cost != null) {
+    ingredCost.textContent = `$${items[item.name].cost.toFixed(2)}`;
   }
 
   usedInList.innerHTML = ""; // Clear previous content
@@ -361,41 +322,9 @@ function createUsedInArray(item) {
 
 //WIP save checkboxes + save everything
 
-function calculateTotalQuantity(item) {
-  //must adjust for different units
-  console.log("calc quantity: item.name is ", item.name);
-  console.log(
-    "calc quantity: shoppingList[item.name] is",
-    shoppingList[item.name]
-  );
-  const quantityUnit = shoppingList[item.name].quantityUnit;
-
-  let total = 0;
-
-  for (const info of Object.values(quantityUnit)) {
-    let q = info.quantity;
-
-    // Convert "1/2" style strings to numbers
-    if (typeof q === "string" && q.includes("/")) {
-      const [num, denom] = q.split("/").map(Number);
-      q = num / denom;
-    } else {
-      q = Number(q);
-    }
-
-    // Add if it's a valid number
-    if (!isNaN(q)) total += q;
-  }
-
-  return total;
-}
-
-convertUnits(butter);
-
 function convertUnits(item) {
-  console.log("convertUnits:");
+  console.log("converting: item.quantityUnit", item.quantityUnit);
   const quantities = Object.values(item.quantityUnit);
-  console.log("quantities is", quantities);
   const allUnits = [];
 
   for (const q of quantities) {
@@ -403,40 +332,64 @@ function convertUnits(item) {
       allUnits.push(q.unit.toLowerCase().trim());
     }
   }
-  console.log("allUnits is", allUnits);
 
+  //NO UNIT
   if (allUnits.length === 0) {
+    let totalQty = 0;
+    for (const info of quantities) {
+      let q = parseFloat(info.quantity) || 0;
+
+      // Convert fractions like "1/2" to decimal
+      if (typeof info.quantity === "string" && info.quantity.includes("/")) {
+        const [num, denom] = info.quantity.split("/").map(Number);
+        q = num / denom;
+      }
+
+      totalQty += q;
+    }
+
     simpleQuantity = true;
-    return { unit: null, type: "none" };
-  }
-
-  // Check if all units are the same
-  if (allUnits.every((u) => u === allUnits[0])) {
-    console.log({
-      unit: allUnits[0],
-      type: inferType(item.category, allUnits[0]),
-    });
-
-    console.log("convert1:", {
-      unit: allUnits[0],
-      type: inferType(item.category, allUnits[0]),
-    });
+    return { unit: "", quantity: totalQty };
+  } else if (allUnits.every((u) => u === allUnits[0])) {
+    //SAME UNIT
     simpleQuantity = true;
-    return { unit: allUnits[0], type: inferType(item.category, allUnits[0]) };
-  }
-
-  if (items[item.name].category == "Produce") {
-    let newQuantity = convertProduceUnit(allUnits, item);
-    console.log("produce newQuantity should be 3", newQuantity);
-    return newQuantity;
-  } else if (items[item.name].category == "Meat") {
-    let newQuantity = convertProduceUnit(allUnits, item);
-    return newQuantity;
+    if (items[item.name].category == "Produce") {
+      totalQty = convertProduceUnit(allUnits, item);
+      return { unit: "", quantity: totalQty };
+    } else {
+      return sameUnitCalcQty(quantities, allUnits);
+    }
   } else {
-    let newQuantityUnits = calcUnits(allUnits, butter);
-    console.log("newQuantityUnits");
-    console.log(newQuantityUnits);
+    //MORE THAN ONE UNIT
+    const obj = complexCalcUnits(item);
+    simpleQuantity = hasOnlyOneNonZero(obj);
+    if (simpleQuantity) {
+      return sameUnitCalcQty(quantities, allUnits);
+    } else {
+      return obj;
+    }
   }
+}
+
+function sameUnitCalcQty(quantities, allUnits) {
+  if (!allUnits || allUnits.length === 0) return { unit: "", quantity: 0 };
+
+  const unit = allUnits[0];
+  let totalQty = 0;
+
+  for (const info of quantities) {
+    let q = parseFloat(info.quantity) || 0;
+
+    // Convert fractions like "1/2" to decimal
+    if (typeof info.quantity === "string" && info.quantity.includes("/")) {
+      const [num, denom] = info.quantity.split("/").map(Number);
+      q = num / denom;
+    }
+
+    totalQty += q;
+  }
+
+  return { unit, quantity: totalQty };
 }
 
 function convertProduceUnit(allUnits, item) {
@@ -470,53 +423,23 @@ function convertProduceUnit(allUnits, item) {
   return newQuantity;
 }
 
-function convertMeatUnit(allUnits, item) {
-  let totalPounds = 0;
+function hasOnlyOneNonZero(obj) {
+  // Flatten all values including nested unconverted
+  const values = [
+    ...Object.values(obj.unconverted),
+    obj.totalCups,
+    obj.totalPounds,
+    obj.totalOunces,
+    obj.totalGallons,
+  ];
 
-  for (const [recipe, info] of Object.entries(item.quantityUnit)) {
-    let quantity = info.quantity;
-    let unit = info.unit?.toLowerCase().trim() || "";
+  // Count how many are greater than 0
+  const nonZeroCount = values.filter((v) => v > 0).length;
 
-    // Convert string fractions like "1/2" to decimal
-    if (typeof quantity === "string" && quantity.includes("/")) {
-      const [num, denom] = quantity.split("/").map(Number);
-      quantity = num / denom;
-    } else {
-      quantity = Number(quantity);
-    }
-
-    switch (unit) {
-      case "pkg":
-        totalPounds += quantity * 1; // 1 pkg ≈ 1 lb
-        break;
-      case "can":
-        totalPounds += quantity * (1 / 3); // 1 can ≈ 1/3 lb
-        break;
-      case "oz":
-      case "ounce":
-        totalPounds += quantity / 16; // 16 oz in 1 lb
-        break;
-      case "lb":
-      case "pound":
-        totalPounds += quantity; // already in pounds
-        break;
-      case "g":
-        totalPounds += quantity / 453.592; // grams → lb
-        break;
-      case "kg":
-        totalPounds += quantity * 2.20462; // kg → lb
-        break;
-      default:
-        // unknown or empty unit → assume 1 lb
-        totalPounds += quantity;
-        break;
-    }
-  }
-
-  return totalPounds; // decimal number in pounds
+  return nonZeroCount === 1;
 }
 
-function calcUnits(allUnits, item) {
+function complexCalcUnits(item) {
   // Conversion rates to cups for small volume units
   const toCups = {
     tsp: 1 / 48,
@@ -524,7 +447,26 @@ function calcUnits(allUnits, item) {
     cup: 1,
   };
 
-  const totals = {};
+  const toGallons = {
+    pint: 1 / 8, // 8 pints = 1 gallon
+    quart: 1 / 4, // 4 quarts = 1 gallon
+    gallon: 1, // 1 gallon = 1 gallon
+    liter: 1 / 3.785, // 3.785 liters = 1 U.S. gallon
+  };
+
+  const toPounds = {
+    oz: 1 / 16, // 16 ounces = 1 pound
+    lb: 1, // 1 pound = 1 pound
+    g: 1 / 453.592, // 453.592 grams = 1 pound
+    kg: 2.20462, // 1 kilogram = 2.20462 pounds
+  };
+
+  let totalCups = 0;
+  let totalGallons = 0;
+  let totalPounds = 0;
+  let totalOunces = 0;
+
+  const unconverted = { pkg: 0, cans: 0, noUnit: 0 };
 
   for (const info of Object.values(item.quantityUnit)) {
     let unit = info.unit?.toLowerCase().trim() || "";
@@ -536,20 +478,184 @@ function calcUnits(allUnits, item) {
       quantity = num / denom;
     }
 
-    // Normalize small units to cups
+    // Cups
     if (["tsp", "tbsp", "cup"].includes(unit)) {
-      const cupQty = quantity * toCups[unit];
-      totals["cup"] = (totals["cup"] || 0) + cupQty;
+      totalCups += quantity * toCups[unit];
+    }
+    // Pounds/Ounces
+    else if (["oz", "lb", "g", "kg"].includes(unit)) {
+      const lbQty = quantity * toPounds[unit];
+      totalPounds += lbQty;
+    }
+    // Gallons
+    else if (["pint", "quart", "gallon", "liter"].includes(unit)) {
+      totalGallons += quantity * toGallons[unit];
+    }
+    // Other / unconverted units
+    else if (unit === "pkg") {
+      unconverted.pkg += quantity;
+    } else if (unit === "can") {
+      unconverted.cans += quantity;
     } else {
-      totals[unit] = (totals[unit] || 0) + quantity;
+      unconverted.noUnit += quantity;
     }
   }
 
-  // Round cups up if present
-  if (totals["cup"]) totals["cup"] = Math.ceil(totals["cup"]);
+  // Round up cups and gallons
+  totalCups = Math.ceil(totalCups);
+  totalGallons = Math.ceil(totalGallons);
 
-  // Update allUnits to reflect what units are actually present
-  const updatedUnits = Object.keys(totals);
+  // Pounds / ounces
+  if (totalPounds < 1 && totalPounds > 0) {
+    totalOunces = Math.round(totalPounds * 16);
+    totalPounds = 0;
+  } else {
+    totalPounds = Math.ceil(totalPounds);
+  }
 
-  return { totals, allUnits: updatedUnits };
+  return {
+    unconverted,
+    totalCups,
+    totalPounds,
+    totalOunces,
+    totalGallons,
+  };
+}
+
+function populateComplexQuantity(data) {
+  console.log("GOOD popComplex: data is", data);
+  const ul = document.getElementById("complex-quantity-list");
+  ul.innerHTML = ""; // Clear any existing items
+
+  // Handle unconverted units first
+  for (const [key, value] of Object.entries(data.unconverted)) {
+    if (value > 0) {
+      const li = document.createElement("li");
+      li.innerHTML = `<span class="complex-quantity">${value}</span><span class="complex-unit">${capitalizeUnit(
+        key
+      )}</span>`;
+      ul.appendChild(li);
+    }
+  }
+
+  // Handle totals
+  if (data.totalCups > 0) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="complex-quantity">${data.totalCups}</span><span class="complex-unit">Cups</span>`;
+    ul.appendChild(li);
+  }
+
+  if (data.totalPounds > 0) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="complex-quantity">${data.totalPounds}</span><span class="complex-unit">Pounds</span>`;
+    ul.appendChild(li);
+  }
+
+  if (data.totalOunces > 0) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="complex-quantity">${data.totalOunces}</span><span class="complex-unit">Ounces</span>`;
+    ul.appendChild(li);
+  }
+
+  if (data.totalGallons > 0) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="complex-quantity">${data.totalGallons}</span><span class="complex-unit">Gallons</span>`;
+    ul.appendChild(li);
+  }
+}
+
+// Helper to capitalize unit names nicely
+function capitalizeUnit(str) {
+  return str
+    .split(/(?=[A-Z])|_/)
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+    .join(" ");
+}
+
+function savePages(currentPage) {
+  // Move prevPage to prevPrevPage
+  pageHistory.prevPrevPage = pageHistory.prevPage || "No page";
+
+  // Set prevPage to the page we’re leaving
+  pageHistory.prevPage = currentPage || "No page";
+
+  localStorage.setItem("pageHistory", JSON.stringify(pageHistory));
+}
+
+// savePages("My Recipes");
+
+function tabsUI() {
+  // If both tabs are hidden, do nothing
+  if (
+    prevPageTab.classList.contains("hidden") &&
+    prevPrevPageTab.classList.contains("hidden")
+  ) {
+    return;
+  }
+
+  // Set prevPage tab
+  if (
+    pageHistory.prevPage &&
+    pageHistoryMap[pageHistory.prevPage] &&
+    pageHistoryMap[pageHistory.prevPage].display != currentPageText
+  ) {
+    prevText.textContent = pageHistoryMap[pageHistory.prevPage].display;
+    prevPageTab.classList.remove("hidden");
+  } else {
+    prevPageTab.classList.add("hidden");
+  }
+
+  // Set prevPrevPage tab
+  if (
+    pageHistory.prevPrevPage &&
+    pageHistoryMap[pageHistory.prevPrevPage] &&
+    pageHistoryMap[pageHistory.prevPrevPage].display != currentPageText &&
+    pageHistoryMap[pageHistory.prevPage] !=
+      pageHistoryMap[pageHistory.prevPrevPage]
+  ) {
+    prevPrevText.textContent = pageHistoryMap[pageHistory.prevPrevPage].display;
+    prevPrevPageTab.classList.remove("hidden");
+  } else {
+    prevPrevPageTab.classList.add("hidden");
+  }
+}
+
+const homeBtn = document.getElementById("home");
+homeBtn.addEventListener("click", () => {
+  savePages("viewList");
+});
+
+prevPageTab.addEventListener("click", () => {
+  const prevKey = pageHistory.prevPage;
+  if (prevKey && pageHistoryMap[prevKey]) {
+    const url = pageHistoryMap[prevKey].URL;
+    savePages("viewList");
+    window.location.href = url; // navigate to the URL
+  }
+});
+
+// Click for previous-previous page tab
+prevPrevPageTab.addEventListener("click", () => {
+  const prevPrevKey = pageHistory.prevPrevPage;
+  if (prevPrevKey && pageHistoryMap[prevPrevKey]) {
+    const url = pageHistoryMap[prevPrevKey].URL;
+    savePages("viewList");
+    window.location.href = url; // navigate to the URL
+  }
+});
+
+function loadPageHistory() {
+  const storedPageHistory = localStorage.getItem("pageHistory");
+  console.log("load page function: storedPageHistory: ", storedPageHistory);
+
+  // If found, parse it; otherwise, use default fallback
+  const pageHistory = storedPageHistory
+    ? JSON.parse(storedPageHistory)
+    : {
+        prevPrevPage: "No page",
+        prevPage: "No page",
+        currentPage: "No page",
+      };
+
+  return pageHistory;
 }

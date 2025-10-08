@@ -3,12 +3,33 @@ const daySelect = document.getElementById("meal-day-input");
 const categorySelect = document.getElementById("meal-category-input");
 const recipeTitle = document.querySelector("h2");
 const svgHTML = recipeTitle.querySelector("svg")?.outerHTML || "";
+const currentPageText = document.querySelector("#current-page h1").textContent;
+const prevPageTab = document.getElementById("prev-page");
+const prevText = document.querySelector("#prev-page h1");
+const prevPrevPageTab = document.getElementById("prev-prev-page");
+const prevPrevText = document.querySelector("#prev-prev-page h1");
 
 const savedMenu = localStorage.getItem("menu");
 const menu = savedMenu ? JSON.parse(savedMenu) : {};
 
 const savedRecipes = localStorage.getItem("recipes");
 const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
+let pageHistory = loadPageHistory();
+
+tabsUI();
+
+const pageHistoryMap = {
+  editRecipeIngred: { display: "Edit Recipe", URL: "edit-recipe-ingred.html" },
+  editRecipe: { display: "Edit Recipe", URL: "edit-recipe.html" },
+  home: { display: "Home", URL: "index.html" },
+  viewRecipes: { display: "My Recipes", URL: "my-recipes.html" },
+  editIngred: { display: "Edit Ingredients", URL: "ingredients-edit.html" },
+  viewIngred: { display: "Ingredients", URL: "ingredients.html" },
+  viewMenu: { display: "My Menu", URL: "my-menu.html" },
+  editMenu: { display: "Edit Menu", URL: "my-menu-edit.html" },
+  viewList: { display: "Shopping List", URL: "shopping-list.html" },
+  editList: { display: "Edit List", URL: "shopping-list-add.html" },
+};
 
 const courseMap = {
   breakfast: "🥞 Breakfast",
@@ -248,12 +269,67 @@ function selectRecipe(recipeName) {
   fillPlaceholder(currRecipe);
 }
 
-//clear data
 function clearData() {
   localStorage.removeItem("recipes");
   localStorage.removeItem("menu");
 }
 
+function fillPlaceholder(currRecipe) {
+  //   const originalName = currRecipe.replace(/ Copy.*$/, "");
+  recipeTitle.innerHTML = `${svgHTML} ${
+    recipes[menu[currRecipe]?.name]?.emoji || "🥄"
+  } ${menu[currRecipe]?.name}`;
+
+  // Fill category
+  const courseValue =
+    menu[currRecipe]?.course || recipes[currRecipe]?.type || "";
+  categorySelect.value = courseValue === "unknown" ? "" : courseValue;
+
+  // Fill day safely
+  const dayKey = menu[currRecipe]?.day || "anyday";
+  daySelect.value = dayKey;
+}
+
+function autoSelect() {
+  // Grab the first <li> inside the menuList
+  const firstLi = menuList.querySelector("li");
+
+  if (!firstLi) return; // nothing to select
+
+  // Remove any previous selection
+  const prev = menuList.querySelector(".selected-li");
+  if (prev) prev.classList.remove("selected-li");
+
+  // Select the new one
+  firstLi.classList.add("selected-li");
+  currRecipe = firstLi.dataset.key;
+  fillPlaceholder(currRecipe);
+}
+
+function selectRecipe(recipeName) {
+  if (!recipeName) return;
+
+  // Find the <li> whose text matches the recipe name
+  const li = Array.from(menuList.querySelectorAll("li")).find(
+    (el) => el.textContent.trim() === recipeName
+  );
+
+  if (!li) return; // recipe not found in the list
+
+  // Remove previous selection
+  const prev = menuList.querySelector(".selected-li");
+  if (prev) prev.classList.remove("selected-li");
+
+  // Select this one
+  li.classList.add("selected-li");
+  currRecipe = recipeName;
+  fillPlaceholder(currRecipe);
+}
+
+function clearData() {
+  localStorage.removeItem("recipes");
+  localStorage.removeItem("menu");
+}
 //wip
 //save course to recipe type if its unknown
 //placeholder "Nothing is added to your menu. Add some on My Recipes!"

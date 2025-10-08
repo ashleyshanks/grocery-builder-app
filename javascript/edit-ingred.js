@@ -4,7 +4,6 @@ const actionBarLine1 = document.querySelector("#actions-bar p:nth-of-type(1)");
 const actionBarLine2 = document.querySelector("#actions-bar p:nth-of-type(2)");
 
 const addNewBtn = document.getElementById("add-svg");
-
 const ingredForm = document.getElementById("add-item");
 const nameSpan = document.querySelector("#add-item h2 span");
 const emojiBtn = document.querySelector("#add-item h2 button");
@@ -14,10 +13,28 @@ const formCategory = document.getElementById("category-input");
 const formCost = document.getElementById("cost-input");
 const deleteBtn = document.getElementById("delete-btn");
 const viewBtn = document.getElementById("edit-btn");
-
 const ingredList = document.getElementById("ingred-list");
 const addPopup = document.getElementById("add-to-shopping-list-popup");
 const saveAddBtn = document.getElementById("add-to-list-btn");
+
+const prevPageTab = document.getElementById("prev-page");
+const prevText = document.querySelector("#prev-page h1");
+const prevPrevPageTab = document.getElementById("prev-prev-page");
+const prevPrevText = document.querySelector("#prev-prev-page h1");
+const currentPageText = document.querySelector("#current-page h1").textContent;
+
+const pageHistoryMap = {
+  editRecipeIngred: { display: "My Recipes", URL: "edit-recipe-ingred.html" },
+  editRecipe: { display: "My Recipes", URL: "edit-recipe.html" },
+  home: { display: "Home", URL: "index.html" },
+  editIngred: { display: "Ingredients", URL: "ingredients-edit.html" },
+  viewRecipes: { display: "My Recipes", URL: "my-recipes.html" },
+  viewIngred: { display: "Ingredients", URL: "ingredients.html" },
+  viewMenu: { display: "My Menu", URL: "my-menu.html" },
+  editMenu: { display: "My Menu", URL: "my-menu-edit.html" },
+  viewList: { display: "Shopping List", URL: "shopping-list.html" },
+  editList: { display: "Shopping List", URL: "shopping-list-add.html" },
+};
 
 //loading
 const savedItems = localStorage.getItem("items");
@@ -26,90 +43,13 @@ const savedRecipes = localStorage.getItem("recipes");
 const recipes = savedRecipes ? JSON.parse(savedRecipes) : {};
 const savedShoppingList = localStorage.getItem("shoppingList");
 const shoppingList = savedRecipes ? JSON.parse(savedShoppingList) : {};
-
-// const shoppingListExample = {
-//   Potato: {
-//     name: "Potato",
-//     quantityUnit: {
-//       "potato soup": {
-//         quantity: 5,
-//         unit: "",
-//       },
-//       "potato salad": {
-//         quantity: 3,
-//         unit: "",
-//       },
-//     },
-//   },
-//   "Tomato Paste": {
-//     name: "Tomato Paste",
-//     quantityUnit: {
-//       spaghetti: {
-//         quantity: 1,
-//         unit: "tbsp",
-//       },
-//       minestrone: {
-//         quantity: "1/2",
-//         unit: "can",
-//       },
-//     },
-//   },
-// };
-// const shoppingList = shoppingListExample;
-
-// const itemsExample = {
-//   Flour: {
-//     name: "Flour",
-//     unit: "cups",
-//     category: "bakery",
-//     cost: 2.5,
-//     emoji: "🍞",
-//   },
-//   Sugar: { name: "Sugar", unit: "", category: "produce", cost: 1, emoji: "" },
-// };
-
-// const items = itemsExample;
-
-// const recipesExample = {
-//   Cake: {
-//     name: "Cake",
-//     emoji: "🍰",
-//     serves: 3,
-//     time: "30 min",
-//     ingredients: {
-//       Flour: { name: "Flour", quantity: 4 },
-//       Sugar: { name: "Sugar", quantity: 3 },
-//     },
-//   },
-//   Lemonade: {
-//     name: "Lemonade",
-//     emoji: "🍋",
-//     serves: 2,
-//     time: "10 min",
-//     ingredients: {
-//       Sugar: { name: "Sugar", quantity: 2 },
-//       Lemon: { name: "Lemon", quantity: 3 },
-//       Water: { name: "Water", quantity: 5 },
-//     },
-//   },
-//   Pasta: {
-//     name: "Pasta",
-//     emoji: "🍝",
-//     serves: 4,
-//     time: "20 min",
-//     ingredients: {
-//       Tomato: { name: "Tomato", quantity: 3 },
-//       Noodles: { name: "Noodles", quantity: 2 },
-//       OliveOil: { name: "Olive Oil", quantity: 1 },
-//     },
-//   },
-// };
-// const recipes = recipesExample;
+let pageHistory = loadPageHistory();
 
 //global
 let currItem;
 let addingNew = false;
 let justSavedItem = false;
+tabsUI();
 populateIngredList(items);
 
 //select item
@@ -562,6 +502,99 @@ document.addEventListener("DOMContentLoaded", () => {
     emojiBtn.textContent = selectedEmoji || "🥕";
   });
 });
+
+function savePages(currentPage) {
+  // Move prevPage to prevPrevPage
+  pageHistory.prevPrevPage = pageHistory.prevPage || "No page";
+
+  // Set prevPage to the page we’re leaving
+  pageHistory.prevPage = currentPage || "No page";
+
+  localStorage.setItem("pageHistory", JSON.stringify(pageHistory));
+}
+
+function tabsUI() {
+  // If both tabs are hidden, do nothing
+  if (
+    prevPageTab.classList.contains("hidden") &&
+    prevPrevPageTab.classList.contains("hidden")
+  ) {
+    return;
+  }
+
+  // Set prevPage tab
+  if (
+    pageHistory.prevPage &&
+    pageHistoryMap[pageHistory.prevPage] &&
+    pageHistoryMap[pageHistory.prevPage].display != currentPageText
+  ) {
+    prevText.textContent = pageHistoryMap[pageHistory.prevPage].display;
+    prevPageTab.classList.remove("hidden");
+  } else {
+    prevPageTab.classList.add("hidden");
+  }
+
+  // Set prevPrevPage tab
+  if (
+    pageHistory.prevPrevPage &&
+    pageHistoryMap[pageHistory.prevPrevPage] &&
+    pageHistoryMap[pageHistory.prevPrevPage].display != currentPageText &&
+    pageHistoryMap[pageHistory.prevPage] !=
+      pageHistoryMap[pageHistory.prevPrevPage]
+  ) {
+    prevPrevText.textContent = pageHistoryMap[pageHistory.prevPrevPage].display;
+    prevPrevPageTab.classList.remove("hidden");
+  } else {
+    prevPrevPageTab.classList.add("hidden");
+  }
+}
+
+// Click for previous-previous page tab
+prevPrevPageTab.addEventListener("click", () => {
+  const prevPrevKey = pageHistory.prevPrevPage;
+  if (prevPrevKey && pageHistoryMap[prevPrevKey]) {
+    const url = pageHistoryMap[prevPrevKey].URL;
+    savePages("home");
+    window.location.href = url;
+  }
+});
+
+function saveAllData() {
+  localStorage.setItem("menu", JSON.stringify(menu));
+  console.log(menu);
+  localStorage.setItem("recipes", JSON.stringify(recipes));
+  console.log(recipes);
+  localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
+  console.log(shoppingList);
+  localStorage.setItem("items", JSON.stringify(items));
+  console.log(items);
+}
+
+function clearData() {
+  localStorage.removeItem("menu");
+  localStorage.removeItem("recipes");
+  localStorage.removeItem("shoppingList");
+  localStorage.removeItem("items");
+  localStorage.removeItem("pageHistory");
+
+  console.log("Data cleared from memory and localStorage.");
+}
+
+function loadPageHistory() {
+  const storedPageHistory = localStorage.getItem("pageHistory");
+  console.log("load page function: storedPageHistory: ", storedPageHistory);
+
+  // If found, parse it; otherwise, use default fallback
+  const pageHistory = storedPageHistory
+    ? JSON.parse(storedPageHistory)
+    : {
+        prevPrevPage: "No page",
+        prevPage: "No page",
+        currentPage: "No page",
+      };
+
+  return pageHistory;
+}
 
 //WIP wip
 //when using add to list button for new item

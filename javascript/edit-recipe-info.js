@@ -7,11 +7,31 @@ const recCreatorInput = document.getElementById("creator");
 const recLinkInput = document.getElementById("recipe-link");
 let recipeNameUI = document.querySelector("#recipe-form h2 span");
 let recipeEmojiUI = document.getElementById("select-emoji");
+const currentPageText = document.querySelector("#current-page h1").textContent;
+const prevPageTab = document.getElementById("prev-page");
+const prevText = document.querySelector("#prev-page h1");
+const prevPrevPageTab = document.getElementById("prev-prev-page");
+const prevPrevText = document.querySelector("#prev-prev-page h1");
+
+const pageHistoryMap = {
+  editRecipeIngred: { display: "Edit Recipe", URL: "edit-recipe-ingred.html" },
+  editRecipe: { display: "Edit Recipe", URL: "edit-recipe.html" },
+  home: { display: "Home", URL: "index.html" },
+  viewRecipes: { display: "My Recipes", URL: "my-recipes.html" },
+  editIngred: { display: "Edit Ingredients", URL: "ingredients-edit.html" },
+  viewIngred: { display: "Ingredients", URL: "ingredients.html" },
+  viewMenu: { display: "My Menu", URL: "my-menu.html" },
+  editMenu: { display: "Edit Menu", URL: "my-menu-edit.html" },
+  viewList: { display: "Shopping List", URL: "shopping-list.html" },
+  editList: { display: "Edit List", URL: "shopping-list-add.html" },
+};
 
 //LOAD DATA
 const savedCurrRecipe = localStorage.getItem("currRecipe");
 let currRecipe = savedCurrRecipe;
-console.log("loaded currRecipe:", currRecipe);
+let pageHistory = loadPageHistory();
+
+tabsUI();
 
 let addClicked = localStorage.getItem("addClicked") === "true";
 
@@ -283,4 +303,94 @@ function saveInfo() {
 
 function isNewRecipe() {
   return Object.keys(recipes).length === 0 || addClicked;
+}
+
+function savePages(currentPage) {
+  // Move prevPage to prevPrevPage
+  pageHistory.prevPrevPage = pageHistory.prevPage || "No page";
+
+  // Set prevPage to the page we’re leaving
+  pageHistory.prevPage = currentPage || "No page";
+
+  localStorage.setItem("pageHistory", JSON.stringify(pageHistory));
+}
+
+// savePages("My Recipes");
+
+function tabsUI() {
+  // If both tabs are hidden, do nothing
+  if (
+    prevPageTab.classList.contains("hidden") &&
+    prevPrevPageTab.classList.contains("hidden")
+  ) {
+    return;
+  }
+
+  // Set prevPage tab
+  if (
+    pageHistory.prevPage &&
+    pageHistoryMap[pageHistory.prevPage] &&
+    pageHistoryMap[pageHistory.prevPage].display != currentPageText
+  ) {
+    prevText.textContent = pageHistoryMap[pageHistory.prevPage].display;
+    prevPageTab.classList.remove("hidden");
+  } else {
+    prevPageTab.classList.add("hidden");
+  }
+
+  // Set prevPrevPage tab
+  if (
+    pageHistory.prevPrevPage &&
+    pageHistoryMap[pageHistory.prevPrevPage] &&
+    pageHistoryMap[pageHistory.prevPrevPage].display != currentPageText &&
+    pageHistoryMap[pageHistory.prevPage] !=
+      pageHistoryMap[pageHistory.prevPrevPage]
+  ) {
+    prevPrevText.textContent = pageHistoryMap[pageHistory.prevPrevPage].display;
+    prevPrevPageTab.classList.remove("hidden");
+  } else {
+    prevPrevPageTab.classList.add("hidden");
+  }
+}
+
+const homeBtn = document.getElementById("home");
+homeBtn.addEventListener("click", () => {
+  savePages("viewMenu");
+});
+
+prevPageTab.addEventListener("click", () => {
+  const prevKey = pageHistory.prevPage;
+  if (prevKey && pageHistoryMap[prevKey]) {
+    const url = pageHistoryMap[prevKey].URL;
+    savePages("viewMenu");
+    window.location.href = url; // navigate to the URL
+  }
+});
+
+// Click for previous-previous page tab
+prevPrevPageTab.addEventListener("click", () => {
+  const prevPrevKey = pageHistory.prevPrevPage;
+  if (prevPrevKey && pageHistoryMap[prevPrevKey]) {
+    const url = pageHistoryMap[prevPrevKey].URL;
+    savePages("viewMenu");
+    window.location.href = url; // navigate to the URL
+  }
+});
+
+function loadPageHistory() {
+  const storedPageHistory = localStorage.getItem("pageHistory");
+  console.log("load page function: storedPageHistory: ", storedPageHistory);
+
+  // If found, parse it; otherwise, use default fallback
+  const pageHistory = storedPageHistory
+    ? JSON.parse(storedPageHistory)
+    : {
+        prevPrevPage: "No page",
+        prevPage: "No page",
+        currentPage: "No page",
+      };
+
+  console.log("load page function: pageHistory:", pageHistory);
+
+  return pageHistory;
 }
